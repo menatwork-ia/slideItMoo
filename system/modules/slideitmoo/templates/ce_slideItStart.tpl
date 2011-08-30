@@ -71,8 +71,10 @@
 
 	<div id="<?php echo $this->si_containerId; ?>" class="slider">
 	<?php if ($this->si_showControls) : ?>
-		<div class="fwd <?php echo $this->si_containerId; ?>_fwd"> > </div>
-		<div class="bk <?php echo $this->si_containerId; ?>_bk"> < </div>
+		<!-- indexer::stop --> 
+		<div class="fwd <?php echo $this->si_containerId; ?>_fwd"> &gt; </div>
+		<div class="bk <?php echo $this->si_containerId; ?>_bk"> &lt; </div>
+		<!-- indexer::continue -->
 	<?php endif; ?>
 		<div class="slider_inner" id="<?php echo $this->si_containerId; ?>_inner">
 			<div class="slider_items" id="<?php echo $this->si_containerId; ?>_items">
