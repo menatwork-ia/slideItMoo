@@ -68,7 +68,7 @@ class slideItStart extends ContentElement
 		/**
 		 * Insert JS and CSS Code
 		 */
-		if (version_compare(VERSION . '.' . BUILD, '2.8.9', '<'))
+		if (version_compare(VERSION . '.' . BUILD, '2.10.0', '<'))
 		{
 			$GLOBALS['TL_JAVASCRIPT'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.2.5/slideitmoo_src.js';
 		}
@@ -80,11 +80,12 @@ class slideItStart extends ContentElement
 		{
 			$GLOBALS['TL_CSS'][] = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/css/'.$this->si_cssTemplate.'.css';
 		}
-		$dimensions = unserialize($this->si_itemsDimension);
+		
+		$dimensions = deserialize($this->si_itemsDimension);
 		$this->Template->si_itemsWidth = $dimensions[0];
 		$this->Template->si_itemsHeight = $dimensions[1];
 		
-		$margin = unserialize($this->si_itemsMargin);
+		$margin = deserialize($this->si_itemsMargin);
 		$this->Template->si_itemsMarginTop = $margin['top'];
 		$this->Template->si_itemsMarginRight = $margin['right'];
 		$this->Template->si_itemsMarginBottom = $margin['bottom'];
