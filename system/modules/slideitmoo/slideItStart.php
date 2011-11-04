@@ -70,15 +70,15 @@ class slideItStart extends ContentElement
 		 */
 		if (version_compare(VERSION . '.' . BUILD, '2.8.9', '<'))
 		{
-			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/slideitmoo/html/js/1.2.0/slideitmoo_src.js';
+			$GLOBALS['TL_JAVASCRIPT'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.2.5/slideitmoo_src.js';
 		}
 		else
 		{
-			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/slideitmoo/html/js/1.3.0/slideitmoo_src.js';
+			$GLOBALS['TL_JAVASCRIPT'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo_src.js';
 		}
 		if ($this->si_templateDefault) 
 		{
-			$GLOBALS['TL_CSS'][] = 'system/modules/slideitmoo/html/css/'.$this->si_cssTemplate.'.css';
+			$GLOBALS['TL_CSS'][] = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/css/'.$this->si_cssTemplate.'.css';
 		}
 		$dimensions = unserialize($this->si_itemsDimension);
 		$this->Template->si_itemsWidth = $dimensions[0];

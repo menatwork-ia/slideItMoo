@@ -53,6 +53,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsVisible'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsVisible'],
     'inputType' => 'text',
+	'exclude' => true,
     'eval' => array('mandatory' => true, 'maxlength' => '4', 'regxp' => 'digit', 'tl_class' => 'w50')
 );
 
@@ -60,6 +61,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_elementsSlide'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_elementsSlide'],
     'inputType' => 'text',
+	'exclude' => true,
     'eval' => array('mandatory' => true, 'maxlength' => '4', 'regxp' => 'digit', 'tl_class' => 'w50')
 );
 
@@ -67,6 +69,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsDimension'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsDimension'],
     'inputType' => 'text',
+	'exclude' => true,
     'eval' => array('mandatory' => true, 'multiple' => true, 'size' => 2, 'rgxp' => 'digit', 'nospace' => true, 'tl_class' => 'w50')
 );
 
@@ -75,6 +78,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsMargin'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsMargin'],
     'inputType' => 'trbl',
 	'options' => array('px'),
+	'exclude' => true,
     'eval' => array('regxp' => 'digit', 'tl_class' => 'w50')
 );
 
@@ -82,6 +86,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_duration'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_duration'],
     'inputType' => 'text',
+	'exclude' => true,
     'eval' => array('mandatory' => true, 'maxlength' => '4', 'regxp' => 'digit', 'tl_class' => 'w50')
 );
 
@@ -89,6 +94,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_autoEffectTransition'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_autoEffectTransition'],
     'inputType' => 'checkbox',
+	'exclude' => true,
     'eval' => array('submitOnChange' => true, 'tl_class' => 'clr w50')
 );
 
@@ -96,6 +102,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_effectTransition'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_effectTransition'],
     'inputType' => 'select',
+	'exclude' => true,
 	'options' => array('Quad', 'Cubic', 'Quart', 'Quint', 'Sine', 'Expo', 'Circ', 'Bounce', 'Back', 'Elastic'),
 	'reference' => &$GLOBALS['TL_LANG']['tl_content']['si_effectTransition'],
     'eval' => array('tl_class' => 'clr w50')
@@ -105,6 +112,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_effectEase'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_effectEase'],
 	'inputType' => 'select',
+	'exclude' => true,
 	'options' => array('In', 'Out', 'InOut'),
 	'reference' => &$GLOBALS['TL_LANG']['tl_content']['si_effectEase'],
     'eval' => array('tl_class' => 'w50')
@@ -114,6 +122,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsSelector'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsSelector'],
     'inputType' => 'text',
+	'exclude' => true,
     'eval' => array('maxlength' => '200', 'regxp' => 'extnd', 'tl_class' => 'w50')
 );
 
@@ -121,6 +130,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlideDefault'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_autoSlideDefault'],
     'inputType' => 'checkbox',
+	'exclude' => true,
     'eval' => array('submitOnChange' => true, 'tl_class' => 'clr w50')
 );
 
@@ -128,6 +138,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlide'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_autoSlide'],
     'inputType' => 'text',
+	'exclude' => true,
     'eval' => array('maxlength' => '10', 'regxp' => 'digit', 'tl_class' => 'w50')
 );
 
@@ -136,6 +147,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_showControls'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_showControls'],
     'default' => 0,
     'inputType' => 'checkbox',
+	'exclude' => true,
     'eval' => array('tl_class' => 'w50')
 );
 
@@ -144,6 +156,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_mouseWheelNav'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_mouseWheelNav'],
     'default' => 0,
     'inputType' => 'checkbox',
+	'exclude' => true,
     'eval' => array('tl_class' => 'w50')
 );
 
@@ -151,6 +164,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_templateDefault'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_templateDefault'],
     'inputType' => 'checkbox',
+	'exclude' => true,
     'eval' => array('submitOnChange' => true, 'tl_class' => 'clr w50')
 );
 
@@ -160,9 +174,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_cssTemplate'] = array
     'default' => 'slideitmoo_horizontal',
     'exclude' => true,
     'inputType' => 'select',
-    // Release 2
-    // 'options'   => $this->getTemplateGroup('slideitmoo_'),
-    // 'options'	=> array('slideitmoo_horizontal', 'slideitmoo_stiegelmeyer'),
     'options_callback' => array('tl_content_si', 'loadCssFiles'),
     'eval' => array('tl_class' => 'w50')
 );
@@ -225,8 +236,6 @@ class tl_content_si extends Backend
         }
     }
 
-//end siWrite
-
     public function siDelete(DC_Table $dc)
     {
 
@@ -247,9 +256,9 @@ class tl_content_si extends Backend
             {
                 $this->Database->prepare("DELETE FROM tl_content WHERE id=?")
                         ->execute($eraseId);
-            }//end if
+            }
         }
-    }//end siDelete
+    }
 
 
     /**
@@ -270,7 +279,7 @@ class tl_content_si extends Backend
             }
         }
         return $arrCss;
-    }//end loadCssFiles
+    }
 
 }
 
