@@ -1,0 +1,4 @@
+ /*
+  * slideItMooFramework
+  * https://github.com/menatwork/slideItMooFramework
+  */
