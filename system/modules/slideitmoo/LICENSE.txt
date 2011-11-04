@@ -5,11 +5,3 @@
  * Link			http://www.men-at-work.de/
  * License    	GNU/LGPL
  */
- 
-/**
- * Package    	slideItMoo Slideshow
- * Copyright  	Constantin Boiangiu 2007-2011
- * Author		Constantin Boiangiu
- * Link			http://www.php-help.ro/
- * License    	MIT-License
- */

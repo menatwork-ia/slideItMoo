@@ -268,7 +268,7 @@ class tl_content_si extends Backend
     public function loadCssFiles()
     {
         
-        $arrFiles = scan(TL_ROOT.'/system/modules/slideitmoo/html/css/');
+        $arrFiles = scan(TL_ROOT . '/plugins/slideitmoo/css/');
         $arrCss = array();
         foreach ($arrFiles as $k => $file)
         {

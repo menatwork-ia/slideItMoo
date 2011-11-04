@@ -78,7 +78,7 @@ class slideItStart extends ContentElement
 		}
 		if ($this->si_templateDefault) 
 		{
-			$GLOBALS['TL_CSS'][] = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/css/'.$this->si_cssTemplate.'.css';
+			$GLOBALS['TL_CSS'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
 		}
 		
 		$dimensions = deserialize($this->si_itemsDimension);
