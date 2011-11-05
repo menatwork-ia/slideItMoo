@@ -27,7 +27,6 @@
  * @filesource
  */
 
-
 /**
  * Fields
  */
@@ -35,6 +34,7 @@ $GLOBALS['TL_LANG']['tl_content']['si_itemsVisible'] = array('Number of items di
 $GLOBALS['TL_LANG']['tl_content']['si_elementsSlide'] = array('Number of items slided', 'Please enter the number of items to slide at once.');
 $GLOBALS['TL_LANG']['tl_content']['si_itemsDimension'] = array('The height and width of an item', 'Value in px.');
 $GLOBALS['TL_LANG']['tl_content']['si_itemsMargin'] = array('Element margin', 'Value in px.');
+$GLOBALS['TL_LANG']['tl_content']['si_startIndex'] = array('Start index', 'Start the slideshow from a another position.');
 $GLOBALS['TL_LANG']['tl_content']['si_duration'] = array('Effect duration', 'Value in milliseconds.');
 $GLOBALS['TL_LANG']['tl_content']['si_autoEffectTransition'] = array('Extended Effects', 'Based on the mootools Fx.Transitions library');
 $GLOBALS['TL_LANG']['tl_content']['si_effectTransition'] = array('Effect transition', 'See http://mootools.net/docs/core/Fx/Fx.Transitions for examples.');
@@ -47,15 +47,15 @@ $GLOBALS['TL_LANG']['tl_content']['si_mouseWheelNav'] = array('Activate mousewhe
 $GLOBALS['TL_LANG']['tl_content']['si_templateDefault'] = array('Activate template', 'Apply the included standard skin.');
 $GLOBALS['TL_LANG']['tl_content']['si_cssTemplate'] = array('CSS-Template', 'The design of the slideshow can be adjusted in the template.');
 
-
 /**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_content']['siStart_legend'] 		= 'General settings';
-$GLOBALS['TL_LANG']['tl_content']['siEffect_legend']   		= 'Effects';
-$GLOBALS['TL_LANG']['tl_content']['siAuto_legend']   		= 'Autoplay';
-$GLOBALS['TL_LANG']['tl_content']['siControls_legend']   	= 'Navigation';
-$GLOBALS['TL_LANG']['tl_content']['siTemplate_legend']   	= 'Templates';
+$GLOBALS['TL_LANG']['tl_content']['siGenerel_legend'] = 'General settings';
+$GLOBALS['TL_LANG']['tl_content']['siDimensions_legend'] = 'Dimensions';
+$GLOBALS['TL_LANG']['tl_content']['siEffect_legend'] = 'Effects';
+$GLOBALS['TL_LANG']['tl_content']['siAuto_legend'] = 'Autoplay';
+$GLOBALS['TL_LANG']['tl_content']['siControls_legend'] = 'Navigation';
+$GLOBALS['TL_LANG']['tl_content']['siTemplate_legend'] = 'Templates';
 
 
 ?>

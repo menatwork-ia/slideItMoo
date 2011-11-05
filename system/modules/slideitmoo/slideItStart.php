@@ -70,7 +70,7 @@ class slideItStart extends ContentElement
 		 */
 		if (version_compare(VERSION . '.' . BUILD, '2.10.0', '<'))
 		{
-			$GLOBALS['TL_JAVASCRIPT'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.2.5/slideitmoo_src.js';
+			$GLOBALS['TL_JAVASCRIPT'][] = 'plugins/slideitmoo/js/1.2.5/slideitmoo_src.js';
 		}
 		else
 		{
@@ -78,7 +78,14 @@ class slideItStart extends ContentElement
 		}
 		if ($this->si_templateDefault) 
 		{
+		if (version_compare(VERSION . '.' . BUILD, '2.10.0', '<'))
+		{
+			$GLOBALS['TL_CSS'][] = 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
+		}
+		else 
+		{
 			$GLOBALS['TL_CSS'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
+			}
 		}
 		
 		$dimensions = deserialize($this->si_itemsDimension);

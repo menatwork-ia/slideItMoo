@@ -7,22 +7,24 @@
 			slide_<?php echo $this->si_containerId; ?> = new SlideItMoo({
 				itemWidth: <?php echo $this->si_itemsOverallWidth; ?>,
 				itemHeight: <?php echo $this->si_itemsHeight; ?>,
-				showControls:<?php echo ($this->si_showControls) ? 1: 0 ; ?>,
-				<?php if ($this->si_autoSlideDefault) echo "autoSlide: ".$this->si_autoSlide.",\n"; 
+				<?php if ($this->si_startIndex) echo "startIndex: " . $this->si_startIndex . ",\n"; ?>
+				showControls: <?php echo ($this->si_showControls) ? 1 : 0 ; ?>,
+				<?php if ($this->si_autoSlideDefault) echo "autoSlide: " . $this->si_autoSlide . ",\n"; 
 				if ($this->si_showControls) : ?>
-				navs:{ 
+navs:{ 
 					fwd:'.<?php echo $this->si_containerId; ?>_fwd', 
 					bk:'.<?php echo $this->si_containerId; ?>_bk' 
 				},
 				<?php endif; 
 				if ($this->si_mouseWheelNav) echo "mouseWheelNav: true,\n"; ?>
-				overallContainer: '<?php echo $this->si_containerId; ?>',
+overallContainer: '<?php echo $this->si_containerId; ?>',
 				elementScrolled: '<?php echo $this->si_containerId; ?>_inner',
 				thumbsContainer: '<?php echo $this->si_containerId; ?>_items',		
 				itemsVisible: <?php echo $this->si_itemsVisible; ?>,
 				elemsSlide: <?php echo $this->si_elementsSlide; ?>,
 				duration: <?php echo $this->si_duration; ?>,
-				itemsSelector:<?php if ($this->si_itemsSelector): echo "'.".$this->si_itemsSelector."'\n"; else: echo "'.block'\n"; endif; ?>
+				<?php if ($this->si_autoEffectTransition) echo "transition: Fx.Transitions." . $this->si_effectTransition . ".ease" . $this->si_effectEase . ",\n"; ?>
+				itemsSelector:<?php if ($this->si_itemsSelector): echo "'." . $this->si_itemsSelector . "'\n"; else: echo "'.block'\n"; endif; ?>
 			});
 
 			var elements = $('<?php echo $this->si_containerId; ?>').getElements(<?php if ($this->si_itemsSelector): echo "'.".$this->si_itemsSelector."'\n"; else: echo "'.block'"; endif; ?>);
@@ -35,7 +37,7 @@
 				var navsSize = 0;
 				
 				<?php if ($this->si_showControls): ?>
-				var fwd = $('<?php echo $this->si_containerId; ?>').getElement('.<?php echo $this->si_containerId; ?>_fwd');
+var fwd = $('<?php echo $this->si_containerId; ?>').getElement('.<?php echo $this->si_containerId; ?>_fwd');
 				var bkwd = $('<?php echo $this->si_containerId; ?>').getElement('.<?php echo $this->si_containerId; ?>_bk');
 				var s1 = fwd.getSize();
 				var s2 = bkwd.getSize();
@@ -43,26 +45,28 @@
 				fwd.addClass('hidden');
 				bkwd.addClass('hidden');
 				<?php endif; ?>
-				overallSize.width = <?php echo $this->si_itemsVisible; ?> * <?php echo $this->si_itemsOverallWidth; ?> + navsSize;
+overallSize.width = <?php echo $this->si_itemsVisible; ?> * <?php echo $this->si_itemsOverallWidth; ?> + navsSize;
 				scrollSize.width = <?php echo $this->si_itemsVisible; ?> * <?php echo $this->si_itemsOverallWidth; ?>;
 				thumbsSize.width = totalElements * (<?php echo $this->si_itemsOverallWidth; ?> + 10);
 			
 				$('<?php echo $this->si_containerId; ?>').set({
-						styles : overallSize
+					styles: overallSize
 				});
 				$('<?php echo $this->si_containerId; ?>_inner').set({
-						styles : scrollSize
+					styles: scrollSize
 				});
 				$('<?php echo $this->si_containerId; ?>_items').set({
-						styles : thumbsSize
+					styles: thumbsSize
 				});
 			
 			}
 		}
 		
 		$$('#<?php echo $this->si_containerId; if ($this->si_itemsSelector): echo ' .'.$this->si_itemsSelector; else: echo ' .block'; endif; ?>').setStyles({
-			<?php if ($this->si_itemsMarginLeft != '') echo "marginLeft: '". $this->si_itemsMarginLeft ."px',\n"; ?>
-			<?php if ($this->si_itemsMarginRight != '') echo "marginRight: '". $this->si_itemsMarginRight ."px',\n"; ?>
+			<?php if ($this->si_itemsMarginLeft != '') echo "marginLeft:'". $this->si_itemsMarginLeft . $this->si_itemsMarginUnit ."',\n"; ?>
+			<?php if ($this->si_itemsMarginRight != '') echo "marginRight:'". $this->si_itemsMarginRight . $this->si_itemsMarginUnit ."',\n"; ?>
+			<?php if ($this->si_itemsMarginTop != '') echo "marginTop:'". $this->si_itemsMarginTop . $this->si_itemsMarginUnit ."',\n"; ?>
+			<?php if ($this->si_itemsMarginBottom != '') echo "marginBottom:'". $this->si_itemsMarginBottom . $this->si_itemsMarginUnit ."',\n"; ?>
 			width: '<?php echo $this->si_itemsWidth; ?>px'
 		});
 	});

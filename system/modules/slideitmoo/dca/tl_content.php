@@ -32,7 +32,7 @@
  */
 
 // replace palettes
-$GLOBALS['TL_DCA']['tl_content']['palettes']['slideItStart'] = '{type_legend},type;{siStart_legend},si_itemsVisible,si_elementsSlide,si_itemsDimension,si_itemsMargin,si_itemsSelector;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav;{siTemplate_legend:hide},si_templateDefault;{expert_legend:hide},cssID,space';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['slideItStart'] = '{type_legend},type;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector;{siDimensions_legend},si_itemsDimension,si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav;{siTemplate_legend:hide},si_templateDefault;{expert_legend:hide},cssID,space';
 
 // extend selector
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'si_autoSlideDefault';
@@ -54,7 +54,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsVisible'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsVisible'],
     'inputType' => 'text',
 	'exclude' => true,
-    'eval' => array('mandatory' => true, 'maxlength' => '4', 'regxp' => 'digit', 'tl_class' => 'w50')
+    'eval' => array('mandatory' => true, 'maxlength' => '4', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_elementsSlide'] = array
@@ -62,7 +62,23 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_elementsSlide'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_elementsSlide'],
     'inputType' => 'text',
 	'exclude' => true,
-    'eval' => array('mandatory' => true, 'maxlength' => '4', 'regxp' => 'digit', 'tl_class' => 'w50')
+    'eval' => array('mandatory' => true, 'maxlength' => '4', 'rgxp' => 'digit', 'tl_class' => 'w50')
+);
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_startIndex'] = array
+    (
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['si_startIndex'],
+    'inputType' => 'text',
+	'exclude' => true,
+    'eval' => array('tl_class' => 'w50')
+);
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsSelector'] = array
+    (
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsSelector'],
+    'inputType' => 'text',
+	'exclude' => true,
+    'eval' => array('maxlength' => '200', 'rgxp' => 'extnd', 'tl_class' => 'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsDimension'] = array
@@ -79,7 +95,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsMargin'] = array
     'inputType' => 'trbl',
 	'options' => array('px'),
 	'exclude' => true,
-    'eval' => array('regxp' => 'digit', 'tl_class' => 'w50')
+    'eval' => array('rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_duration'] = array
@@ -87,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_duration'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_duration'],
     'inputType' => 'text',
 	'exclude' => true,
-    'eval' => array('mandatory' => true, 'maxlength' => '4', 'regxp' => 'digit', 'tl_class' => 'w50')
+    'eval' => array('mandatory' => true, 'maxlength' => '4', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_autoEffectTransition'] = array
@@ -104,7 +120,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_effectTransition'] = array
     'inputType' => 'select',
 	'exclude' => true,
 	'options' => array('Quad', 'Cubic', 'Quart', 'Quint', 'Sine', 'Expo', 'Circ', 'Bounce', 'Back', 'Elastic'),
-	'reference' => &$GLOBALS['TL_LANG']['tl_content']['si_effectTransition'],
     'eval' => array('tl_class' => 'clr w50')
 );
 
@@ -114,16 +129,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_effectEase'] = array
 	'inputType' => 'select',
 	'exclude' => true,
 	'options' => array('In', 'Out', 'InOut'),
-	'reference' => &$GLOBALS['TL_LANG']['tl_content']['si_effectEase'],
     'eval' => array('tl_class' => 'w50')
-);
-
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsSelector'] = array
-    (
-    'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsSelector'],
-    'inputType' => 'text',
-	'exclude' => true,
-    'eval' => array('maxlength' => '200', 'regxp' => 'extnd', 'tl_class' => 'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlideDefault'] = array
@@ -139,7 +145,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlide'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_autoSlide'],
     'inputType' => 'text',
 	'exclude' => true,
-    'eval' => array('maxlength' => '10', 'regxp' => 'digit', 'tl_class' => 'w50')
+    'eval' => array('maxlength' => '10', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_showControls'] = array

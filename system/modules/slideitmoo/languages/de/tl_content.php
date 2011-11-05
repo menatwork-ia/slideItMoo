@@ -27,7 +27,6 @@
  * @filesource
  */
 
-
 /**
  * Fields
  */
@@ -36,6 +35,7 @@ $GLOBALS['TL_LANG']['tl_content']['si_elementsSlide'] = array('Anzahl der zu ver
 $GLOBALS['TL_LANG']['tl_content']['si_itemsDimension'] = array('Breite und Höhe eines Elements', 'Angabe in px.');
 $GLOBALS['TL_LANG']['tl_content']['si_itemsMargin'] = array('Elementabstand', 'Angabe in px.');
 $GLOBALS['TL_LANG']['tl_content']['si_itemsSelector'] = array('Optionale CSS-Klasse', 'Ermöglicht die Eingabe einer optionalen CSS-Klasse für die Elemente im Slider.');
+$GLOBALS['TL_LANG']['tl_content']['si_startIndex'] = array('Startindex', 'Ermöglicht den Start der Slideshow von einer anderen Position.');
 $GLOBALS['TL_LANG']['tl_content']['si_duration'] = array('Effektdauer', 'Angabe in Millisekunden.');
 $GLOBALS['TL_LANG']['tl_content']['si_autoEffectTransition'] = array('Effektbewegung aktivieren', 'Basierend auf der Mootools Fx.Transitions Bibliothek.');
 $GLOBALS['TL_LANG']['tl_content']['si_effectTransition'] = array('Effektbewegung', 'Siehe http://mootools.net/docs/core/Fx/Fx.Transitions für Beispiele.');
@@ -47,15 +47,15 @@ $GLOBALS['TL_LANG']['tl_content']['si_mouseWheelNav'] = array('Scroll-Navigation
 $GLOBALS['TL_LANG']['tl_content']['si_templateDefault'] = array('Template aktivieren', 'Das mitgelieferte Standarddesign anwenden.');
 $GLOBALS['TL_LANG']['tl_content']['si_cssTemplate'] = array('CSS-Template', 'Die Gestaltung der Slideshow kann über das Template angepasst werden.');
 
-
 /**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_content']['siStart_legend'] 		= 'Allgemeine Einstellungen';
-$GLOBALS['TL_LANG']['tl_content']['siEffect_legend']   		= 'Effekte';
-$GLOBALS['TL_LANG']['tl_content']['siAuto_legend']   		= 'Automatische Slideshow';
-$GLOBALS['TL_LANG']['tl_content']['siControls_legend']   	= 'Navigation';
-$GLOBALS['TL_LANG']['tl_content']['siTemplate_legend']   	= 'Templates';
+$GLOBALS['TL_LANG']['tl_content']['siGenerel_legend'] = 'Allgemeine Einstellungen';
+$GLOBALS['TL_LANG']['tl_content']['siDimensions_legend'] = 'Abmessungen';
+$GLOBALS['TL_LANG']['tl_content']['siEffect_legend'] = 'Effekte';
+$GLOBALS['TL_LANG']['tl_content']['siAuto_legend'] = 'Automatische Slideshow';
+$GLOBALS['TL_LANG']['tl_content']['siControls_legend'] = 'Navigation';
+$GLOBALS['TL_LANG']['tl_content']['siTemplate_legend'] = 'Templates';
 
 
 ?>
