@@ -76,15 +76,16 @@ class slideItStart extends ContentElement
 		{
 			$GLOBALS['TL_JAVASCRIPT'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo_src.js';
 		}
+		
 		if ($this->si_templateDefault) 
 		{
-		if (version_compare(VERSION . '.' . BUILD, '2.10.0', '<'))
-		{
-			$GLOBALS['TL_CSS'][] = 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
-		}
-		else 
-		{
-			$GLOBALS['TL_CSS'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
+			if (version_compare(VERSION . '.' . BUILD, '2.10.0', '<'))
+			{
+				$GLOBALS['TL_CSS'][] = 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
+			}
+			else 
+			{
+				$GLOBALS['TL_CSS'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
 			}
 		}
 		
