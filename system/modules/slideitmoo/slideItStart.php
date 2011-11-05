@@ -100,7 +100,7 @@ class slideItStart extends ContentElement
 		$this->Template->si_itemsMarginLeft = $margin['left'];
 		$this->Template->si_itemsMarginUnit = $margin['unit'];
 		
-		$this->Template->si_itemsOverallWidth = $this->Template->si_itemsWidth + $margin[0] + $margin[1];
+		$this->Template->si_itemsOverallWidth = $this->Template->si_itemsWidth + $margin[1] + $margin[3];
 
 	}
 }
