@@ -27,46 +27,46 @@
  * @filesource
  */
 
-
 /**
  * Class slideItEnd 
  *
  * @copyright  MEN AT WORK 2011
- * @package    Controller
+ * @package    ContentElement
  */
 class slideItEnd extends ContentElement
 {
 
-	/**
-	 * Template
-	 * @var string
-	 */
-	protected $strTemplate = 'ce_slideItEnd';
-	
-	/**
-	 * Display a wildcard in the back end
-	 * @return string
-	 */
-	public function generate()
-	{
-		if (TL_MODE == 'BE')
-		{
-			$objTemplate = new BackendTemplate('be_wildcard');
-			$objTemplate->wildcard = '### '.$GLOBALS['TL_LANG']['CTE']['slideItEnd'][0] .' ###';
-			
-			return $objTemplate->parse();
-		}
+    /**
+     * Template
+     * @var string
+     */
+    protected $strTemplate = 'ce_slideItEnd';
 
-		return parent::generate();
-	}
+    /**
+     * Display a wildcard in the back end
+     * @return string
+     */
+    public function generate()
+    {
+        if (TL_MODE == 'BE')
+        {
+            $objTemplate = new BackendTemplate('be_wildcard');
+            $objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['CTE']['slideItEnd'][0] . ' ###';
 
-	/**
-	 * Generate module
-	 */
-	protected function compile()
-	{
-		$this->Template->id = "slider";
-	}
+            return $objTemplate->parse();
+        }
+
+        return parent::generate();
+    }
+
+    /**
+     * Generate module
+     */
+    protected function compile()
+    {
+        $this->Template->id = "slider";
+    }
+
 }
 
 ?>

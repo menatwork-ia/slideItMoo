@@ -26,6 +26,8 @@
  * @license    GNU/LGPL 
  * @filesource
  */
+ 
+$GLOBALS['TL_HOOKS']['parseBackendTemplate'][] = array('slideItMoo', 'checkExtensions');
 
 $GLOBALS['TL_CTE']['slideIt'] = array(
 	'slideItStart' => 'slideItStart',
