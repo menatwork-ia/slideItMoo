@@ -1,8 +1,8 @@
-<?php
+<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2011 Leo Feyer
+ * Copyright (C) 2005-2010 Leo Feyer
  *
  * Formerly known as TYPOlight Open Source CMS.
  *
@@ -21,140 +21,54 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  MEN AT WORK 2011 
- * @package    slideItMoo
- * @license    GNU/LGPL 
- * @filesource
+ * @copyright  Andreas Schempp 2011
+ * @author     Andreas Schempp <andreas@schempp.ch>
+ * @license    http://opensource.org/licenses/lgpl-3.0.html
+ * @version    $Id: runonce.php 2367 2011-08-08 07:55:14Z aschempp $
  */
 
-// Be silenced
-@error_reporting(0);
-@ini_set("display_errors", 0);
 
-/**
- * Runonce Job
- */
-class runonceJob extends Backend
+class UniversalRunonce extends Controller
 {
 
-    //- Vars -------------------------------------------------------------------
+	/**
+	 * Initialize the object
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		
+		// Fix potential Exception on line 0 because of __destruct method (see http://dev.contao.org/issues/2236)
+		$this->import((TL_MODE=='BE' ? 'BackendUser' : 'FrontendUser'), 'User');
+		$this->import('Database');
+	}
 
-    protected $arrValues;
 
-    //- Core Functions ---------------------------------------------------------
-
-    public function __construct()
-    {
-        // Call parent
-        parent::__construct();
-
-        // Imports
-        $this->import("Database");
-
-        // Init vars
-        $this->arrValues = array();
-    }
-
-    /**
-     * Run job
-     */
-    public function run()
-    {
-        try
-        {
-            // Check if we have to run this job
-            if ($this->checkDatabase())
-            {
-                // Load values
-                $this->loadValues();
-                // Cheange tables
-                $this->alertTables();
-                // Save values back to database
-                $this->saveValues();
-            }
-        }
-        catch (Exception $exc)
-        {
-            // Write log 
-            $this->log("Error by updating tables for slideItMoo", "slideItMoo Runonce", TL_ERROR);
-        }
-    }
-
-    //- Helper Functions -------------------------------------------------------
-
-    /**
-     * Check if we have to run this job. 
-     * 
-     * @return boolean
-     */
-    protected function checkDatabase()
-    {
-        if ($this->Database->fieldExists('si_itemsMargin', 'tl_content', true))
-        {
-            $objResult = $this->Database->prepare("SHOW COLUMNS FROM tl_content LIKE 'si_itemsMargin'")
-                    ->execute()
-                    ->next();
-
-            if ($objResult->Type == "blob")
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    /**
-     * Load and update values
-     */
-    protected function loadValues()
-    {
-        $objResult = $this->Database->prepare("SELECT `id`, `si_itemsMargin` FROM tl_content WHERE `si_itemsMargin` != NULL OR `si_itemsMargin` != ''")->execute();
-
-        while ($objResult->next())
-        {
-            $arrMargin = deserialize($objResult->si_itemsMargin);
-            $arrNewMargin = array("bottom" => '', "left" => '', "right" => '', "top" => '', "unit" => "px");
-
-            if (is_array($arrMargin))
-            {
-                $arrNewMargin["left"] = $arrMargin[0];
-                $arrNewMargin["right"] = $arrMargin[1];
-
-                $this->arrValues[$objResult->id] = array("si_itemsMargin" => serialize($arrNewMargin));
-            }
-        }
-    }
-
-    /**
-     * Save values back to database
-     */
-    protected function saveValues()
-    {
-        foreach ($this->arrValues as $key => $value)
-        {
-            $this->Database->prepare("UPDATE `tl_content` %s WHERE id=?")->set($value)->execute($key);
-        }
-    }
-
-    /**
-     * Change table
-     */
-    protected function alertTables()
-    {
-        $this->Database->query("ALTER TABLE `tl_content` CHANGE `si_itemsMargin` `si_itemsMargin` blob NULL;");
-    }
-
+	/**
+	 * Execute all runonce files in module config directories
+	 */
+	public function run()
+	{
+		$this->import('Files');
+		$arrModules = scan(TL_ROOT . '/system/modules/');
+		
+		foreach ($arrModules as $strModule)
+		{
+			if ((@include(TL_ROOT . '/system/modules/' . $strModule . '/config/runonce.php')) !== false)
+			{
+				$this->Files->delete('system/modules/' . $strModule . '/config/runonce.php');
+			}
+		}
+	}
 }
 
-// Run once
-$objRunonceJob = new runonceJob();
-$objRunonceJob->run();
 
-?>
+/**
+ * Instantiate controller
+ */
+if (version_compare(VERSION, '2.10', '<'))
+{
+	$objUniversalRunonce = new UniversalRunonce();
+	$objUniversalRunonce->run();
+}
+
