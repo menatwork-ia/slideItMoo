@@ -20,6 +20,8 @@ CREATE TABLE `tl_content` (
 	`si_itemsVisible` varchar(32) NOT NULL default '',
 	`si_elementsSlide` varchar(32) NOT NULL default '',
 	`si_itemsSelector` varchar(255) NOT NULL default '',
+	`si_elementDirection` char(1) NOT NULL default '',
+	`si_verticalSlide` char(1) NOT NULL default '',
 	`si_duration` varchar(255) NOT NULL default '',
 	`si_startIndex` varchar(32) NOT NULL default '',
 	`si_autoEffectTransition` char(1) NOT NULL default '',
@@ -29,8 +31,8 @@ CREATE TABLE `tl_content` (
 	`si_autoSlideDefault` char(1) NOT NULL default '',
 	`si_templateDefault` char(1) NOT NULL default '',
 	`si_itemsDimension` varchar(255) NOT NULL default '',
-	`si_itemsMargin` varchar(255) NOT NULL default '',
+	`si_itemsMargin` blob NULL,
 	`si_cssTemplate` varchar(255) NOT NULL default '',
-	`si_showControls` char(1) NOT NULL default ''
+	`si_showControls` char(1) NOT NULL default '',
 	`si_mouseWheelNav` char(1) NOT NULL default ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

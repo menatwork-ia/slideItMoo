@@ -40,6 +40,8 @@ $GLOBALS['TL_LANG']['tl_content']['si_duration'] = array('Effektdauer', 'Angabe 
 $GLOBALS['TL_LANG']['tl_content']['si_autoEffectTransition'] = array('Effektbewegung aktivieren', 'Basierend auf der Mootools Fx.Transitions Bibliothek.');
 $GLOBALS['TL_LANG']['tl_content']['si_effectTransition'] = array('Effektbewegung', 'Siehe http://mootools.net/docs/core/Fx/Fx.Transitions für Beispiele.');
 $GLOBALS['TL_LANG']['tl_content']['si_effectEase'] = array('Ease', 'Slideshow Effekt weicher darstellen.');
+$GLOBALS['TL_LANG']['tl_content']['si_elementDirection'] = array('Slideshow umkehren', 'Die Slideshow rückwärts laufen lassen.');
+$GLOBALS['TL_LANG']['tl_content']['si_verticalSlide'] = array('Vertikal sliden', 'Die Slideshow vertikal ablaufen lassen.');
 $GLOBALS['TL_LANG']['tl_content']['si_autoSlideDefault'] = array('Autoplay aktivieren', 'Slideshow automatisch durchlaufen lassen.');
 $GLOBALS['TL_LANG']['tl_content']['si_autoSlide'] = array('Einblendungsdauer', 'Angabe in Millisekunden.');
 $GLOBALS['TL_LANG']['tl_content']['si_showControls'] = array('Navigation aktivieren', 'Ermöglicht dem Nutzer die Slideshow zu steuern.');
@@ -53,7 +55,7 @@ $GLOBALS['TL_LANG']['tl_content']['si_cssTemplate'] = array('CSS-Template', 'Die
 $GLOBALS['TL_LANG']['tl_content']['siGenerel_legend'] = 'Allgemeine Einstellungen';
 $GLOBALS['TL_LANG']['tl_content']['siDimensions_legend'] = 'Abmessungen';
 $GLOBALS['TL_LANG']['tl_content']['siEffect_legend'] = 'Effekte';
-$GLOBALS['TL_LANG']['tl_content']['siAuto_legend'] = 'Automatische Slideshow';
+$GLOBALS['TL_LANG']['tl_content']['siAuto_legend'] = 'Elementbewegungen';
 $GLOBALS['TL_LANG']['tl_content']['siControls_legend'] = 'Navigation';
 $GLOBALS['TL_LANG']['tl_content']['siTemplate_legend'] = 'Templates';
 

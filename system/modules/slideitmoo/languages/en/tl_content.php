@@ -40,6 +40,8 @@ $GLOBALS['TL_LANG']['tl_content']['si_autoEffectTransition'] = array('Extended E
 $GLOBALS['TL_LANG']['tl_content']['si_effectTransition'] = array('Effect transition', 'See http://mootools.net/docs/core/Fx/Fx.Transitions for examples.');
 $GLOBALS['TL_LANG']['tl_content']['si_effectEase'] = array('Ease', 'For a natural tweening.');
 $GLOBALS['TL_LANG']['tl_content']['si_itemsSelector'] = array('Optional CSS class', 'Allows the user to enter an optional CSS class for the items in the slider.');
+$GLOBALS['TL_LANG']['tl_content']['si_elementDirection'] = array('Reverse element moves', 'Run the slideshow backwards.');
+$GLOBALS['TL_LANG']['tl_content']['si_verticalSlide'] = array('Vertical slider', 'Run the slideshow vertically.');
 $GLOBALS['TL_LANG']['tl_content']['si_autoSlideDefault'] = array('Set auto sliding on', 'The slideshow starts automatically.');
 $GLOBALS['TL_LANG']['tl_content']['si_autoSlide'] = array('Rotation interval', 'Value in milliseconds.');
 $GLOBALS['TL_LANG']['tl_content']['si_showControls'] = array('Display navigation', 'Allows the user to control the slideshow.');
@@ -53,7 +55,7 @@ $GLOBALS['TL_LANG']['tl_content']['si_cssTemplate'] = array('CSS-Template', 'The
 $GLOBALS['TL_LANG']['tl_content']['siGenerel_legend'] = 'General settings';
 $GLOBALS['TL_LANG']['tl_content']['siDimensions_legend'] = 'Dimensions';
 $GLOBALS['TL_LANG']['tl_content']['siEffect_legend'] = 'Effects';
-$GLOBALS['TL_LANG']['tl_content']['siAuto_legend'] = 'Autoplay';
+$GLOBALS['TL_LANG']['tl_content']['siAuto_legend'] = 'Element moves';
 $GLOBALS['TL_LANG']['tl_content']['siControls_legend'] = 'Navigation';
 $GLOBALS['TL_LANG']['tl_content']['siTemplate_legend'] = 'Templates';
 

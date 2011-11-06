@@ -31,7 +31,7 @@
  * Table tl_content 
  */
 // replace palettes
-$GLOBALS['TL_DCA']['tl_content']['palettes']['slideItStart'] = '{type_legend},type;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector;{siDimensions_legend},si_itemsDimension,si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav;{siTemplate_legend:hide},si_templateDefault;{expert_legend:hide},cssID,space';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['slideItStart'] = '{type_legend},type;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector;{siDimensions_legend},si_itemsDimension,si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_elementDirection,si_verticalSlide,si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav;{siTemplate_legend:hide},si_templateDefault;{expert_legend:hide},cssID,space';
 
 // extend selector
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'si_autoSlideDefault';
@@ -131,12 +131,28 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_effectEase'] = array
     'eval' => array('tl_class' => 'w50')
 );
 
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_elementDirection'] = array
+    (
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['si_elementDirection'],
+    'inputType' => 'checkbox',
+    'exclude' => true,
+    'eval' => array('tl_class' => 'w50')
+);
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_verticalSlide'] = array
+    (
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['si_verticalSlide'],
+    'inputType' => 'checkbox',
+    'exclude' => true,
+    'eval' => array('tl_class' => 'w50')
+);
+
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlideDefault'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_autoSlideDefault'],
     'inputType' => 'checkbox',
     'exclude' => true,
-    'eval' => array('submitOnChange' => true, 'tl_class' => 'clr w50')
+    'eval' => array('submitOnChange' => true, 'tl_class' => 'm12 w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlide'] = array
