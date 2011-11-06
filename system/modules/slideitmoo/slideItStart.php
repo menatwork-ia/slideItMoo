@@ -69,11 +69,11 @@ class slideItStart extends ContentElement
          */
         if (version_compare(VERSION . '.' . BUILD, '2.10.0', '<'))
         {
-            $GLOBALS['TL_JAVASCRIPT'][] = 'plugins/slideitmoo/js/1.2.5/slideitmoo_src.js';
+            $GLOBALS['TL_JAVASCRIPT'][] = 'plugins/slideitmoo/js/1.2.5/slideitmoo.js';
         }
         else
         {
-            $GLOBALS['TL_JAVASCRIPT'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo_src.js';
+            $GLOBALS['TL_JAVASCRIPT'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
         }
         if ($this->si_templateDefault)
         {
