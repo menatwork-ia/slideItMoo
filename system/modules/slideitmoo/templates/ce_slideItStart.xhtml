@@ -23,9 +23,9 @@ overallContainer: '<?php echo $this->si_containerId; ?>',
 				itemsVisible: <?php echo $this->si_itemsVisible; ?>,
 				elemsSlide: <?php echo $this->si_elementsSlide; ?>,
 				duration: <?php echo $this->si_duration; ?>,
-				<?php if ($this->si_elementDirection) echo "direction: -1,\n"; ?>
+<?php if ($this->si_elementDirection) echo "direction: -1,\n"; ?>
 				<?php if ($this->si_verticalSlide) echo "slideVertical: true,\n"; ?>
-				<?php if ($this->si_autoEffectTransition) echo "transition: Fx.Transitions." . $this->si_effectTransition . ".ease" . $this->si_effectEase . ",\n"; ?>
+<?php if ($this->si_autoEffectTransition) echo "transition: Fx.Transitions." . $this->si_effectTransition . ".ease" . $this->si_effectEase . ",\n"; ?>
 				itemsSelector:<?php if ($this->si_itemsSelector): echo "'." . $this->si_itemsSelector . "'\n"; else: echo "'.block'\n"; endif; ?>
 			});
 
