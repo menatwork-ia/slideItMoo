@@ -51,17 +51,17 @@ class slideItMoo extends Backend
                 $_SESSION["TL_INFO"] = array();
             }
 
-            // required extensions
-            $arrRequiredExtensions = array(
-                'slideItMooFramework'
+            // required files
+            $arrRequiredFolder = array(
+                'plugins/slideitmoo'
             );
 
-            // check for required extensions
-            foreach ($arrRequiredExtensions as $val)
+            // check for required files
+            foreach ($arrRequiredFolder as $val)
             {
-                if (!in_array($val, $this->Config->getActiveModules()))
+                if (!file_exists(TL_ROOT . '/' . $val) || !is_dir(TL_ROOT . '/' . $val))
                 {
-                    $_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array($val => 'Please install the required extension <strong>' . $val . '</strong>'));
+                    $_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array($val => 'Please install the required folder <strong>' . $val . '</strong>'));
                 }
                 else
                 {
