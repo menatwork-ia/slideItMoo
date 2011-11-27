@@ -27,6 +27,12 @@
  * @filesource
  */
 
+/**
+ * Back end modules
+ */
+$GLOBALS['TL_LANG']['MOD']['slideitmoo'] = array('slideItMoo Slideshow', '');
 
-$GLOBALS['TL_LANG']['MOD']['slideitmoo'] = array('SlideItMoo Slideshow', '');
-
+/**
+ * Front end modules
+ */
+$GLOBALS['TL_LANG']['FMD']['slideItMoo'] = array('slideItMoo Slideshow', '');

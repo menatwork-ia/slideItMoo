@@ -29,9 +29,17 @@
  
 $GLOBALS['TL_HOOKS']['parseBackendTemplate'][] = array('slideItMoo', 'checkExtensions');
 
+/**
+ * Content elements
+ */
 $GLOBALS['TL_CTE']['slideIt'] = array(
 	'slideItStart' => 'slideItStart',
 	'slideItEnd' => 'slideItEnd'
 );
+
+/**
+ * Front end modules
+ */
+$GLOBALS['FE_MOD']['miscellaneous']['slideItMoo'] = 'slideItMoo';
  
 ?>
