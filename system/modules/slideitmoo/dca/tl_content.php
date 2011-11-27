@@ -103,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_duration'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_duration'],
     'inputType' => 'text',
     'exclude' => true,
-    'eval' => array('mandatory' => true, 'maxlength' => '4', 'rgxp' => 'digit', 'tl_class' => 'w50')
+    'eval' => array('mandatory' => true, 'maxlength' => '6', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_autoEffectTransition'] = array
