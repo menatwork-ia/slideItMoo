@@ -1,4 +1,9 @@
  /*
   * slideItMooFramework
-  * https://github.com/menatwork/slideItMooFramework
+  * http://www.contao.org/erweiterungsliste/view/slideItMooFramework.html
+  */
+
+ /*
+  * MultiColumnWizard
+  * http://www.contao.org/erweiterungsliste/view/MultiColumnWizard.html
   */
