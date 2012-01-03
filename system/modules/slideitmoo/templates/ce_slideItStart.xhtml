@@ -1,6 +1,6 @@
 <div class="<?php echo $this->class; ?> "<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
 	<script type="text/javascript">
-	<!--//--><![CDATA[//><!--
+	/* <![CDATA[ */
 	document.documentElement.className += " js-slider";
 	window.addEvent('domready', function() {
 		if ($('<?php echo $this->si_containerId; ?>')) {
@@ -72,7 +72,7 @@ overallSize.width = <?php echo $this->si_itemsVisible; ?> * <?php echo $this->si
 			width: '<?php echo $this->si_itemsWidth; ?>px'
 		});
 	});
-	//--><!]]>
+	/* ]]> */
 	</script>
 
         <div id="<?php echo $this->si_containerId; ?>" class="slider">
