@@ -26,7 +26,6 @@
  * @license    GNU/LGPL 
  * @filesource
  */
-
 /**
  * Add palettes to tl_module
  */
@@ -51,20 +50,20 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['si_includeElements'] = array
     'inputType' => 'multiColumnWizard',
     'exclude' => true,
     'eval' => array
-	(
-		'width' => '100%',
-		'columnFields' => array
-		(
-			'url' => array
-			(
-				'label' => &$GLOBALS['TL_LANG']['tl_module']['si_elements'],
-				'exclude' => true,
-				'inputType' => 'select',
-				'options_callback' => array('tl_module_si', 'getContentElements'),
-				'eval' => array('style' => 'width:590px')
-			),
-		)
-	)
+        (
+        'width' => '100%',
+        'columnFields' => array
+            (
+            'url' => array
+                (
+                'label' => &$GLOBALS['TL_LANG']['tl_module']['si_elements'],
+                'exclude' => true,
+                'inputType' => 'select',
+                'options_callback' => array('tl_module_si', 'getContentElements'),
+                'eval' => array('style' => 'width:590px')
+            ),
+        )
+    )
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['si_itemsVisible'] = array
@@ -218,21 +217,27 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['si_cssTemplate'] = array
     'eval' => array('tl_class' => 'w50')
 );
 
+// Set chosen if we have a contao version 2.11
+if (version_compare(VERSION, "2.11", ">="))
+{
+    $GLOBALS['TL_DCA']['tl_module']['fields']['si_includeElements']['eval']['columnFields']['url']['eval']['chosen'] = true;
+}
+
 /**
  * Erweiterung für die tl_module-Klasse
  */
 class tl_module_si extends Backend
 {
 
-	/**
-	 * Import the back end user object
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-		$this->import('BackendUser', 'User');
-	}
-	
+    /**
+     * Import the back end user object
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->import('BackendUser', 'User');
+    }
+
     /**
      * read all available css-files and return them as an array
      * @return array
@@ -252,72 +257,72 @@ class tl_module_si extends Backend
         }
         return $arrCss;
     }
-	
-	/**
-	 * Get all content elements and return them as array (content element alias)
-	 * @return array
-	 */
-	public function getContentElements()
-	{
-		$this->import('String');
 
-		$arrPids = array();
-		$arrAlias = array();
+    /**
+     * Get all content elements and return them as array (content element alias)
+     * @return array
+     */
+    public function getContentElements()
+    {
+        $this->import('String');
 
-		if (!$this->User->isAdmin)
-		{
-			foreach ($this->User->pagemounts as $id)
-			{
-				$arrPids[] = $id;
-				$arrPids = array_merge($arrPids, $this->getChildRecords($id, 'tl_page'));
-			}
+        $arrPids = array();
+        $arrAlias = array();
 
-			if (empty($arrPids))
-			{
-				return $arrAlias;
-			}
+        if (!$this->User->isAdmin)
+        {
+            foreach ($this->User->pagemounts as $id)
+            {
+                $arrPids[] = $id;
+                $arrPids = array_merge($arrPids, $this->getChildRecords($id, 'tl_page'));
+            }
 
-			$objAlias = $this->Database->prepare("SELECT c.id, c.pid, c.type, (CASE c.type WHEN 'module' THEN m.name WHEN 'form' THEN f.title WHEN 'table' THEN c.summary ELSE c.headline END) AS headline, c.text, a.title FROM tl_content c LEFT JOIN tl_article a ON a.id=c.pid LEFT JOIN tl_module m ON m.id=c.module LEFT JOIN tl_form f on f.id=c.form WHERE a.pid IN(". implode(',', array_map('intval', array_unique($arrPids))) .") AND c.id!=? ORDER BY a.title, c.sorting")
-									   ->execute($this->Input->get('id'));
-		}
-		else
-		{
-			$objAlias = $this->Database->prepare("SELECT c.id, c.pid, c.type, (CASE c.type WHEN 'module' THEN m.name WHEN 'form' THEN f.title WHEN 'table' THEN c.summary ELSE c.headline END) AS headline, c.text, a.title FROM tl_content c LEFT JOIN tl_article a ON a.id=c.pid LEFT JOIN tl_module m ON m.id=c.module LEFT JOIN tl_form f on f.id=c.form WHERE c.id!=? ORDER BY a.title, c.sorting")
-									   ->execute($this->Input->get('id'));
-		}
+            if (empty($arrPids))
+            {
+                return $arrAlias;
+            }
 
-		while ($objAlias->next())
-		{
-			$arrHeadline = deserialize($objAlias->headline, true);
+            $objAlias = $this->Database->prepare("SELECT c.id, c.pid, c.type, (CASE c.type WHEN 'module' THEN m.name WHEN 'form' THEN f.title WHEN 'table' THEN c.summary ELSE c.headline END) AS headline, c.text, a.title FROM tl_content c LEFT JOIN tl_article a ON a.id=c.pid LEFT JOIN tl_module m ON m.id=c.module LEFT JOIN tl_form f on f.id=c.form WHERE a.pid IN(" . implode(',', array_map('intval', array_unique($arrPids))) . ") AND c.id!=? ORDER BY a.title, c.sorting")
+                    ->execute($this->Input->get('id'));
+        }
+        else
+        {
+            $objAlias = $this->Database->prepare("SELECT c.id, c.pid, c.type, (CASE c.type WHEN 'module' THEN m.name WHEN 'form' THEN f.title WHEN 'table' THEN c.summary ELSE c.headline END) AS headline, c.text, a.title FROM tl_content c LEFT JOIN tl_article a ON a.id=c.pid LEFT JOIN tl_module m ON m.id=c.module LEFT JOIN tl_form f on f.id=c.form WHERE c.id!=? ORDER BY a.title, c.sorting")
+                    ->execute($this->Input->get('id'));
+        }
 
-			if (isset($arrHeadline['value']))
-			{
-				$headline = $this->String->substr($arrHeadline['value'], 32);
-			}
-			else
-			{
-				$headline = $this->String->substr(preg_replace('/[\n\r\t]+/', ' ', $arrHeadline[0]), 32);
-			}
+        while ($objAlias->next())
+        {
+            $arrHeadline = deserialize($objAlias->headline, true);
 
-			$text = $this->String->substr(strip_tags(preg_replace('/[\n\r\t]+/', ' ', $objAlias->text)), 32);
-			$strText = $GLOBALS['TL_LANG']['CTE'][$objAlias->type][0] . ' (';
+            if (isset($arrHeadline['value']))
+            {
+                $headline = $this->String->substr($arrHeadline['value'], 32);
+            }
+            else
+            {
+                $headline = $this->String->substr(preg_replace('/[\n\r\t]+/', ' ', $arrHeadline[0]), 32);
+            }
 
-			if ($headline != '')
-			{
-				$strText .= $headline . ', ';
-			}
-			elseif ($text != '')
-			{
-				$strText .= $text . ', ';
-			}
+            $text = $this->String->substr(strip_tags(preg_replace('/[\n\r\t]+/', ' ', $objAlias->text)), 32);
+            $strText = $GLOBALS['TL_LANG']['CTE'][$objAlias->type][0] . ' (';
 
-			$key = $objAlias->title . ' (ID ' . $objAlias->pid . ')';
-			$arrAlias[$key][$objAlias->id] = $strText . 'ID ' . $objAlias->id . ')';
-		}
+            if ($headline != '')
+            {
+                $strText .= $headline . ', ';
+            }
+            elseif ($text != '')
+            {
+                $strText .= $text . ', ';
+            }
 
-		return $arrAlias;
-	}
-	
+            $key = $objAlias->title . ' (ID ' . $objAlias->pid . ')';
+            $arrAlias[$key][$objAlias->id] = $strText . 'ID ' . $objAlias->id . ')';
+        }
+
+        return $arrAlias;
+    }
+
 }
 
 ?>

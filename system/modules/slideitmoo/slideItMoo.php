@@ -51,17 +51,38 @@ class slideItMoo extends Backend
                 $_SESSION["TL_INFO"] = array();
             }
 
-            // required files
-            $arrRequiredFolder = array(
-                'plugins/slideitmoo'
+            // required extensions
+            $arrRequiredExtensions = array(
+                'MultiColumnWizard' => 'multicolumnwizard'
             );
 
-            // check for required files
-            foreach ($arrRequiredFolder as $val)
+            // required files
+            $arrRequiredFiles = array(
+                'slideItMooFramework' => 'plugins/slideitmoo/LICENSE.txt'
+            );
+
+            // check for required extensions
+            foreach ($arrRequiredExtensions as $key => $val)
             {
-                if (!file_exists(TL_ROOT . '/' . $val) || !is_dir(TL_ROOT . '/' . $val))
+                if (!in_array($val, $this->Config->getActiveModules()))
                 {
-                    $_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array($val => 'Please install the required folder <strong>' . $val . '</strong>'));
+                    $_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array($val => 'Please install the required extension <strong>' . $key . '</strong>'));
+                }
+                else
+                {
+                    if (is_array($_SESSION["TL_INFO"]) && key_exists($val, $_SESSION["TL_INFO"]))
+                    {
+                        unset($_SESSION["TL_INFO"][$val]);
+                    }
+                }
+            }
+
+            // check for required files
+            foreach ($arrRequiredFiles as $key => $val)
+            {
+                if (!file_exists(TL_ROOT . '/' . $val))
+                {
+                    $_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array($val => 'Please install the required file/extension <strong>' . $key . '</strong>'));
                 }
                 else
                 {

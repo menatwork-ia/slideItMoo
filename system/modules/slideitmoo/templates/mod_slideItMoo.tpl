@@ -14,13 +14,13 @@
 				itemHeight: <?php echo $this->si_itemsHeight; ?>,
 				<?php if ($this->si_startIndex) echo "startIndex: " . $this->si_startIndex . ",\n"; ?>
 				showControls: <?php echo ($this->si_showControls) ? 1 : 0 ; ?>,
-				<?php if ($this->si_autoSlideDefault) echo "autoSlide: " . $this->si_autoSlide . ",\n"; 
+				<?php if ($this->si_autoSlideDefault) echo "autoSlide: " . $this->si_autoSlide . ",\n";
 				if ($this->si_showControls) : ?>
-navs:{ 
-					fwd:'.<?php echo $this->si_containerId; ?>_fwd', 
-					bk:'.<?php echo $this->si_containerId; ?>_bk' 
+navs:{
+					fwd:'.<?php echo $this->si_containerId; ?>_fwd',
+					bk:'.<?php echo $this->si_containerId; ?>_bk'
 				},
-				<?php endif; 
+				<?php endif;
 				if ($this->si_mouseWheelNav) echo "mouseWheelNav: true,\n"; ?>
 overallContainer: '<?php echo $this->si_containerId; ?>',
 				elementScrolled: '<?php echo $this->si_containerId; ?>_inner',
@@ -81,11 +81,16 @@ overallSize.width = <?php echo $this->si_itemsVisible; ?> * <?php echo $this->si
 	</script>
 
         <div id="<?php echo $this->si_containerId; ?>" class="slider">
-            <?php if ($this->si_showControls) : ?>
-            <!-- indexer::stop --> 
-            <div class="fwd <?php echo $this->si_containerId; ?>_fwd"> &gt; </div>
-            <div class="bk <?php echo $this->si_containerId; ?>_bk"> &lt; </div>
-            <!-- indexer::continue -->
+            <?php if ($this->si_showControls): ?>
+                <!-- indexer::stop -->
+                <div class="fwd <?php echo $this->si_containerId; ?>_fwd"> &gt; </div>
+                <div class="bk <?php echo $this->si_containerId; ?>_bk"> &lt; </div>
+                <!-- indexer::continue -->
             <?php endif; ?>
             <div class="slider_inner" id="<?php echo $this->si_containerId; ?>_inner">
                 <div class="slider_items" id="<?php echo $this->si_containerId; ?>_items">
+                <?php echo $this->si_contentElements; ?>
+                </div>
+            </div>
+        </div>
+</div>

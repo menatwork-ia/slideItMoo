@@ -40,6 +40,6 @@ $GLOBALS['TL_CTE']['slideIt'] = array(
 /**
  * Front end modules
  */
-$GLOBALS['FE_MOD']['miscellaneous']['slideItMoo'] = 'slideItMoo';
+$GLOBALS['FE_MOD']['miscellaneous']['slideItMoo'] = 'slideItModule';
  
 ?>
