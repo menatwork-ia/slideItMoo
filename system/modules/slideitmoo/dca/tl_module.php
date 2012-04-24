@@ -26,88 +26,93 @@
  * @license    GNU/LGPL 
  * @filesource
  */
-/**
- * Add palettes to tl_module
- */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['slideItMoo'] = '{title_legend},name,headline,type;{siInclude_legend},si_includeElements;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector;{siDimensions_legend},si_itemsDimension,si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_elementDirection,si_verticalSlide,si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav;{siTemplate_legend:hide},si_templateDefault;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
-// extend selector
+/**
+ * Table tl_module 
+ */
+
+/**
+ * Palettes 
+ */
+$GLOBALS['TL_DCA']['tl_module']['palettes']['slideItMoo'] = '{title_legend},name,headline,type;{siInclude_legend},si_includeElements;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector;{siDimensions_legend},si_itemsDimension,si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_verticalSlide,si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav;{siTemplate_legend:hide},si_templateDefault;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+
+/**
+ * Selector 
+ */
 $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'si_autoSlideDefault';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'si_templateDefault';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'si_autoEffectTransition';
 
-// extend subpalettes
-$GLOBALS['TL_DCA']['tl_module']['subpalettes']['si_autoSlideDefault'] = 'si_autoSlide';
+/**
+ * Subpalettes
+ */
+$GLOBALS['TL_DCA']['tl_module']['subpalettes']['si_autoSlideDefault'] = 'si_autoSlide,si_elementDirection';
 $GLOBALS['TL_DCA']['tl_module']['subpalettes']['si_templateDefault'] = 'si_cssTemplate';
 $GLOBALS['TL_DCA']['tl_module']['subpalettes']['si_autoEffectTransition'] = 'si_effectTransition,si_effectEase';
 
 /**
- * Add fields to tl_module
+ * Fields
  */
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_includeElements'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_includeElements'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_includeElements'],
     'inputType' => 'multiColumnWizard',
     'exclude' => true,
-    'eval' => array
-        (
+    'eval' => array(
         'width' => '100%',
-        'columnFields' => array
-            (
-            'url' => array
-                (
+        'columnFields' => array(
+            'url' => array(
                 'label' => &$GLOBALS['TL_LANG']['tl_module']['si_elements'],
                 'exclude' => true,
                 'inputType' => 'select',
                 'options_callback' => array('tl_module_si', 'getContentElements'),
-                'eval' => array('style' => 'width:590px')
+                'eval' => array(
+                    'style' => 'width:590px'
+                )
             ),
         )
     )
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_itemsVisible'] = array
-    (
+// Set chosen if we have a contao version 2.11
+if (version_compare(VERSION, "2.11", ">="))
+        $GLOBALS['TL_DCA']['tl_module']['fields']['si_includeElements']['eval']['columnFields']['url']['eval']['chosen'] = true;
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_itemsVisible'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_itemsVisible'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('mandatory' => true, 'maxlength' => '4', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_elementsSlide'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_elementsSlide'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_elementsSlide'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('mandatory' => true, 'maxlength' => '4', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_startIndex'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_startIndex'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_startIndex'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_itemsSelector'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_itemsSelector'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_itemsSelector'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('maxlength' => '200', 'rgxp' => 'extnd', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_itemsDimension'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_itemsDimension'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_itemsDimension'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('mandatory' => true, 'multiple' => true, 'size' => 2, 'rgxp' => 'digit', 'nospace' => true, 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_itemsMargin'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_itemsMargin'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_itemsMargin'],
     'inputType' => 'trbl',
     'options' => array('px'),
@@ -115,24 +120,21 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['si_itemsMargin'] = array
     'eval' => array('rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_duration'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_duration'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_duration'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('mandatory' => true, 'maxlength' => '6', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_autoEffectTransition'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_autoEffectTransition'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_autoEffectTransition'],
     'inputType' => 'checkbox',
     'exclude' => true,
-    'eval' => array('submitOnChange' => true, 'tl_class' => 'clr w50')
+    'eval' => array('submitOnChange' => true, 'tl_class' => 'w50 m12')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_effectTransition'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_effectTransition'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_effectTransition'],
     'inputType' => 'select',
     'exclude' => true,
@@ -140,8 +142,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['si_effectTransition'] = array
     'eval' => array('tl_class' => 'clr w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_effectEase'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_effectEase'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_effectEase'],
     'inputType' => 'select',
     'exclude' => true,
@@ -149,40 +150,35 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['si_effectEase'] = array
     'eval' => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_elementDirection'] = array
-    (
-    'label' => &$GLOBALS['TL_LANG']['tl_module']['si_elementDirection'],
-    'inputType' => 'checkbox',
-    'exclude' => true,
-    'eval' => array('tl_class' => 'w50')
-);
-
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_verticalSlide'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_verticalSlide'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_verticalSlide'],
     'inputType' => 'checkbox',
     'exclude' => true,
-    'eval' => array('tl_class' => 'w50')
+    'eval' => array('submitOnChange' => true, 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_autoSlideDefault'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_autoSlideDefault'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_autoSlideDefault'],
     'inputType' => 'checkbox',
     'exclude' => true,
-    'eval' => array('submitOnChange' => true, 'tl_class' => 'm12 w50')
+    'eval' => array('submitOnChange' => true, 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_autoSlide'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_autoSlide'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_autoSlide'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('maxlength' => '10', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_showControls'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_elementDirection'] = array(
+    'label' => &$GLOBALS['TL_LANG']['tl_module']['si_elementDirection'],
+    'inputType' => 'checkbox',
+    'exclude' => true,
+    'eval' => array('tl_class' => 'w50 m12')
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_showControls'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_showControls'],
     'default' => 0,
     'inputType' => 'checkbox',
@@ -190,8 +186,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['si_showControls'] = array
     'eval' => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_mouseWheelNav'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_mouseWheelNav'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_mouseWheelNav'],
     'default' => 0,
     'inputType' => 'checkbox',
@@ -199,16 +194,14 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['si_mouseWheelNav'] = array
     'eval' => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_templateDefault'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_templateDefault'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_templateDefault'],
     'inputType' => 'checkbox',
     'exclude' => true,
     'eval' => array('submitOnChange' => true, 'tl_class' => 'clr w50')
 );
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['si_cssTemplate'] = array
-    (
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_cssTemplate'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_module']['si_cssTemplate'],
     'default' => 'slideitmoo_horizontal',
     'exclude' => true,
@@ -217,14 +210,11 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['si_cssTemplate'] = array
     'eval' => array('tl_class' => 'w50')
 );
 
-// Set chosen if we have a contao version 2.11
-if (version_compare(VERSION, "2.11", ">="))
-{
-    $GLOBALS['TL_DCA']['tl_module']['fields']['si_includeElements']['eval']['columnFields']['url']['eval']['chosen'] = true;
-}
-
 /**
- * Erweiterung für die tl_module-Klasse
+ * Class tl_module_si
+ *
+ * @copyright  MEN AT WORK 2012 
+ * @package    slideitmoo
  */
 class tl_module_si extends Backend
 {
@@ -236,39 +226,30 @@ class tl_module_si extends Backend
     {
         parent::__construct();
         $this->import('BackendUser', 'User');
-    }
-
-    /**
-     * read all available css-files and return them as an array
-     * @return array
-     */
-    public function loadCssFiles()
-    {
-
-        $arrFiles = scan(TL_ROOT . '/plugins/slideitmoo/css/');
-        $arrCss = array();
-        foreach ($arrFiles as $k => $file)
-        {
-            if (strtolower(substr($file, -3) == "css"))
-            {
-                $tmp = substr($file, 0, strlen($file) - 4);
-                $arrCss[$tmp] = $tmp;
-            }
-        }
-        return $arrCss;
+        $this->import('String');
     }
 
     /**
      * Get all content elements and return them as array (content element alias)
+     * 
      * @return array
      */
     public function getContentElements()
-    {
-        $this->import('String');
-
+    {        
         $arrPids = array();
         $arrAlias = array();
 
+        $strQuery = "SELECT c.id, c.pid, c.type, 
+                (CASE c.type WHEN 'module' THEN m.name WHEN 'form' THEN f.title WHEN 'table' THEN c.summary ELSE c.headline END) AS headline, 
+                c.text, a.title
+            FROM tl_content c 
+            LEFT JOIN tl_article a 
+            ON a.id = c.pid 
+            LEFT JOIN tl_module m 
+            ON m.id = c.module 
+            LEFT JOIN tl_form f 
+            ON f.id = c.form\n";
+        
         if (!$this->User->isAdmin)
         {
             foreach ($this->User->pagemounts as $id)
@@ -282,14 +263,20 @@ class tl_module_si extends Backend
                 return $arrAlias;
             }
 
-            $objAlias = $this->Database->prepare("SELECT c.id, c.pid, c.type, (CASE c.type WHEN 'module' THEN m.name WHEN 'form' THEN f.title WHEN 'table' THEN c.summary ELSE c.headline END) AS headline, c.text, a.title FROM tl_content c LEFT JOIN tl_article a ON a.id=c.pid LEFT JOIN tl_module m ON m.id=c.module LEFT JOIN tl_form f on f.id=c.form WHERE a.pid IN(" . implode(',', array_map('intval', array_unique($arrPids))) . ") AND c.id!=? ORDER BY a.title, c.sorting")
-                    ->execute($this->Input->get('id'));
+            $strQuery .= "WHERE a.pid 
+                IN(" . implode(',', array_map('intval', array_unique($arrPids))) . ") 
+                AND c.id != ? 
+                ORDER BY a.title, c.sorting";
         }
         else
         {
-            $objAlias = $this->Database->prepare("SELECT c.id, c.pid, c.type, (CASE c.type WHEN 'module' THEN m.name WHEN 'form' THEN f.title WHEN 'table' THEN c.summary ELSE c.headline END) AS headline, c.text, a.title FROM tl_content c LEFT JOIN tl_article a ON a.id=c.pid LEFT JOIN tl_module m ON m.id=c.module LEFT JOIN tl_form f on f.id=c.form WHERE c.id!=? ORDER BY a.title, c.sorting")
-                    ->execute($this->Input->get('id'));
+            $strQuery .= "WHERE c.id != ? 
+                ORDER BY a.title, c.sorting";
         }
+        
+        $objAlias = $this->Database
+                    ->prepare($strQuery)
+                    ->execute($this->Input->get('id'));
 
         while ($objAlias->next())
         {
@@ -297,32 +284,44 @@ class tl_module_si extends Backend
 
             if (isset($arrHeadline['value']))
             {
-                $headline = $this->String->substr($arrHeadline['value'], 32);
+                $strHeadline = $this->String->substr($arrHeadline['value'], 32);
             }
             else
             {
-                $headline = $this->String->substr(preg_replace('/[\n\r\t]+/', ' ', $arrHeadline[0]), 32);
+                $strHeadline = $this->String->substr(preg_replace('/[\n\r\t]+/', ' ', $arrHeadline[0]), 32);
             }
 
-            $text = $this->String->substr(strip_tags(preg_replace('/[\n\r\t]+/', ' ', $objAlias->text)), 32);
-            $strText = $GLOBALS['TL_LANG']['CTE'][$objAlias->type][0] . ' (';
-
-            if ($headline != '')
+            $strText = $this->String->substr(strip_tags(preg_replace('/[\n\r\t]+/', ' ', $objAlias->text)), 32);
+            
+            $arrTitle = array();            
+            $arrTitle[] = $GLOBALS['TL_LANG']['CTE'][$objContentElem->type][0] . ' (';            
+            
+            if ($strHeadline != '' && $strHeadline != 'NULL')
             {
-                $strText .= $headline . ', ';
+                $arrTitle[] = $strHeadline . ', ';
             }
-            elseif ($text != '')
+            elseif ($strText != '' && $strText != 'NULL')
             {
-                $strText .= $text . ', ';
+                $arrTitle[] = $strText . ', ';
             }
-
-            $key = $objAlias->title . ' (ID ' . $objAlias->pid . ')';
-            $arrAlias[$key][$objAlias->id] = $strText . 'ID ' . $objAlias->id . ')';
+            
+            $arrTitle[] = 'ID ' . $objAlias->id . ')';
+            $arrAlias[$objAlias->title . ' (ID ' . $objAlias->pid . ')'][$objAlias->id] = implode('', $arrTitle);
         }
 
         return $arrAlias;
     }
-
+    
+    /**
+     * Read all available css-files and return them as an array
+     * 
+     * @param DC_Table $dc
+     * @return array 
+     */
+    public function loadCssFiles(DC_Table $dc)
+    {
+        return slideItHelper::getInstance()->loadCssFiles($dc);
+    }    
 }
 
 ?>

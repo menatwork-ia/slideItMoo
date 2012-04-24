@@ -1,0 +1,66 @@
+<script type="text/javascript">
+/* <![CDATA[ */
+document.documentElement.className += " js-slider";
+window.addEvent('domready', function() {
+    if ($('<?php echo $this->containerId; ?>')) {
+        slide_<?php echo $this->containerId; ?> = new SlideItMoo({
+        <?php foreach($this->arrSlider AS $k => $v)
+        {
+            if(is_array($v))
+            {
+                echo $k . ": {\n";
+                foreach ($v as $key => $value)
+                {
+                    echo $key . ': ' . $value . ",\n";                    
+                }
+                echo "},\n";
+                continue;
+            }
+            echo $k . ': ' . $v . ",\n";
+        } ?>
+        });
+
+        var elements = $('<?php echo $this->containerId; ?>').getElements('.<?php echo $this->itemsSelector; ?>');
+        var totalElements = elements.length;
+        if(totalElements <= <?php echo $this->itemsVisible; ?>){			
+            var overallSize = {};
+            var scrollSize = {};
+            var thumbsSize = {};
+            var navsSize = 0;
+
+            <?php if($this->showControls): ?>
+            var fwd = $('<?php echo $this->containerId; ?>').getElement(<?php echo $this->navFwd; ?>);
+            var bkwd = $('<?php echo $this->containerId; ?>').getElement(<?php echo $this->navBk; ?>);
+            var s1 = fwd.getSize();
+            var s2 = bkwd.getSize();
+            var navsSize = s1.x + s2.x;
+            fwd.addClass('hidden');
+            bkwd.addClass('hidden');
+            <?php endif; ?>
+
+            overallSize.width = <?php echo $this->scrollSize; ?> + navsSize;
+            scrollSize.width = <?php echo $this->scrollSize; ?>;
+            thumbsSize.width = totalElements * (<?php echo $this->itemWidth; ?> + 10);
+
+            $('<?php echo $this->containerId; ?>').set({
+                    styles: overallSize
+            });
+            $('<?php echo $this->containerId; ?>_inner').set({
+                    styles: scrollSize
+            });
+            $('<?php echo $this->containerId; ?>_items').set({
+                    styles: thumbsSize
+            });			
+        }
+    }
+              
+    $$('<?php echo $this->containerChildsId; ?>').setStyles({
+        <?php foreach($this->arrChilds AS $key => $value)
+        {
+            echo $key . ': ' . $value . ",\n";
+        } ?>
+    });
+
+});
+/* ]]> */
+</script>

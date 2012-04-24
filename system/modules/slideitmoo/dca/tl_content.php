@@ -30,67 +30,72 @@
 /**
  * Table tl_content 
  */
-// replace palettes
-$GLOBALS['TL_DCA']['tl_content']['palettes']['slideItStart'] = '{type_legend},type,headline;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector;{siDimensions_legend},si_itemsDimension,si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_elementDirection,si_verticalSlide,si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav;{siTemplate_legend:hide},si_templateDefault;{expert_legend:hide},cssID,space';
+
+/**
+ * Palettes 
+ */
+$GLOBALS['TL_DCA']['tl_content']['palettes']['slideItStart'] = '{type_legend},type,headline;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector;{siDimensions_legend},si_itemsDimension,si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_verticalSlide,si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav,si_showBullets;{siTemplate_legend:hide},si_templateDefault;{expert_legend:hide},cssID,space';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['slideItEnd'] = '{type_legend},type;';
 
-// extend selector
+/**
+ * Selector 
+ */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'si_autoSlideDefault';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'si_templateDefault';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'si_autoEffectTransition';
 
-// extend subpalettes
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['si_autoSlideDefault'] = 'si_autoSlide';
+/**
+ * Subpalettes
+ */
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['si_autoSlideDefault'] = 'si_autoSlide,si_elementDirection';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['si_templateDefault'] = 'si_cssTemplate';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['si_autoEffectTransition'] = 'si_effectTransition,si_effectEase';
 
-//callbacks
+/**
+ * Callbacks 
+ */
 $GLOBALS['TL_DCA']['tl_content']['config']['onsubmit_callback'][] = array('tl_content_si', 'siWrite');
 $GLOBALS['TL_DCA']['tl_content']['config']['ondelete_callback'][] = array('tl_content_si', 'siDelete');
 
-// add fields
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsVisible'] = array
-    (
+/**
+ * Fields
+ */
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsVisible'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsVisible'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('mandatory' => true, 'maxlength' => '4', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_elementsSlide'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_elementsSlide'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_elementsSlide'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('mandatory' => true, 'maxlength' => '4', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_startIndex'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_startIndex'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_startIndex'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsSelector'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsSelector'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsSelector'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('maxlength' => '200', 'rgxp' => 'extnd', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsDimension'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsDimension'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsDimension'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('mandatory' => true, 'multiple' => true, 'size' => 2, 'rgxp' => 'digit', 'nospace' => true, 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsMargin'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsMargin'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsMargin'],
     'inputType' => 'trbl',
     'options' => array('px'),
@@ -98,24 +103,21 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsMargin'] = array
     'eval' => array('rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_duration'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_duration'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_duration'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('mandatory' => true, 'maxlength' => '6', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoEffectTransition'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoEffectTransition'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_autoEffectTransition'],
     'inputType' => 'checkbox',
     'exclude' => true,
-    'eval' => array('submitOnChange' => true, 'tl_class' => 'clr w50')
+    'eval' => array('submitOnChange' => true, 'tl_class' => 'w50 m12')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_effectTransition'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_effectTransition'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_effectTransition'],
     'inputType' => 'select',
     'exclude' => true,
@@ -123,8 +125,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_effectTransition'] = array
     'eval' => array('tl_class' => 'clr w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_effectEase'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_effectEase'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_effectEase'],
     'inputType' => 'select',
     'exclude' => true,
@@ -132,40 +133,35 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_effectEase'] = array
     'eval' => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_elementDirection'] = array
-    (
-    'label' => &$GLOBALS['TL_LANG']['tl_content']['si_elementDirection'],
-    'inputType' => 'checkbox',
-    'exclude' => true,
-    'eval' => array('tl_class' => 'w50')
-);
-
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_verticalSlide'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_verticalSlide'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_verticalSlide'],
     'inputType' => 'checkbox',
     'exclude' => true,
-    'eval' => array('tl_class' => 'w50')
+    'eval' => array('submitOnChange' => true, 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlideDefault'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlideDefault'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_autoSlideDefault'],
     'inputType' => 'checkbox',
     'exclude' => true,
-    'eval' => array('submitOnChange' => true, 'tl_class' => 'm12 w50')
+    'eval' => array('submitOnChange' => true, 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlide'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlide'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_autoSlide'],
     'inputType' => 'text',
     'exclude' => true,
     'eval' => array('maxlength' => '10', 'rgxp' => 'digit', 'tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_showControls'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_elementDirection'] = array(
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['si_elementDirection'],
+    'inputType' => 'checkbox',
+    'exclude' => true,
+    'eval' => array('tl_class' => 'w50 m12')
+);
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_showControls'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_showControls'],
     'default' => 0,
     'inputType' => 'checkbox',
@@ -173,8 +169,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_showControls'] = array
     'eval' => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_mouseWheelNav'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_mouseWheelNav'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_mouseWheelNav'],
     'default' => 0,
     'inputType' => 'checkbox',
@@ -182,16 +177,21 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_mouseWheelNav'] = array
     'eval' => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_templateDefault'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_showBullets'] = array(
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['si_showBullets'],
+    'inputType' => 'checkbox',
+    'exclude' => true,
+    'eval' => array('tl_class' => 'clr')
+);
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_templateDefault'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_templateDefault'],
     'inputType' => 'checkbox',
     'exclude' => true,
     'eval' => array('submitOnChange' => true, 'tl_class' => 'clr w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_cssTemplate'] = array
-    (
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_cssTemplate'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['si_cssTemplate'],
     'default' => 'slideitmoo_horizontal',
     'exclude' => true,
@@ -200,106 +200,110 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_cssTemplate'] = array
     'eval' => array('tl_class' => 'w50')
 );
 
+
+
 /**
- * Erweiterung für die tl_content-Klasse
+ * Class tl_content_si
+ *
+ * @copyright  MEN AT WORK 2012 
+ * @package    slideitmoo
  */
 class tl_content_si extends Backend
 {
 
     /**
-     * @param mixed
-     * @param object
-     * @return string
+     * Write or update the content elements
+     * 
+     * @param DC_Table $dc 
      */
     public function siWrite(DC_Table $dc)
     {
         $id = $dc->id;
 
-        //Aktuelles Element aus der Datenbank holen
+        // Get elements from database
         $objElement = $this->Database->prepare("SELECT * FROM tl_content WHERE id=?")
                 ->execute($id)
                 ->fetchAssoc();
 
-        //Prüfen, ob containerId schon gesetzt ist
+        // Check if id is set
         if ($objElement['si_containerId'] == "")
         {
-            //Container id fehlt. Vorhandenen IDs laden und neue ID erstellen
-            $objSlider = $this->Database->prepare('SELECT *, CAST(SUBSTRING_INDEX(si_containerId, "_", -1) AS UNSIGNED ) as counter FROM tl_content WHERE type ="slideItStart" AND id!=? ORDER BY counter desc LIMIT 0,1')
+            // Get existing id´s and create new
+            $objSlider = $this->Database->prepare('SELECT *, CAST(SUBSTRING_INDEX(si_containerId, "_", -1) AS UNSIGNED ) as counter FROM tl_content WHERE type = "slideItStart" AND id != ? ORDER BY counter desc LIMIT 0,1')
                     ->execute($id)
                     ->fetchAssoc();
 
             if ($objSlider == "")
             {
-                //dies ist der erste Slider, also id slider_1
+                // Set first slider id
                 $objElement['si_containerId'] = "slider_1";
             }
             else
             {
-                //höchste ID rausfinden, und neue containerID setzen
+                // Get highest id and set new container Id
                 $sliderId = explode("_", $objSlider['si_containerId']);
                 $objElement['si_containerId'] = "slider_" . ($sliderId[1] + 1);
             }
 
-            //update containerId
-            $this->Database->prepare("UPDATE tl_content SET si_containerId = ? WHERE id=?")
+            // Update containerId
+            $this->Database->prepare("UPDATE tl_content SET si_containerId = ? WHERE id = ?")
                     ->execute($objElement['si_containerId'], $id);
         }
 
-        //auf child-Element prüfen
+        // Check childs
         if ($objElement['si_children'] == "" && $objElement['type'] == 'slideItStart')
         {
-            //Erstelle slideItEnd
+            // Create slideItEnd
             $result = $this->Database->prepare('INSERT INTO tl_content (pid, tstamp, sorting,  type, si_containerId, si_children) VALUES (?,?,?,"slideItEnd",?,?)')
                     ->execute($objElement['pid'], time(), ($objElement['sorting'] + 1), $objElement['si_containerId'], $id);
 
-            //update element
+            // Update element
             $this->Database->prepare("UPDATE tl_content SET si_children = ? WHERE id=?")
                     ->execute($result->insertId, $id);
         }
     }
 
+    /**
+     * Delete slider element and his childs
+     * 
+     * @param DC_Table $dc 
+     */
     public function siDelete(DC_Table $dc)
     {
-
-        $delRecord = $this->Database->prepare("SELECT * FROM tl_content WHERE id=?")
+        /**
+         * Get content element to delete 
+         */
+        $objDelRec = $this->Database->prepare("SELECT * FROM tl_content WHERE id = ?")
                 ->execute($dc->id)
                 ->fetchAssoc();
 
-        if ($delRecord['type'] == 'slideItStart' || $delRecord['type'] == 'slideItEnd')
+        /**
+         * Check if content element type is slideItStart or slideItEnd
+         */
+        if ($objDelRec['type'] == 'slideItStart' || $objDelRec['type'] == 'slideItEnd')
         {
-
             /**
-             * Wird ein Element gelöscht, werden alle Kindelemente ebenfalls gelöscht
+             * On delete, delete all child too
              */
-            $eraseId = ($delRecord['si_children'] != "") ? $delRecord['si_children'] : false;
-
+            $eraseId = ($objDelRec['si_children'] != "") ? $objDelRec['si_children'] : false;
 
             if ($eraseId)
             {
-                $this->Database->prepare("DELETE FROM tl_content WHERE id=?")
+                $this->Database->prepare("DELETE FROM tl_content WHERE id = ?")
                         ->execute($eraseId);
             }
         }
     }
 
     /**
-     * read all available css-files and return them as an array
-     * @return array
+     * Read all available css-files and return them as an array
+     * 
+     * @param DC_Table $dc
+     * @return array 
      */
-    public function loadCssFiles()
+    public function loadCssFiles(DC_Table $dc)
     {
-
-        $arrFiles = scan(TL_ROOT . '/plugins/slideitmoo/css/');
-        $arrCss = array();
-        foreach ($arrFiles as $k => $file)
-        {
-            if (strtolower(substr($file, -3) == "css"))
-            {
-                $tmp = substr($file, 0, strlen($file) - 4);
-                $arrCss[$tmp] = $tmp;
-            }
-        }
-        return $arrCss;
+        return slideItHelper::getInstance()->loadCssFiles($dc);
     }
 
 }

@@ -31,7 +31,7 @@
  * Class slideItStart 
  *
  * @copyright  MEN AT WORK 2012 
- * @package    ContentElement
+ * @package    slideitmoo
  */
 class slideItStart extends ContentElement
 {
@@ -43,7 +43,27 @@ class slideItStart extends ContentElement
     protected $strTemplate = 'ce_slideItStart';
 
     /**
+     * Configuration array
+     * @var type 
+     */
+    protected $_arrConf = array();
+
+    /**
+     * Initialize the object
+     * 
+     * @param object
+     * @return string
+     */
+    public function __construct(Database_Result $objElement)
+    {
+        $arrConf = $objElement->fetchAllAssoc();
+        $this->_arrConf = $arrConf[0];
+        parent::__construct($objElement);
+    }
+
+    /**
      * Display a wildcard in the back end
+     * 
      * @return string
      */
     public function generate()
@@ -64,41 +84,8 @@ class slideItStart extends ContentElement
      */
     protected function compile()
     {
-        /**
-         * Insert JS and CSS Code
-         */
-        if (version_compare(VERSION . '.' . BUILD, '2.10.0', '<'))
-        {
-            $GLOBALS['TL_JAVASCRIPT'][] = 'plugins/slideitmoo/js/1.2.5/slideitmoo.js';
-        }
-        else
-        {
-            $GLOBALS['TL_JAVASCRIPT'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
-        }
-        if ($this->si_templateDefault)
-        {
-            if (version_compare(VERSION . '.' . BUILD, '2.10.0', '<'))
-            {
-                $GLOBALS['TL_CSS'][] = 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
-            }
-            else
-            {
-                $GLOBALS['TL_CSS'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
-            }
-        }
-
-        $dimensions = deserialize($this->si_itemsDimension);
-        $this->Template->si_itemsWidth = $dimensions[0];
-        $this->Template->si_itemsHeight = $dimensions[1];
-
-        $margin = deserialize($this->si_itemsMargin);
-        $this->Template->si_itemsMarginTop = $margin['top'];
-        $this->Template->si_itemsMarginRight = $margin['right'];
-        $this->Template->si_itemsMarginBottom = $margin['bottom'];
-        $this->Template->si_itemsMarginLeft = $margin['left'];
-        $this->Template->si_itemsMarginUnit = $margin['unit'];
-
-        $this->Template->si_itemsOverallWidth = $this->Template->si_itemsWidth + $margin['right'] + $margin['left'];
+        $objSlider = new slideItMoo($this->_arrConf);
+        $this->Template->script = $objSlider->parse();
     }
 
 }

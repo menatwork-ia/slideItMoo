@@ -31,8 +31,7 @@
  * Class slideItModule 
  *
  * @copyright  MEN AT WORK 2012 
- * @copyright  Cliff Parnitzky 2012 <mail@cliff-parnitzky.de>
- * @package    Module
+ * @package    slideitmoo
  */
 class slideItModule extends Module
 {
@@ -42,6 +41,25 @@ class slideItModule extends Module
      * @var string
      */
     protected $strTemplate = 'mod_slideItMoo';
+
+    /**
+     * Configuration array
+     * @var type 
+     */
+    protected $_arrConf = array();
+    
+    /**
+     * Initialize the object
+     * 
+     * @param Database_Result $objElement
+     * @param string $strColumn 
+     */
+    public function __construct(Database_Result $objElement, $strColumn = 'main')
+    {
+        $arrConf = $objElement->fetchAllAssoc();
+        $this->_arrConf = $arrConf[0];
+        parent::__construct($objElement, $strColumn);
+    }  
 
     /**
      * Display a wildcard in the back end
@@ -65,50 +83,19 @@ class slideItModule extends Module
      */
     protected function compile()
     {
-        /**
-         * Insert JS and CSS Code
-         */
-        if (version_compare(VERSION . '.' . BUILD, '2.10.0', '<'))
+        $this->_arrConf['si_containerId'] = "slider_" . $this->id;
+
+        $strContentElements = '';
+        $arrIncludeElements = deserialize($this->si_includeElements);
+        foreach ($arrIncludeElements as $element)
         {
-            $GLOBALS['TL_JAVASCRIPT'][] = 'plugins/slideitmoo/js/1.2.5/slideitmoo.js';
-        }
-        else
-        {
-            $GLOBALS['TL_JAVASCRIPT'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
-        }
-        if ($this->si_templateDefault)
-        {
-            if (version_compare(VERSION . '.' . BUILD, '2.10.0', '<'))
-            {
-                $GLOBALS['TL_CSS'][] = 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
-            }
-            else
-            {
-                $GLOBALS['TL_CSS'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/css/' . $this->si_cssTemplate . '.css';
-            }
+            $strContentElements .= $this->getContentElement($element['url']);
         }
 
-        $dimensions = deserialize($this->si_itemsDimension);
-        $this->Template->si_itemsWidth = $dimensions[0];
-        $this->Template->si_itemsHeight = $dimensions[1];
-
-        $margin = deserialize($this->si_itemsMargin);
-        $this->Template->si_itemsMarginTop = $margin['top'];
-        $this->Template->si_itemsMarginRight = $margin['right'];
-        $this->Template->si_itemsMarginBottom = $margin['bottom'];
-        $this->Template->si_itemsMarginLeft = $margin['left'];
-        $this->Template->si_itemsMarginUnit = $margin['unit'];
-
-        $contentElements = '';
-        $includeElements = deserialize($this->si_includeElements);
-        foreach ($includeElements as $element)
-        {
-            $contentElements .= $this->getContentElement($element['url']);
-        }
-
-        $this->Template->si_contentElements = $contentElements;
-        $this->Template->si_containerId = "slider" . $this->id;
-        $this->Template->si_itemsOverallWidth = $this->Template->si_itemsWidth + $margin['right'] + $margin['left'];
+        $this->Template->si_contentElements = $strContentElements;
+        $this->Template->si_containerId = $this->_arrConf['si_containerId'];
+        $objSlider = new slideItMoo($this->_arrConf);
+        $this->Template->script = $objSlider->parse();
     }
 
 }

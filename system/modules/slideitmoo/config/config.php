@@ -27,14 +27,14 @@
  * @filesource
  */
  
-$GLOBALS['TL_HOOKS']['parseBackendTemplate'][] = array('slideItMoo', 'checkExtensions');
+$GLOBALS['TL_HOOKS']['parseBackendTemplate'][] = array('slideItHelper', 'checkExtensions');
 
 /**
  * Content elements
  */
 $GLOBALS['TL_CTE']['slideIt'] = array(
-	'slideItStart' => 'slideItStart',
-	'slideItEnd' => 'slideItEnd'
+    'slideItStart'  => 'slideItStart',
+    'slideItEnd'    => 'slideItEnd'
 );
 
 /**
