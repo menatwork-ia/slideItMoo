@@ -4,18 +4,17 @@ slideItMoo
 About
 -----
 
-A configurable element slider based on Mootools
+Mootools continuous image and content carousel script
 
 
 Screenshots
 -----------
 
 ![Content configuration](http://img7.imagebanana.com/img/pc4j11uj/tl_content.jpg)
-![Module configuration](http://img7.imagebanana.com/img/wgax8wpk/tl_module.jpg)
 
 
 Other screenshots
-https://github.com/menatwork/valumsFileUploader/wiki/Screenshots
+https://github.com/menatwork/slideItMoo/wiki/Screenshots
 
 
 System requirements
@@ -34,132 +33,126 @@ Installation & Configuration
 * Update the database
 
 
-Possible attributes for own slider
+Configuration for customer slider
 ----------------------------------
 
 ```php
-/**
-* Necessary values 
-*/
-$arrNecessaryConf = array(
+<?php class customerSlider extends ContentElement
+{
 
     /**
-    * ID of the slider container
-    */
-    'containerId' => 'slider',
+     * Template
+     * @var string
+     */
+    protected $strTemplate = 'ce_customerSlider';
 
     /**
-    * Set width and height for slider elements 
-    */
-    'itemsDimension' => array(500, 300),
-);
+     * Generate module
+     */
+    protected function compile()
+    {
+        /**
+         * Necessary values 
+         */
+        $arrNecessaryConf = array(
+            /**
+             * ID of the slider container
+             */
+            'containerId' => 'slider',
+            /**
+             * Set width and height for slider elements 
+             */
+            'itemsDimension' => array(500, 300),
+        );
 
-/**
-* Possible values 
-*/
-$arrPossibleConf = array(
+        /**
+         * Possible values 
+         */
+        $arrPossibleConf = array(
+            /**
+             * Templates
+             */
+            // Set to take default template. If "cssTemplate" is not set take 
+            // "/plugins/slideitmoo/css/slideitmoo_horizontal.css" as default
+            'templateDefault' => TRUE,
+            // Set template to take from "/plugins/slideitmoo/css/". If "templateDefault"
+            // is false this option would not work. 
+            'cssTemplate' => 'slideitmoo_horizontal',
+            /**
+             * Set the margin and the unit of the slidet elements
+             */
+            'itemsMargin' => array('top' => 10, 'right' => 10, 'bottom' => 10, 'left' => 10, 'unit' => 'px'),
+            /**
+             * Show boolean controls. Default is false 
+             */
+            'showControls' => TRUE,
+            /**
+             * Set duration in milliseconds. Default is 800 
+             */
+            'duration' => 500,
+            /**
+             * Set the class for the elements to slide. Default is block. 
+             */
+            'itemsSelector' => 'elementsToSlide',
+            /**
+             * Set visible items, default is one 
+             */
+            'itemsVisible' => 1,
+            /**
+             * Set elements to slide, default is one 
+             */
+            'elementsSlide' => 1,
+            /**
+             * Set the start index 
+             */
+            'startIndex' => 2,
+            /**
+             * Auto slide
+             */
+            // Set boolean autoSlideDefault functionality. This dosn't work if no 
+            // autoSlide is set
+            'autoSlideDefault' => TRUE,
+            // Set autoSlide in milliseconds
+            'autoSlide' => 1000,
+            // Set sliding direction. Possible is -1 or 1
+            'elementDirection' => -1,
+            /**
+             * Set boolean show bullits. If your "itemsVisible" and "elementsSlide"
+             * are not one but the same number and the result of the division from this
+             * and all elements to slide is an integer. The bullits whould be splittet.
+             */
+            'showBullets' => TRUE,
+            /**
+             * Set the possibility to slide with mousewheel 
+             */
+            'mouseWheelNav' => TRUE,
+            /**
+             * Set to slide vertical 
+             */
+            'slideVertical' => TRUE,
+            /**
+             * Set sliding effects 
+             */
+            // Set boolean to enable effects. If 'effectTransition' and 'effectEase'
+            // is not set this has no effect
+            'autoEffectTransition' => '',
+            // Set effect transition. Possible options are 'Quad', 'Cubic', 'Quart', 
+            // 'Quint', 'Sine', 'Expo', 'Circ', 'Bounce', 'Back', 'Elastic'
+            'effectTransition' => 'Quad',
+            // Set effect ease. Possible options are 'In', 'Out', 'InOut'
+            'effectEase' => '',
+        );
 
-    /**
-    * Templates
-    */
+        $arrConf = array_merge($arrNecessaryConf, $arrPossibleConf);
 
-    // Set to take default template. If "cssTemplate" is not set take 
-    // "/plugins/slideitmoo/css/slideitmoo_horizontal.css" as default
-    'templateDefault' => TRUE, 
+        $objSlider = new slideItMoo($arrConf);
+        $this->Template->script = $objSlider->parse();
+        $this->Template->showControls = $arrPossibleConf['showControls'];
+        $this->Template->containerId = $arrNecessaryConf['containerId'];
+        $this->Template->itemsSelector = $arrPossibleConf['itemsSelector'];
+    }
 
-    // Set template to take from "/plugins/slideitmoo/css/". If "templateDefault"
-    // is false this option would not work. 
-    'cssTemplate' => 'slideitmoo_horizontal', 
-
-    /**
-    * Set the margin and the unit of the slidet elements
-    */
-    'itemsMargin' => array('top' => 10, 'right' => 10, 'bottom' => 10, 'left' => 10, 'unit' => 'px'),
-
-    /**
-    * Show boolean controls. Default is false 
-    */
-    'showControls' => TRUE,
-
-    /**
-    * Set duration in milliseconds. Default is 800 
-    */
-    'duration' => 500,
-
-    /**
-    * Set the class for the elements to slide. Default is block. 
-    */
-    'itemsSelector' => 'elementsToSlide',
-
-    /**
-    * Set visible items, default is one 
-    */
-    'itemsVisible' => 1,
-
-    /**
-    * Set elements to slide, default is one 
-    */
-    'elementsSlide' => 1,
-
-    /**
-    * Set the start index 
-    */
-    'startIndex' => 2,
-
-    /**
-    * Auto slide
-    */
-
-    // Set boolean autoSlideDefault functionality. This dosn't work if no 
-    // autoSlide is set
-    'autoSlideDefault' => TRUE,
-
-    // Set autoSlide in milliseconds
-    'autoSlide' => 1000,
-
-    // Set sliding direction. Possible is -1 or 1
-    'elementDirection' => -1,
-
-    /**
-    * Set boolean show bullits. If your "itemsVisible" and "elementsSlide"
-    * are not one but the same number and the result of the division from this
-    * and all elements to slide is an integer. The bullits whould be splittet.
-    */
-    'showBullets' => TRUE,
-
-    /**
-    * Set the possibility to slide with mousewheel 
-    */
-    'mouseWheelNav' => TRUE,
-
-    /**
-    * Set to slide vertical 
-    */
-    'slideVertical' => TRUE,
-
-    /**
-    * Set sliding effects 
-    */
-
-    // Set boolean to enable effects. If 'effectTransition' and 'effectEase'
-    // is not set this has no effect
-    'autoEffectTransition' => '',
-
-    // Set effect transition. Possible options are 'Quad', 'Cubic', 'Quart', 
-    // 'Quint', 'Sine', 'Expo', 'Circ', 'Bounce', 'Back', 'Elastic'
-    'effectTransition' => 'Quad',
-
-    // Set effect ease. Possible options are 'In', 'Out', 'InOut'
-    'effectEase' => '',
-);
-
-$arrConf = array_merge($arrNecessaryConf, $arrPossibleConf);
-
-$objSlider = new slideItMoo($arrConf);
-$this->Template->script = $objSlider->parse();
-$this->Template->showControls = $arrPossibleConf['showControls'];
-$this->Template->containerId = $arrNecessaryConf['containerId'];
-$this->Template->itemsSelector = $arrPossibleConf['itemsSelector'];
+}?>
 ```
 
 ```php
