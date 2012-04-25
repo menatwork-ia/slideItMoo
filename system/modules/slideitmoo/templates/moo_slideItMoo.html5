@@ -1,5 +1,4 @@
 <script type="text/javascript">
-/* <![CDATA[ */
 document.documentElement.className += " js-slider";
 window.addEvent('domready', function() {
     if ($('<?php echo $this->containerId; ?>')) {
@@ -60,7 +59,5 @@ window.addEvent('domready', function() {
             echo $key . ': ' . $value . ",\n";
         } ?>
     });
-
 });
-/* ]]> */
 </script>
