@@ -5,3 +5,11 @@
  * Link			http://www.men-at-work.de/
  * License    	GNU/LGPL
  */
+ 
+/**
+ * Package    	FE-Widget
+ * Copyright  	Cliff Parnitzky 2012
+ * Author		Cliff Parnitzky <mail@cliff-parnitzky.de>
+ * Link			http://www.cliff-parnitzky.de/
+ * License    	GNU/LGPL
+ */

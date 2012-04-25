@@ -30,7 +30,7 @@
 /**
  * Class SlideItMoo
  * 
- * @copyright  Cliff Parnitzky 2012 <mail@cliff-parnitzky.de>
+ * @copyright  Cliff Parnitzky 2012
  * @copyright  MEN AT WORK 2012
  * @package    slideitmoo
  */
