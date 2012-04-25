@@ -21,8 +21,8 @@ System requirements
 -------------------
 
 * Contao 2.10.x or higher
-* MultiColumnWizard 2.0.0 or higher
-* slideItMooFramework 1.3.0 or higher
+* MultiColumnWizard 3.0.0 or higher
+* slideItMooFramework 1.0.0 or higher
 
 
 Installation & Configuration
