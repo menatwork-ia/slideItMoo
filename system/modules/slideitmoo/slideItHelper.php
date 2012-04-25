@@ -94,7 +94,7 @@ class slideItHelper extends Backend
 
             // Required files
             $arrRequiredFiles = array(
-                'slideItMooFramework' => 'plugins/slideitmoo/LICENSE.txt'
+                'slideItMooFramework' => TL_PLUGINS_URL . 'plugins/slideitmoo/LICENSE.txt'
             );
 
             // Check for required extensions
@@ -141,7 +141,8 @@ class slideItHelper extends Backend
      */
     public function insertJsCss($cssTemplate = FALSE, $templateDefault = FALSE)
     {
-        $GLOBALS['TL_JAVASCRIPT'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
+        $GLOBALS['TL_JAVASCRIPT']['slideItMoo'] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
+        $GLOBALS['TL_JAVASCRIPT']['extendedSlideItMoo'] = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/slideitmoo.js';
 
         if ($templateDefault)
         {
