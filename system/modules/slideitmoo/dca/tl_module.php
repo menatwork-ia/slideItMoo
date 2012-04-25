@@ -34,7 +34,7 @@
 /**
  * Palettes 
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['slideItMoo'] = '{title_legend},name,headline,type;{siInclude_legend},si_includeElements;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector;{siDimensions_legend},si_itemsDimension,si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_verticalSlide,si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav;{siTemplate_legend:hide},si_templateDefault;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['slideItMoo'] = '{title_legend},name,headline,type;{siInclude_legend},si_includeElements;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector;{siDimensions_legend},si_itemsDimension,si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_verticalSlide,si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav,si_showBullets;{siTemplate_legend:hide},si_templateDefault;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 /**
  * Selector 
@@ -192,6 +192,13 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['si_mouseWheelNav'] = array(
     'inputType' => 'checkbox',
     'exclude' => true,
     'eval' => array('tl_class' => 'w50')
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['si_showBullets'] = array(
+    'label' => &$GLOBALS['TL_LANG']['tl_module']['si_showBullets'],
+    'inputType' => 'checkbox',
+    'exclude' => true,
+    'eval' => array('tl_class' => 'clr')
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['si_templateDefault'] = array(

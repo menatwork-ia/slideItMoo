@@ -51,7 +51,7 @@ $GLOBALS['TL_LANG']['tl_module']['si_showControls'] = array('Display navigation'
 $GLOBALS['TL_LANG']['tl_module']['si_mouseWheelNav'] = array('Activate mousewheel nav', 'Slideshow using the mousewheel navigation.');
 $GLOBALS['TL_LANG']['tl_module']['si_templateDefault'] = array('Activate template', 'Apply the included standard skin.');
 $GLOBALS['TL_LANG']['tl_module']['si_cssTemplate'] = array('CSS-Template', 'The design of the slideshow can be adjusted in the template.');
-$GLOBALS['TL_LANG']['tl_content']['si_showBullets'] = array('Activate bullets', 'Check here to enable element positions.');
+$GLOBALS['TL_LANG']['tl_module']['si_showBullets'] = array('Activate bullets', 'Check here to enable element positions.');
 
 /**
  * Legends

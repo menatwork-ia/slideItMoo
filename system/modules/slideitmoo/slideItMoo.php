@@ -81,6 +81,7 @@ class slideItMoo
                 break;
             case 'itemsMargin':
                 $arrMargin = deserialize($varValue);
+                $this->marginsIsSet = TRUE;
                 $this->marginTop    = (($arrMargin['top'] != '') ? $arrMargin['top'] : 0);
                 $this->marginRight  = (($arrMargin['right'] != '') ? $arrMargin['right'] : 0);
                 $this->marginBottom = (($arrMargin['bottom'] != '') ? $arrMargin['bottom'] : 0);
@@ -134,17 +135,16 @@ class slideItMoo
      */
     public function parse()
     {
+        // Set all nessesary values that are not given to default
+        $this->_setDefault();
+        
         // Include JS and CSS
         if($this->cssTemplate && $this->templateDefault) 
         {
             $this->_objHelper->insertJsCss($this->cssTemplate, $this->templateDefault);
         }
-        $this->_objHelper->insertJsCss();
         
-        $this->itemWidth = $this->width + $this->marginRight + $this->marginLeft;
-        $this->navFwd = "'." . $this->containerId . "_fwd'";
-        $this->navBk = "'." . $this->containerId . "_bk'";
-        $this->containerChildsId = '#' . $this->containerId . ' .' . $this->itemsSelector;
+        $this->_objHelper->insertJsCss();
         
         // Create slider array
         $arrSlider = array(
@@ -155,8 +155,7 @@ class slideItMoo
             'elementScrolled'   => "'" . $this->containerId . "_inner'",
             'thumbsContainer'   => "'" . $this->containerId . "_items'",		
             'itemsVisible'      => $this->itemsVisible,
-            'elemsSlide'        => $this->elementsSlide,
-            'duration'          => $this->duration,
+            'elemsSlide'        => $this->elementsSlide,            
             'itemsSelector'     => "'." . $this->itemsSelector . "'"
         );
         
@@ -168,15 +167,25 @@ class slideItMoo
             );
         }
         
+        if($this->duration)
+        {
+            $arrSlider['duration'] = $this->duration;
+        }
+        
         if($this->startIndex) 
         {
             $arrSlider['startIndex'] = $this->startIndex;
         }
         
-        if($this->autoSlideDefault)
+        if($this->autoSlideDefault && $this->autoSlide)
         {
             $arrSlider['autoSlide'] = $this->autoSlide;
         }
+        
+        if($this->autoSlideDefault && $this->elementDirection) 
+        {
+            $arrSlider['direction'] = -1;
+        }        
         
         if($this->showBullets)
         {
@@ -188,10 +197,15 @@ class slideItMoo
             $arrSlider['mouseWheelNav'] = 'true';        
         }
         
-        if($this->autoSlideDefault && $this->elementDirection) $arrSlider['direction'] = -1;
-        if($this->verticalSlide) $arrSlider['slideVertical'] = 'true';
-        if($this->autoEffectTransition)
+        if($this->verticalSlide)
+        {
+            $arrSlider['slideVertical'] = 'true';
+        }
+        
+        if($this->autoEffectTransition && $this->effectTransition && $this->effectEase)
+        {
             $arrSlider['transition'] = "Fx.Transitions." . $this->effectTransition . ".ease" . $this->effectEase;
+        }
         
         // Create Childs array
         $arrChilds = array(
@@ -216,6 +230,55 @@ class slideItMoo
         $objTemplate->containerChildsId = $this->containerChildsId;
         $objTemplate->arrChilds         = $arrChilds;
         return $objTemplate->parse();
+    }
+    
+    /**
+     * Set all nessesary values that are not given to default
+     */
+    protected function _setDefault()
+    {
+        // If templateDefault is true but no cssTemplate is given,
+        // set "slideitmoo_horizontal" as default
+        if($this->templateDefault && !$this->cssTemplate)
+        {
+            $this->cssTemplate = 'slideitmoo_horizontal';
+        }
+        
+        // If no margins are specifyte set all to zero
+        if(!$this->marginsIsSet)
+        {
+            $this->itemsMargin = array('top' => 0, 'right' => 0, 'bottom' => 0, 'left' => 0, 'unit' => 'px');
+        }
+        
+        // Set item selectors
+        if(!$this->itemsSelector)
+        {
+            $this->itemsSelector = '';
+        }
+        
+        // Set visible items
+        if(!$this->itemsVisible)
+        {
+            $this->itemsVisible = 1;
+        }
+        
+        // Set elements to slide
+        if(!$this->elementsSlide)
+        {
+            $this->elementsSlide = 1;
+        }
+        
+        // Set item width
+        $this->itemWidth = $this->width + $this->marginRight + $this->marginLeft;
+        
+        // set forward navigation selector
+        $this->navFwd = "'." . $this->containerId . "_fwd'";
+        
+        // set backward navigation selector
+        $this->navBk = "'." . $this->containerId . "_bk'";
+        
+        // Set css path to items
+        $this->containerChildsId = '#' . $this->containerId . ' .' . $this->itemsSelector;
     }
     
 }
