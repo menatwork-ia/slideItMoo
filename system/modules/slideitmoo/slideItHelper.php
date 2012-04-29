@@ -94,7 +94,7 @@ class slideItHelper extends Backend
 
             // Required files
             $arrRequiredFiles = array(
-                'slideItMooFramework' => TL_PLUGINS_URL . 'plugins/slideitmoo/LICENSE.txt'
+                'slideItMooFramework' => 'plugins/slideitmoo/LICENSE.txt'
             );
 
             // Check for required extensions
