@@ -43,6 +43,12 @@ class slideItMoo
     protected $_arrConf = array();
     
     /**
+     * Slider
+     * @var array
+     */
+    protected $_arrSlider = array();
+    
+    /**
      * Object with helper functions
      * @var slideItHelper
      */
@@ -146,8 +152,8 @@ class slideItMoo
         
         $this->_objHelper->insertJsCss();
         
-        // Create slider array
-        $arrSlider = array(
+        // Fill slider array
+        $this->_arrSlider = $result = array_merge($this->_arrSlider, array(
             'itemWidth'         => $this->itemWidth,
             'itemHeight'        => $this->itemHeight,
             'showControls'      => (($this->showControls) ? 1 : 0),
@@ -157,11 +163,11 @@ class slideItMoo
             'itemsVisible'      => $this->itemsVisible,
             'elemsSlide'        => $this->elementsSlide,            
             'itemsSelector'     => "'." . $this->itemsSelector . "'"
-        );
+        ));
         
         if($this->showControls)
         {
-            $arrSlider['navs'] = array(
+            $this->_arrSlider['navs'] = array(
                 'fwd'   => $this->navFwd,
                 'bk'    => $this->navBk
             );
@@ -169,42 +175,47 @@ class slideItMoo
         
         if($this->duration)
         {
-            $arrSlider['duration'] = $this->duration;
+            $this->_arrSlider['duration'] = $this->duration;
         }
         
         if($this->startIndex) 
         {
-            $arrSlider['startIndex'] = $this->startIndex;
+            $this->_arrSlider['startIndex'] = $this->startIndex;
         }
         
         if($this->autoSlideDefault && $this->autoSlide)
         {
-            $arrSlider['autoSlide'] = $this->autoSlide;
+            $this->_arrSlider['autoSlide'] = $this->autoSlide;
         }
         
         if($this->autoSlideDefault && $this->elementDirection) 
         {
-            $arrSlider['direction'] = -1;
+            $this->_arrSlider['direction'] = -1;
         }        
         
         if($this->showBullets)
         {
-            $arrSlider['showBullets'] = 'true';
+            $this->_arrSlider['showBullets'] = 'true';
         }
         
         if($this->mouseWheelNav)
         {
-            $arrSlider['mouseWheelNav'] = 'true';        
+            $this->_arrSlider['mouseWheelNav'] = 'true';        
         }
         
         if($this->verticalSlide)
         {
-            $arrSlider['slideVertical'] = 'true';
+            $this->_arrSlider['slideVertical'] = 'true';
         }
         
         if($this->autoEffectTransition && $this->effectTransition && $this->effectEase)
         {
-            $arrSlider['transition'] = "Fx.Transitions." . $this->effectTransition . ".ease" . $this->effectEase;
+            $this->_arrSlider['transition'] = "Fx.Transitions." . $this->effectTransition . ".ease" . $this->effectEase;
+        }
+        
+        if($this->onChange)
+        {
+            $this->_arrSlider['onChange'] = $this->onChange;
         }
         
         // Create Childs array
@@ -226,7 +237,7 @@ class slideItMoo
         $objTemplate->navBk             = $this->navBk;
         $objTemplate->scrollSize        = $this->itemsVisible * $this->itemWidth;
         $objTemplate->itemWidth         = $this->itemWidth;
-        $objTemplate->arrSlider         = $arrSlider;
+        $objTemplate->arrSlider         = $this->_arrSlider;
         $objTemplate->containerChildsId = $this->containerChildsId;
         $objTemplate->arrChilds         = $arrChilds;
         return $objTemplate->parse();
