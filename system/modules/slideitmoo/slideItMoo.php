@@ -190,7 +190,7 @@ class slideItMoo
         
         if($this->autoSlideDefault && $this->elementDirection) 
         {
-            $this->_arrSlider['direction'] = -1;
+            $this->_arrSlider['direction'] = ($this->elementDirection==-1)?-1:1;
         }        
         
         if($this->showBullets)
