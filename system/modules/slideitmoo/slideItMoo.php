@@ -173,6 +173,16 @@ class slideItMoo
             );
         }
         
+        if($this->skipInlineStyles)
+        {
+            $this->_arrSlider['skipInlineStyles'] = $this->skipInlineStyles;
+        }
+        
+        if($this->skipNavSize)
+        {
+            $this->_arrSlider['skipNavSize'] = $this->skipNavSize;
+        }
+        
         if($this->duration)
         {
             $this->_arrSlider['duration'] = $this->duration;
