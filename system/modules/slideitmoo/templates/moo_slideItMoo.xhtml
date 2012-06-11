@@ -7,15 +7,15 @@ window.addEvent('domready', function() {
 
         var elements = $('<?php echo $this->containerId; ?>').getElements('.<?php echo $this->itemsSelector; ?>');
         var totalElements = elements.length;
-        if(totalElements <= <?php echo $this->itemsVisible; ?>){			
+        if(totalElements <= <?php echo $this->itemsVisible; ?>){    		
             var overallSize = {};
             var scrollSize = {};
             var thumbsSize = {};
             var navsSize = 0;
 
             <?php if($this->showControls): ?>
-            var fwd = $('<?php echo $this->containerId; ?>').getElement(<?php echo $this->navFwd; ?>);
-            var bkwd = $('<?php echo $this->containerId; ?>').getElement(<?php echo $this->navBk; ?>);
+            var fwd = $('<?php echo $this->containerId; ?>').getElement(<?php echo json_encode($this->navFwd); ?>);
+            var bkwd = $('<?php echo $this->containerId; ?>').getElement(<?php echo json_encode($this->navBk); ?>);
             var s1 = fwd.getSize();
             var s2 = bkwd.getSize();
             var navsSize = s1.x + s2.x;
