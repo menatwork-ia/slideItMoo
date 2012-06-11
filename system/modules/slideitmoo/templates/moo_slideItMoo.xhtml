@@ -3,22 +3,7 @@
 document.documentElement.className += " js-slider";
 window.addEvent('domready', function() {
     if ($('<?php echo $this->containerId; ?>')) {
-        slide_<?php echo $this->containerId; ?> = new SlideItMoo({
-        <?php foreach($this->arrSlider AS $k => $v)
-        {
-            if(is_array($v))
-            {
-                echo $k . ": {\n";
-                foreach ($v as $key => $value)
-                {
-                    echo $key . ': ' . $value . ",\n";                    
-                }
-                echo "},\n";
-                continue;
-            }
-            echo $k . ': ' . $v . ",\n";
-        } ?>
-        });
+        slide_<?php echo $this->containerId; ?> = new SlideItMoo(<?php echo json_encode($this->arrSlider); ?>);
 
         var elements = $('<?php echo $this->containerId; ?>').getElements('.<?php echo $this->itemsSelector; ?>');
         var totalElements = elements.length;
@@ -54,12 +39,7 @@ window.addEvent('domready', function() {
         }
     }
               
-    $$('<?php echo $this->containerChildsId; ?>').setStyles({
-        <?php foreach($this->arrChilds AS $key => $value)
-        {
-            echo $key . ': ' . $value . ",\n";
-        } ?>
-    });
+    $$('<?php echo $this->containerChildsId; ?>').setStyles(<?php echo json_encode($this->arrChilds); ?>);
 
 });
 /* ]]> */
