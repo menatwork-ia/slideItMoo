@@ -1,26 +1,10 @@
 <script type="text/javascript">
 window.addEvent('domready', function(){
-    var slide_<?php echo $this->containerId; ?> = new ExtendedSlideItMoo({
-        containerId:'<?php echo $this->containerId; ?>',
-        containerChildsId:'<?php echo $this->containerChildsId; ?>',
-        sliderAttr:{<?php foreach($this->arrSlider AS $k => $v)
-        {
-            if(is_array($v))
-            {
-                echo $k . ":{";
-                foreach ($v as $key => $value)
-                {
-                    echo $key . ':' . $value . ",";                    
-                }
-                echo "},";
-                continue;
-            }
-            echo $k . ':' . $v . ",";
-        } ?>},
-        childAttr:{<?php foreach($this->arrChilds AS $key => $value)
-        {
-            echo $key . ':' . $value . ",";
-        }?>}
-    }).run();
+    var slide_<?php echo $this->containerId; ?> = new ExtendedSlideItMoo(<?php echo json_encode(array(
+        'containerId' => $this->containerId,
+        'containerChildsId' => $this->containerChildsId,
+        'sliderAttr' => $this->arrSlider,
+        'childAttr' => $this->arrChilds,
+    )); ?>).run();
 });
 </script>
