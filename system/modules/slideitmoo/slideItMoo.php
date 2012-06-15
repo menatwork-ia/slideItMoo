@@ -157,12 +157,12 @@ class slideItMoo
             'itemWidth'         => $this->itemWidth,
             'itemHeight'        => $this->itemHeight,
             'showControls'      => (($this->showControls) ? 1 : 0),
-            'overallContainer'  => "'" . $this->containerId . "'",
-            'elementScrolled'   => "'" . $this->containerId . "_inner'",
-            'thumbsContainer'   => "'" . $this->containerId . "_items'",		
+            'overallContainer'  => $this->containerId,
+            'elementScrolled'   => $this->containerId . "_inner",
+            'thumbsContainer'   => $this->containerId . "_items",		
             'itemsVisible'      => $this->itemsVisible,
             'elemsSlide'        => $this->elementsSlide,            
-            'itemsSelector'     => "'." . $this->itemsSelector . "'"
+            'itemsSelector'     => "." . $this->itemsSelector
         ));
         
         if($this->showControls)
@@ -185,7 +185,7 @@ class slideItMoo
         
         if($this->duration)
         {
-            $this->_arrSlider['duration'] = $this->duration;
+            $this->_arrSlider['duration'] = intval($this->duration);
         }
         
         if($this->startIndex) 
@@ -195,7 +195,7 @@ class slideItMoo
         
         if($this->autoSlideDefault && $this->autoSlide)
         {
-            $this->_arrSlider['autoSlide'] = $this->autoSlide;
+            $this->_arrSlider['autoSlide'] = intval($this->autoSlide);
         }
         
         if($this->autoSlideDefault && $this->elementDirection) 
@@ -230,11 +230,11 @@ class slideItMoo
         
         // Create Childs array
         $arrChilds = array(
-            'marginTop'     => "'" . $this->marginTop . $this->marginUnit . "'",
-            'marginRight'   => "'" . $this->marginRight . $this->marginUnit . "'",
-            'marginBottom'  => "'" . $this->marginBottom . $this->marginUnit . "'",
-            'marginLeft'    => "'" . $this->marginLeft . $this->marginUnit . "'",
-            'width'         => "'" . $this->width . "px'"
+            'marginTop'     => $this->marginTop . $this->marginUnit,
+            'marginRight'   => $this->marginRight . $this->marginUnit,
+            'marginBottom'  => $this->marginBottom . $this->marginUnit,
+            'marginLeft'    => $this->marginLeft . $this->marginUnit,
+            'width'         => $this->width . "px"
         );
         
         // Create Template
@@ -293,10 +293,10 @@ class slideItMoo
         $this->itemWidth = $this->width + $this->marginRight + $this->marginLeft;
         
         // set forward navigation selector
-        $this->navFwd = "'." . $this->containerId . "_fwd'";
+        $this->navFwd = "." . $this->containerId . "_fwd";
         
         // set backward navigation selector
-        $this->navBk = "'." . $this->containerId . "_bk'";
+        $this->navBk = "." . $this->containerId . "_bk";
         
         // Set css path to items
         $this->containerChildsId = '#' . $this->containerId . ' .' . $this->itemsSelector;
