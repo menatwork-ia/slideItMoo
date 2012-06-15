@@ -39,6 +39,9 @@ var ExtendedSlideItMoo = new Class({
         
         if($(this.options.containerId))
         {
+            // Fix bug from json_encode Fx.Transitions is no a function
+            this.options.sliderAttr.transition = eval(this.options.sliderAttr.transition);
+
             var objSlider = new SlideItMoo(this.options.sliderAttr);
             var optSlider = objSlider.options;
             
