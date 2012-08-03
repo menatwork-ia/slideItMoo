@@ -1,4 +1,7 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
+if (!defined('TL_ROOT'))
+    die('You cannot access this file directly!');
 
 /**
  * Contao Open Source CMS
@@ -141,7 +144,7 @@ class slideItHelper extends Backend
      */
     public function insertJsCss($cssTemplate = FALSE, $templateDefault = FALSE)
     {
-        $GLOBALS['TL_JAVASCRIPT']['slideItMoo'] = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
+        $GLOBALS['TL_JAVASCRIPT']['slideItMoo']         = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
         $GLOBALS['TL_JAVASCRIPT']['extendedSlideItMoo'] = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/slideitmoo.js';
 
         if ($templateDefault)
@@ -149,7 +152,7 @@ class slideItHelper extends Backend
             $GLOBALS['TL_CSS'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/css/' . $cssTemplate . '.css';
         }
     }
-    
+
     /**
      * Read all available css-files and return them as an array
      * 
@@ -159,25 +162,134 @@ class slideItHelper extends Backend
     public function loadCssFiles(DC_Table $dc)
     {
         $arrFiles = scan(TL_ROOT . '/plugins/slideitmoo/css/');
-        $arrCss = array();
+        $arrCss   = array();
         foreach ($arrFiles as $k => $file)
         {
             if (strtolower(substr($file, -3) == "css"))
             {
                 $tmp = substr($file, 0, strlen($file) - 4);
-                if($dc->activeRecord->si_verticalSlide)
+                if ($dc->activeRecord->si_verticalSlide)
                 {
-                    if(stristr($tmp, 'horizontal')) continue;                    
-                }                    
+                    if (stristr($tmp, 'horizontal'))
+                        continue;
+                }
                 else
                 {
-                    if(stristr($tmp, 'vertical')) continue;
+                    if (stristr($tmp, 'vertical'))
+                        continue;
                 }
                 $arrCss[$tmp] = $tmp;
             }
-        }        
+        }
         return $arrCss;
+    }
+    
+    // Copy callbacks ----------------------------------------------------------
+    
+    /**
+     * Function for global tl_page oncopy callback
+     * $GLOBALS['TL_DCA']['tl_page']['config']['oncopy_callback']
+     * 
+     * @param integer $intId
+     * @param DataContainer $dc 
+     */
+    public function onPageCopyCallback($intId, DataContainer $dc)
+    {
+        if (!$this->Input->get('childs'))
+        {
+            $objArticle = $this->Database
+                    ->prepare("SELECT id FROM tl_article WHERE pid = ?")
+                    ->execute($intId);
+
+            if ($objArticle->numRows > 0)
+            {
+                while ($objArticle->next())
+                {
+                    $this->updateContentElem($objArticle->id);
+                }
+            }
+        }
+        else if ($this->Input->get('childs') == 1)
+        {
+            $arrPages = $this->getChildRecords($intId, 'tl_page');
+
+            foreach ($arrPages as $intId)
+            {
+                $objArticle = $this->Database
+                        ->prepare("SELECT id FROM tl_article WHERE pid=?")
+                        ->execute($intId);
+
+                if ($objArticle->numRows > 0)
+                {
+                    while ($objArticle->next())
+                    {
+                        $this->updateContentElem($objArticle->id);
+                    }
+                }
+            }
+        }
     }    
+
+    /**
+     * Function for global tl_article oncopy callback
+     * $GLOBALS['TL_DCA']['tl_article']['config']['oncopy_callback']
+     * 
+     * @param integer $intId
+     * @param DataContainer $dc 
+     */
+    public function onArticleCopyCallback($intId, DataContainer $dc)
+    {
+        $this->updateContentElem($intId);
+    }
+
+    /**
+     * Repair copied module specific content elements
+     * 
+     * @param integer $intId 
+     */
+    protected function updateContentElem($intId)
+    {
+        // Check if is slideItStart element
+        $objStartSlideContent = $this->Database
+                ->prepare("SELECT * FROM tl_content WHERE pid = ? AND type = 'slideItStart'")
+                ->limit(1)
+                ->execute($intId);
+
+        if ($objStartSlideContent->numRows == 0)
+        {
+            return;
+        }
+        
+        $arrSets = array();
+
+        // Get highest id and set new container Id 
+        $objSlider = $this->Database->prepare('SELECT *, CAST(SUBSTRING_INDEX(si_containerId, "_", -1) AS UNSIGNED ) as counter FROM tl_content WHERE type = "slideItStart" ORDER BY counter desc LIMIT 0,1')
+                ->execute()
+                ->fetchAssoc();
+        
+        $sliderId                     = explode("_", $objSlider['si_containerId']);
+        $strNewSliderId = "slider_" . ($sliderId[1] + 1);
+
+        // Get appendant slideItEnd element
+        $objEndSlideContent = $this->Database
+                ->prepare("SELECT * FROM tl_content WHERE pid = ? AND type = 'slideItEnd' AND si_containerId = ?")
+                ->execute($objStartSlideContent->pid, $objStartSlideContent->si_containerId);
+        
+        // Set slideItStart update array
+        $arrSets[$objStartSlideContent->id] = array('si_containerId' => $strNewSliderId, 'si_children' => $objEndSlideContent->id);
+        
+        // Set slideItEnd update array
+        $arrSets[$objEndSlideContent->id] = array('si_containerId' => $strNewSliderId, 'si_children' => $objStartSlideContent->id);
+        
+        if (count($arrSets) > 0)
+        {
+            foreach ($arrSets As $intId => $arrSet)
+                $this->Database
+                        ->prepare("UPDATE tl_content %s WHERE id = ?")
+                        ->set($arrSet)
+                        ->execute($intId);
+        }
+    }
 
 }
 
