@@ -39,7 +39,7 @@ var ExtendedSlideItMoo = new Class({
         
         if($(this.options.containerId))
         {
-            // Fix bug from json_encode Fx.Transitions is no a function
+            // Fix bug from json_encode Fx.Transitions is not a function
             this.options.sliderAttr.transition = eval(this.options.sliderAttr.transition);
 
             var objSlider = new SlideItMoo(this.options.sliderAttr);
@@ -62,11 +62,14 @@ var ExtendedSlideItMoo = new Class({
             var objChildAttr = this.options.childAttr;
             if(!sliderAttr.skipInlineStyles) 
             {
-                container.set({
-                    styles:{
-                        width:optSlider.itemsVisible * optSlider.itemWidth + navsSize
-                    }
-                });
+                if(this.options.sliderAttr.slideVertical != 'true')
+                {
+                    container.set({
+                        styles:{
+                            width:optSlider.itemsVisible * optSlider.itemWidth + navsSize
+                        }
+                    });
+                }
                 
                 if(container.getElement('.' + optSlider.elementScrolled)) container.getElement('.' + optSlider.elementScrolled).set({
                     styles:{
