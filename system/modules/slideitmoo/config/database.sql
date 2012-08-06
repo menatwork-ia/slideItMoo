@@ -34,8 +34,9 @@ CREATE TABLE `tl_content` (
 	`si_itemsMargin` blob NULL,
 	`si_cssTemplate` varchar(255) NOT NULL default '',
 	`si_showControls` char(1) NOT NULL default '',
-	`si_mouseWheelNav` char(1) NOT NULL default '',
-        `si_showBullets` char(1) NOT NULL default ''
+	`si_mouseWheelNav` char(1) NOT NULL default '',    
+    `si_showBullets` char(1) NOT NULL default '',
+    `si_skipInlineStyles` char(1) NOT NULL default '',
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- 
@@ -62,5 +63,6 @@ CREATE TABLE `tl_module` (
 	`si_cssTemplate` varchar(255) NOT NULL default '',
 	`si_showControls` char(1) NOT NULL default '',
 	`si_mouseWheelNav` char(1) NOT NULL default '',
-        `si_showBullets` char(1) NOT NULL default ''
+    `si_showBullets` char(1) NOT NULL default '',
+    `si_skipInlineStyles` char(1) NOT NULL default '',
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

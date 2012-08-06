@@ -71,17 +71,17 @@ var ExtendedSlideItMoo = new Class({
                     });
                 }
                 
-                if(container.getElement('.' + optSlider.elementScrolled)) container.getElement('.' + optSlider.elementScrolled).set({
+                if($(optSlider.elementScrolled)) $(optSlider.elementScrolled).set({
                     styles:{
                         width:optSlider.itemsVisible * optSlider.itemWidth
                     }
                 });
                 
-                if(container.getElement('.' + optSlider.thumbsContainer)) container.getElement('.' + optSlider.thumbsContainer).set({
+                if($(optSlider.thumbsContainer)) $(optSlider.thumbsContainer).set({
                     styles:{
                         width:elemCount * optSlider.itemWidth + 10
                     }
-                }); 
+                });
             }
             else
             {
@@ -91,17 +91,18 @@ var ExtendedSlideItMoo = new Class({
                     }
                 });
                 
-                if(container.getElement('.' + optSlider.elementScrolled)) container.getElement('.' + optSlider.elementScrolled).set({
+                if($(optSlider.elementScrolled)) $(optSlider.elementScrolled).set({
                     styles:{
                         width:null
                     }
                 });
                 
-                if(container.getElement('.' + optSlider.thumbsContainer)) container.getElement('.' + optSlider.thumbsContainer).set({
+                if($(optSlider.thumbsContainer)) $(optSlider.thumbsContainer).set({
                     styles:{
                         width:null
                     }
                 });
+                
                 Object.each(objChildAttr, function(value, key){
                     objChildAttr[key] = null;
                 });

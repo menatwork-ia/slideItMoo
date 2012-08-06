@@ -49,16 +49,15 @@ $GLOBALS['TL_LANG']['tl_content']['si_mouseWheelNav'] = array('Scroll-Navigation
 $GLOBALS['TL_LANG']['tl_content']['si_templateDefault'] = array('Template aktivieren', 'Das mitgelieferte Standarddesign anwenden.');
 $GLOBALS['TL_LANG']['tl_content']['si_cssTemplate'] = array('CSS-Template', 'Die Gestaltung der Slideshow kann über das Template angepasst werden.');
 $GLOBALS['TL_LANG']['tl_content']['si_showBullets'] = array('Positionselemente aktivieren', 'Wählen Sie diese Option, um Positionselemente zu aktivieren.');
+$GLOBALS['TL_LANG']['tl_content']['si_skipInlineStyles'] = array('Inlinestyles Entfernen', 'Wählen Sie diese Option, um zu verhindern dass das JavaScript Inlinestyles setzt.');
 
 /**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_content']['siGenerel_legend'] = 'Allgemeine Einstellungen';
+$GLOBALS['TL_LANG']['tl_content']['siGenerel_legend']	 = 'Allgemeine Einstellungen';
 $GLOBALS['TL_LANG']['tl_content']['siDimensions_legend'] = 'Abmessungen';
-$GLOBALS['TL_LANG']['tl_content']['siEffect_legend'] = 'Effekte';
-$GLOBALS['TL_LANG']['tl_content']['siAuto_legend'] = 'Elementbewegungen';
-$GLOBALS['TL_LANG']['tl_content']['siControls_legend'] = 'Navigation';
-$GLOBALS['TL_LANG']['tl_content']['siTemplate_legend'] = 'Templates';
-
-
+$GLOBALS['TL_LANG']['tl_content']['siEffect_legend']	 = 'Effekte';
+$GLOBALS['TL_LANG']['tl_content']['siAuto_legend']		 = 'Elementbewegungen';
+$GLOBALS['TL_LANG']['tl_content']['siControls_legend']	 = 'Navigation';
+$GLOBALS['TL_LANG']['tl_content']['siTemplate_legend']	 = 'Templates';
 ?>
