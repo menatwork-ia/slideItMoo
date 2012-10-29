@@ -37,6 +37,7 @@ CREATE TABLE `tl_content` (
 	`si_mouseWheelNav` char(1) NOT NULL default '',    
     `si_showBullets` char(1) NOT NULL default '',
     `si_skipInlineStyles` char(1) NOT NULL default '',
+    `si_skipNavSize` char(1) NOT NULL default '',    
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- 
@@ -65,4 +66,5 @@ CREATE TABLE `tl_module` (
 	`si_mouseWheelNav` char(1) NOT NULL default '',
     `si_showBullets` char(1) NOT NULL default '',
     `si_skipInlineStyles` char(1) NOT NULL default '',
+    `si_skipNavSize` char(1) NOT NULL default '',
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

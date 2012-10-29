@@ -164,7 +164,8 @@ class slideItMoo
 			'itemsVisible' => $this->itemsVisible,
 			'elemsSlide' => $this->elementsSlide,
 			'itemsSelector' => "." . $this->itemsSelector,
-			'skipInlineStyles' => $this->skipInlineStyles
+			'skipInlineStyles' => $this->skipInlineStyles,
+			'skipNavSize' => $this->skipNavSize
 				));
 
 		if ($this->showControls)
@@ -173,11 +174,6 @@ class slideItMoo
 				'fwd' => $this->navFwd,
 				'bk' => $this->navBk
 			);
-		}
-
-		if ($this->skipNavSize)
-		{
-			$this->_arrSlider['skipNavSize'] = $this->skipNavSize;
 		}
 
 		if ($this->duration)
@@ -301,6 +297,11 @@ class slideItMoo
 		if (!$this->skipInlineStyles)
 		{
 			$this->skipInlineStyles = false;
+		}
+		
+		if (!$this->skipNavSize)
+		{
+			$this->skipNavSize = false;
 		}
 	}
 
