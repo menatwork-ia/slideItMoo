@@ -298,7 +298,7 @@ class slideItMoo
 		{
 			$this->skipInlineStyles = false;
 		}
-		
+
 		if (!$this->skipNavSize)
 		{
 			$this->skipNavSize = false;

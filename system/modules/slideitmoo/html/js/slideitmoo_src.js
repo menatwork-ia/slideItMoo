@@ -41,6 +41,12 @@ var ExtendedSlideItMoo = new Class({
         {
             // Fix bug from json_encode Fx.Transitions is not a function
             this.options.sliderAttr.transition = eval(this.options.sliderAttr.transition);
+            
+            // Fix bug missed itemDimensions
+            if (! this.options.sliderAttr.itemWidth) {
+              this.options.sliderAttr.itemWidth = $$(this.options.containerChildsId)[0].getComputedSize().totalWidth;
+              this.options.sliderAttr.itemHeight = $$(this.options.containerChildsId)[0].getComputedSize().totalHeight;
+            }           
 
             var objSlider = new SlideItMoo(this.options.sliderAttr);
             var optSlider = objSlider.options;
