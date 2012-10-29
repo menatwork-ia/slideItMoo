@@ -106,6 +106,7 @@ var ExtendedSlideItMoo = new Class({
                 Object.each(objChildAttr, function(value, key){
                     objChildAttr[key] = null;
                 });
+                $(sliderAttr.elementScrolled).setStyle('width',null);
             }
             $$(this.options.containerChildsId).setStyles(objChildAttr);
 
