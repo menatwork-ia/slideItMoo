@@ -64,8 +64,8 @@ class slideItHelper extends Backend
 	 * @return slideItHelper 
 	 */
 	public static function getInstance()
-	{
-		if (self::$_objInstance == NULL)
+	{		
+		if (self::$_objInstance == NULL && strlen($GLOBALS['TL_CONFIG']['dbUser'] > 0))
 		{
 			self::$_objInstance = new slideItHelper();
 		}
