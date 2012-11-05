@@ -119,12 +119,12 @@ var ExtendedSlideItMoo = new Class({
       
       this.options.responsive.thumbsContainer = {
         pcent: {
-          width: (this.options.elemCount * 100) / this.options.sliderAttr.itemsVisible, 
-          height: (this.options.elemCount * 100) / this.options.sliderAttr.itemsVisible  
+          width: ((this.options.elemCount * 100) / this.options.sliderAttr.itemsVisible), 
+          height: ((this.options.elemCount * 100) / this.options.sliderAttr.itemsVisible)
         },
         pixel: {
-          width: (this.options.elemCount * elementScrolledPxWidth) / this.options.sliderAttr.itemsVisible,
-          height: (this.options.elemCount * elementScrolledPxHeight) / this.options.sliderAttr.itemsVisible
+          width: ((this.options.elemCount * elementScrolledPxWidth) / this.options.sliderAttr.itemsVisible),
+          height: ((this.options.elemCount * elementScrolledPxHeight) / this.options.sliderAttr.itemsVisible)
         }
       };
       
@@ -139,8 +139,8 @@ var ExtendedSlideItMoo = new Class({
         }
       }
       
-      this.options.sliderAttr.itemWidth = this.options.responsive.child.pixel.width;
-      this.options.sliderAttr.itemHeight = this.options.responsive.child.pixel.height;
+      this.options.sliderAttr.itemWidth = this.options.responsive.child.pixel.width.round();
+      this.options.sliderAttr.itemHeight = this.options.responsive.child.pixel.height.round();
     }
     // Fix bug missed itemDimensions
     else if(!this.options.sliderAttr.itemWidth || this.options.sliderAttr.skipInlineStyles) {
@@ -191,15 +191,15 @@ var ExtendedSlideItMoo = new Class({
   {
     if(this.options.sliderAttr.slideVertical)
     {
-      this.options.containerAttr.overallContainer.styles.height = this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemHeight + this.options.navsSize.height;
-      this.options.containerAttr.elementScrolled.styles.height = this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemHeight;
-      this.options.containerAttr.thumbsContainer.styles.height = this.options.elemCount * this.options.sliderAttr.itemHeight + 10;
+      this.options.containerAttr.overallContainer.styles.height = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemHeight + this.options.navsSize.height).round();
+      this.options.containerAttr.elementScrolled.styles.height = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemHeight).round();
+      this.options.containerAttr.thumbsContainer.styles.height = (this.options.elemCount * this.options.sliderAttr.itemHeight + 10).round();
     }
     else
     {
-      this.options.containerAttr.overallContainer.styles.width = this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemWidth + this.options.navsSize.width;
-      this.options.containerAttr.elementScrolled.styles.width = this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemWidth;
-      this.options.containerAttr.thumbsContainer.styles.width = this.options.elemCount * this.options.sliderAttr.itemWidth + 10;
+      this.options.containerAttr.overallContainer.styles.width = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemWidth + this.options.navsSize.width).round();
+      this.options.containerAttr.elementScrolled.styles.width = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemWidth).round();
+      this.options.containerAttr.thumbsContainer.styles.width = (this.options.elemCount * this.options.sliderAttr.itemWidth + 10).round();
     }
 
     return this;
@@ -212,13 +212,13 @@ var ExtendedSlideItMoo = new Class({
   {
     var self = this;
     if(this.options.sliderAttr.slideVertical) {
-      this.options.containerAttr.thumbsContainer.styles.height = this.options.responsive.thumbsContainer.pcent.height + '%';
-      Object.each(this.options.childAttr, function(value, key){self.options.childAttr['height'] = this.options.responsive.child.pcent.height + '%';}.bind(self));
+      this.options.containerAttr.thumbsContainer.styles.height = (this.options.responsive.thumbsContainer.pcent.height).round() + '%';
+      Object.each(this.options.childAttr, function(value, key){self.options.childAttr['height'] = (this.options.responsive.child.pcent.height).round() + '%';}.bind(self));
     }
     else
     {
-      this.options.containerAttr.thumbsContainer.styles.width = this.options.responsive.thumbsContainer.pcent.width + '%';
-      Object.each(this.options.childAttr, function(value, key){self.options.childAttr['width'] = this.options.responsive.child.pcent.width + '%';}.bind(self));
+      this.options.containerAttr.thumbsContainer.styles.width = (this.options.responsive.thumbsContainer.pcent.width).round() + '%';
+      Object.each(this.options.childAttr, function(value, key){self.options.childAttr['width'] = (this.options.responsive.child.pcent.width).round() + '%';}.bind(self));
     }
   },
   
