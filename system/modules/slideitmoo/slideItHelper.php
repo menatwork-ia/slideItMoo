@@ -47,7 +47,8 @@ class slideItHelper extends Backend
 	 */
 	protected function __construct()
 	{
-		parent::__construct();
+		if (strlen($GLOBALS['TL_CONFIG']['dbUser']) > 0)
+			parent::__construct();
 	}
 
 	/**
@@ -65,7 +66,7 @@ class slideItHelper extends Backend
 	 */
 	public static function getInstance()
 	{		
-		if (self::$_objInstance == NULL && strlen($GLOBALS['TL_CONFIG']['dbUser']) > 0)
+		if (self::$_objInstance == NULL)
 		{
 			self::$_objInstance = new slideItHelper();
 		}
@@ -80,6 +81,8 @@ class slideItHelper extends Backend
 	 */
 	public function checkExtensions($strContent, $strTemplate)
 	{
+		if (!strlen($GLOBALS['TL_CONFIG']['dbUser']) > 0) return;
+		
 		if ($strTemplate == 'be_main')
 		{
 			if (!is_array($_SESSION["TL_INFO"]))
