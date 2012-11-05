@@ -34,7 +34,7 @@
 /**
  * Palettes 
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['slideItStart'] = '{type_legend},type,headline;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector;{siDimensions_legend},si_itemsDimension,si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_verticalSlide,si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav,si_showBullets,si_skipNavSize;{siTemplate_legend:hide},si_templateDefault,si_skipInlineStyles;{expert_legend:hide},cssID,space';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['slideItStart'] = '{type_legend},type,headline;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector,si_responsive;{siDimensions_legend},' . ((!tl_content_si::isResponsive()) ? 'si_itemsDimension,' : '') . 'si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_verticalSlide,si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav,si_showBullets;{siTemplate_legend:hide},si_templateDefault;{expert_legend:hide},si_skipInlineStyles,si_skipNavSize,cssID,space';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['slideItEnd']	 = '{type_legend},type;';
 
 /**
@@ -88,10 +88,18 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsSelector'] = array(
 	'eval' => array('maxlength' => '200', 'rgxp' => 'extnd', 'tl_class' => 'w50')
 );
 
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_responsive'] = array(
+	'label' => &$GLOBALS['TL_LANG']['tl_content']['si_responsive'],
+	'inputType' => 'checkbox',
+	'exclude' => true,
+	'save_callback' => array(array('tl_content_si', 'siResponsiveSaveCallback')),
+	'eval' => array('submitOnChange' => true, 'tl_class' => 'w50')
+);
+
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsDimension'] = array(
 	'label' => &$GLOBALS['TL_LANG']['tl_content']['si_itemsDimension'],
 	'inputType' => 'text',
-	'exclude' => true,
+	'exclude' => true,	
 	'eval' => array('mandatory' => true, 'multiple' => true, 'size' => 2, 'rgxp' => 'digit', 'nospace' => true, 'tl_class' => 'w50')
 );
 
@@ -166,7 +174,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_showControls'] = array(
 	'default' => 0,
 	'inputType' => 'checkbox',
 	'exclude' => true,
-	'eval' => array('tl_class' => 'clr m12 w50')
+	'eval' => array('tl_class' => 'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_mouseWheelNav'] = array(
@@ -174,18 +182,11 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_mouseWheelNav'] = array(
 	'default' => 0,
 	'inputType' => 'checkbox',
 	'exclude' => true,
-	'eval' => array('tl_class' => 'm12 w50')
+	'eval' => array('tl_class' => 'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_showBullets'] = array(
 	'label' => &$GLOBALS['TL_LANG']['tl_content']['si_showBullets'],
-	'inputType' => 'checkbox',
-	'exclude' => true,
-	'eval' => array('tl_class' => 'clr m12 w50')
-);
-
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_skipNavSize'] = array(
-	'label' => &$GLOBALS['TL_LANG']['tl_content']['si_skipNavSize'],
 	'inputType' => 'checkbox',
 	'exclude' => true,
 	'eval' => array('tl_class' => 'm12 w50')
@@ -195,7 +196,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_templateDefault'] = array(
 	'label' => &$GLOBALS['TL_LANG']['tl_content']['si_templateDefault'],
 	'inputType' => 'checkbox',
 	'exclude' => true,
-	'eval' => array('submitOnChange' => true, 'tl_class' => 'clr m12 w50')
+	'eval' => array('submitOnChange' => true, 'tl_class' => 'm12 w50')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['si_cssTemplate'] = array(
@@ -211,7 +212,14 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_skipInlineStyles'] = array(
 	'label' => &$GLOBALS['TL_LANG']['tl_content']['si_skipInlineStyles'],
 	'inputType' => 'checkbox',
 	'exclude' => true,
-	'eval' => array('tl_class' => 'clr m12 w50')
+	'eval' => array('tl_class' => 'w50')
+);
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_skipNavSize'] = array(
+	'label' => &$GLOBALS['TL_LANG']['tl_content']['si_skipNavSize'],
+	'inputType' => 'checkbox',
+	'exclude' => true,
+	'eval' => array('tl_class' => 'w50')
 );
 
 /**
@@ -223,6 +231,30 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_skipInlineStyles'] = array(
 class tl_content_si extends Backend
 {
 
+	/**
+	 * Check if current content element is responsive
+	 * 
+	 * @return boolean
+	 */
+	public static function isResponsive()
+	{
+		$objResult = Database::getInstance()
+				->prepare("SELECT si_responsive as isResponsive FROM tl_content WHERE id = ?")
+				->execute(Input::getInstance()->get('id'));
+
+		return $objResult->isResponsive;
+	}
+	
+	public function siResponsiveSaveCallback($val,DataContainer $dc)
+	{
+		if($val)
+		{
+			$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsDimension']['eval']['mandatory'] = false;
+		}
+		
+		return $val;
+	}
+	
 	/**
 	 * Write or update the content elements
 	 * 

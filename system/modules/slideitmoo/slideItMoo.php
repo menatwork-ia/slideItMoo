@@ -84,7 +84,7 @@ class slideItMoo
 			case 'itemsDimension':
 				$arrDimensions			 = deserialize($varValue);
 				$this->width			 = $arrDimensions[0];
-				$this->itemHeight		 = $arrDimensions[1];
+				$this->height			 = $arrDimensions[1];
 				break;
 			case 'itemsMargin':
 				$arrMargin				 = deserialize($varValue);
@@ -152,12 +152,12 @@ class slideItMoo
 		}
 
 		$this->_objHelper->insertJsCss();
-
+		
 		// Fill slider array
-		$this->_arrSlider	 = $result				 = array_merge($this->_arrSlider, array(
+		$this->_arrSlider = array_merge($this->_arrSlider, array(
 			'itemWidth' => $this->itemWidth,
 			'itemHeight' => $this->itemHeight,
-			'showControls' => (($this->showControls) ? 1 : 0),
+			'showControls' => (($this->showControls) ? true : false),
 			'overallContainer' => $this->containerId,
 			'elementScrolled' => $this->containerId . "_inner",
 			'thumbsContainer' => $this->containerId . "_items",
@@ -165,7 +165,8 @@ class slideItMoo
 			'elemsSlide' => $this->elementsSlide,
 			'itemsSelector' => "." . $this->itemsSelector,
 			'skipInlineStyles' => $this->skipInlineStyles,
-			'skipNavSize' => $this->skipNavSize
+			'skipNavSize' => $this->skipNavSize,
+			'isResponsive' => $this->responsive
 				));
 
 		if ($this->showControls)
@@ -208,7 +209,7 @@ class slideItMoo
 
 		if ($this->verticalSlide)
 		{
-			$this->_arrSlider['slideVertical'] = 'true';
+			$this->_arrSlider['slideVertical'] = true;
 		}
 
 		if ($this->autoEffectTransition && $this->effectTransition && $this->effectEase)
@@ -226,9 +227,17 @@ class slideItMoo
 			'marginTop' => $this->marginTop . $this->marginUnit,
 			'marginRight' => $this->marginRight . $this->marginUnit,
 			'marginBottom' => $this->marginBottom . $this->marginUnit,
-			'marginLeft' => $this->marginLeft . $this->marginUnit,
-			'width' => $this->width . "px"
+			'marginLeft' => $this->marginLeft . $this->marginUnit,			
 		);
+		
+		if($this->verticalSlide)
+		{
+			$arrChilds['height'] = $this->height . "px";			
+		}
+		else
+		{
+			$arrChilds['width'] = $this->width . "px";
+		}			
 
 		// Create Template
 		$objTemplate					 = new FrontendTemplate($this->_strTemplate);
@@ -284,6 +293,9 @@ class slideItMoo
 
 		// Set item width
 		$this->itemWidth = $this->width + $this->marginRight + $this->marginLeft;
+		
+		// Set item height
+		$this->itemHeight = $this->height + $this->marginTop + $this->marginBottom;
 
 		// set forward navigation selector
 		$this->navFwd = "." . $this->containerId . "_fwd";
@@ -294,15 +306,11 @@ class slideItMoo
 		// Set css path to items
 		$this->containerChildsId = '#' . $this->containerId . ' .' . $this->itemsSelector;
 
-		if (!$this->skipInlineStyles)
-		{
-			$this->skipInlineStyles = false;
-		}
-
-		if (!$this->skipNavSize)
-		{
-			$this->skipNavSize = false;
-		}
+		$this->skipInlineStyles = ($this->skipInlineStyles) ? true : false;		
+		
+		$this->skipNavSize = ($this->skipNavSize) ? true : false;
+		
+		$this->responsive = ($this->responsive && !$this->skipInlineStyles) ? true : false;			
 	}
 
 }

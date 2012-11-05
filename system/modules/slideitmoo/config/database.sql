@@ -20,6 +20,7 @@ CREATE TABLE `tl_content` (
 	`si_itemsVisible` varchar(32) NOT NULL default '',
 	`si_elementsSlide` varchar(32) NOT NULL default '',
 	`si_itemsSelector` varchar(255) NOT NULL default '',
+    `si_responsive` char(1) NOT NULL default '',
 	`si_elementDirection` char(1) NOT NULL default '',
 	`si_verticalSlide` char(1) NOT NULL default '',
 	`si_duration` varchar(255) NOT NULL default '',
