@@ -35,6 +35,7 @@ $GLOBALS['TL_LANG']['tl_content']['si_elementsSlide'] = array('Anzahl der zu ver
 $GLOBALS['TL_LANG']['tl_content']['si_itemsDimension'] = array('Breite und Höhe eines Elements', 'Angabe in px.');
 $GLOBALS['TL_LANG']['tl_content']['si_itemsMargin'] = array('Elementabstand', 'Angabe in px.');
 $GLOBALS['TL_LANG']['tl_content']['si_itemsSelector'] = array('Optionale CSS-Klasse', 'Ermöglicht die Eingabe einer optionalen CSS-Klasse für die Elemente im Slider.');
+$GLOBALS['TL_LANG']['tl_content']['si_responsive'] = array('Responsiven Slider aktivieren', 'Stellt den Slider auf eine flexible Breite um.');
 $GLOBALS['TL_LANG']['tl_content']['si_startIndex'] = array('Startindex', 'Ermöglicht den Start der Slideshow von einer anderen Position.');
 $GLOBALS['TL_LANG']['tl_content']['si_duration'] = array('Effektdauer', 'Angabe in Millisekunden.');
 $GLOBALS['TL_LANG']['tl_content']['si_autoEffectTransition'] = array('Effektbewegung aktivieren', 'Basierend auf der Mootools Fx.Transitions Bibliothek.');
