@@ -40,6 +40,7 @@ $GLOBALS['TL_LANG']['tl_content']['si_autoEffectTransition'] = array('Extended E
 $GLOBALS['TL_LANG']['tl_content']['si_effectTransition'] = array('Effect transition', 'See http://mootools.net/docs/core/Fx/Fx.Transitions for examples.');
 $GLOBALS['TL_LANG']['tl_content']['si_effectEase'] = array('Ease', 'For a natural tweening.');
 $GLOBALS['TL_LANG']['tl_content']['si_itemsSelector'] = array('Optional CSS class', 'Allows the user to enter an optional CSS class for the items in the slider.');
+$GLOBALS['TL_LANG']['tl_content']['si_responsive'] = array('Activate responsive slider', 'Set the slider responsive with flexible width.');
 $GLOBALS['TL_LANG']['tl_content']['si_elementDirection'] = array('Reverse element moves', 'Run the slideshow backwards.');
 $GLOBALS['TL_LANG']['tl_content']['si_verticalSlide'] = array('Vertical slider', 'Run the slideshow vertically.');
 $GLOBALS['TL_LANG']['tl_content']['si_autoSlideDefault'] = array('Set auto sliding on', 'The slideshow starts automatically.');
