@@ -139,8 +139,8 @@ var ExtendedSlideItMoo = new Class({
         }
       }
       
-      this.options.sliderAttr.itemWidth = this.options.responsive.child.pixel.width.round();
-      this.options.sliderAttr.itemHeight = this.options.responsive.child.pixel.height.round();
+      this.options.sliderAttr.itemWidth = this.options.responsive.child.pixel.width.round(2);
+      this.options.sliderAttr.itemHeight = this.options.responsive.child.pixel.height.round(2);
     }
     // Fix bug missed itemDimensions
     else if(!this.options.sliderAttr.itemWidth || this.options.sliderAttr.skipInlineStyles) {
@@ -191,15 +191,15 @@ var ExtendedSlideItMoo = new Class({
   {
     if(this.options.sliderAttr.slideVertical)
     {
-      this.options.containerAttr.overallContainer.styles.height = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemHeight + this.options.navsSize.height).round();
-      this.options.containerAttr.elementScrolled.styles.height = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemHeight).round();
-      this.options.containerAttr.thumbsContainer.styles.height = (this.options.elemCount * this.options.sliderAttr.itemHeight + 10).round();
+      this.options.containerAttr.overallContainer.styles.height = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemHeight + this.options.navsSize.height).round(2);
+      this.options.containerAttr.elementScrolled.styles.height = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemHeight).round(2);
+      this.options.containerAttr.thumbsContainer.styles.height = (this.options.elemCount * this.options.sliderAttr.itemHeight + 10).round(2);
     }
     else
     {
-      this.options.containerAttr.overallContainer.styles.width = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemWidth + this.options.navsSize.width).round();
-      this.options.containerAttr.elementScrolled.styles.width = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemWidth).round();
-      this.options.containerAttr.thumbsContainer.styles.width = (this.options.elemCount * this.options.sliderAttr.itemWidth + 10).round();
+      this.options.containerAttr.overallContainer.styles.width = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemWidth + this.options.navsSize.width).round(2);
+      this.options.containerAttr.elementScrolled.styles.width = (this.options.sliderAttr.itemsVisible * this.options.sliderAttr.itemWidth).round(2);
+      this.options.containerAttr.thumbsContainer.styles.width = (this.options.elemCount * this.options.sliderAttr.itemWidth + 10).round(2);
     }
 
     return this;
@@ -212,13 +212,13 @@ var ExtendedSlideItMoo = new Class({
   {
     var self = this;
     if(this.options.sliderAttr.slideVertical) {
-      this.options.containerAttr.thumbsContainer.styles.height = (this.options.responsive.thumbsContainer.pcent.height).round() + '%';
-      Object.each(this.options.childAttr, function(value, key){self.options.childAttr['height'] = (this.options.responsive.child.pcent.height).round() + '%';}.bind(self));
+      this.options.containerAttr.thumbsContainer.styles.height = (this.options.responsive.thumbsContainer.pcent.height).round(2) + '%';
+      Object.each(this.options.childAttr, function(value, key){self.options.childAttr['height'] = (this.options.responsive.child.pcent.height).round(2) + '%';}.bind(self));
     }
     else
     {
-      this.options.containerAttr.thumbsContainer.styles.width = (this.options.responsive.thumbsContainer.pcent.width).round() + '%';
-      Object.each(this.options.childAttr, function(value, key){self.options.childAttr['width'] = (this.options.responsive.child.pcent.width).round() + '%';}.bind(self));
+      this.options.containerAttr.thumbsContainer.styles.width = (this.options.responsive.thumbsContainer.pcent.width).round(2) + '%';
+      Object.each(this.options.childAttr, function(value, key){self.options.childAttr['width'] = (this.options.responsive.child.pcent.width).round(2) + '%';}.bind(self));
     }
   },
   
