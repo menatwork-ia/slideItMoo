@@ -6,7 +6,10 @@ window.addEvent('domready', function(){
         'containerChildsId' => $this->containerChildsId,
         'sliderAttr' => $this->arrSlider,
         'childAttr' => $this->arrChilds,
-    )); ?>).run();    
+    )); ?>).run();
+    if ($$('<?php echo $this->containerChildsId; ?>').length < 2){
+        $$('#<?php echo $this->containerId; ?> .<?php echo $this->containerId; ?>_fwd, #<?php echo $this->containerId; ?> .<?php echo $this->containerId; ?>_bk').addClass('hidenav');
+    }  
 });
 /* ]]> */
 </script>
