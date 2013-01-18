@@ -10,7 +10,7 @@ var ExtendedSlideItMoo = new Class({
   /**
    * Implementations
    */ 
-  Implements: [Options],
+  Implements: [Events,Options],
     
   /**
    * Options
@@ -103,6 +103,11 @@ var ExtendedSlideItMoo = new Class({
 
       this.setAllContainerStyles().addResizeEvent();
     }
+  },
+  
+  addEvent: function(type, fn, internal)
+  {
+     this.options.slider.addEvent(type, fn, internal);
   },
   
   // HELPER --------------------------------------------------------------------
