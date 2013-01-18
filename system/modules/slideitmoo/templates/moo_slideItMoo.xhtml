@@ -1,15 +1,24 @@
 <script type="text/javascript">
 /* <![CDATA[ */
-window.addEvent('domready', function(){
+if(typeof slideItMooContainer != 'undefined' || slideItMooContainer == null)
+{
+    var slideItMooContainer = [];
+}  
+
+window.addEvent('domready', function(){       
     var slide_<?php echo $this->containerId; ?> = new ExtendedSlideItMoo(<?php echo json_encode(array(
         'containerId' => $this->containerId,
         'containerChildsId' => $this->containerChildsId,
         'sliderAttr' => $this->arrSlider,
         'childAttr' => $this->arrChilds,
-    )); ?>).run();
-    if ($$('<?php echo $this->containerChildsId; ?>').length < 2){
-        $$('#<?php echo $this->containerId; ?> .<?php echo $this->containerId; ?>_fwd, #<?php echo $this->containerId; ?> .<?php echo $this->containerId; ?>_bk').addClass('hidenav');
-    }  
+    )); ?>);
+                        
+   slide_<?php echo $this->containerId; ?>.run();  
+   slideItMooContainer.push(slide_<?php echo $this->containerId; ?>);
+            
+   if ($$('<?php echo $this->containerChildsId; ?>').length < 2){
+       $$('#<?php echo $this->containerId; ?> .<?php echo $this->containerId; ?>_fwd, #<?php echo $this->containerId; ?> .<?php echo $this->containerId; ?>_bk').addClass('hidenav');
+   }
 });
 /* ]]> */
 </script>
