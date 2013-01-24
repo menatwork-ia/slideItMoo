@@ -49,6 +49,12 @@ class slideItStart extends ContentElement
     protected $_arrConf = array();
 
     /**
+     * Object with helper functions
+     * @var slideItHelper
+     */
+    protected $_objHelper;
+
+    /**
      * Initialize the object
      * 
      * @param object
@@ -56,8 +62,9 @@ class slideItStart extends ContentElement
      */
     public function __construct(Database_Result $objElement)
     {
-        $arrConf        = $objElement->fetchAllAssoc();
-        $this->_arrConf = $arrConf[0];
+        $this->_objHelper = slideItHelper::getInstance();
+        $arrConf          = $objElement->fetchAllAssoc();
+        $this->_arrConf   = $arrConf[0];
         parent::__construct($objElement);
     }
 
@@ -84,6 +91,8 @@ class slideItStart extends ContentElement
      */
     protected function compile()
     {
+        $this->_objHelper->setSliderConfig($this->_arrConf);
+
         $objSlider              = new slideItMoo($this->_arrConf);
         $this->Template->script = $objSlider->parse();
     }

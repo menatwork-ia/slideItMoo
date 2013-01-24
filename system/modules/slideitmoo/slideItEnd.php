@@ -43,6 +43,31 @@ class slideItEnd extends ContentElement
     protected $strTemplate = 'ce_slideItEnd';
 
     /**
+     * Object with helper functions
+     * @var slideItHelper
+     */
+    protected $_objHelper;
+
+    /**
+     * Contians slider id to getting start tag config
+     * @var string
+     */
+    protected $_strSliderId;
+
+    /**
+     * Initialize the object
+     * 
+     * @param object
+     * @return string
+     */
+    public function __construct(Database_Result $objElement)
+    {
+        $this->_objHelper   = slideItHelper::getInstance();
+        $this->_strSliderId = $objElement->si_containerId;
+        parent::__construct($objElement);
+    }
+
+    /**
      * Display a wildcard in the back end
      * @return string
      */
@@ -64,7 +89,8 @@ class slideItEnd extends ContentElement
      */
     protected function compile()
     {
-        $this->Template->id = "slider";
+        $this->Template->startTag = $this->_objHelper->getSliderConfig($this->_strSliderId);
+        $this->Template->id       = "slider";
     }
 
 }

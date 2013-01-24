@@ -43,6 +43,12 @@ class slideItHelper extends Backend
     protected static $_objInstance = NULL;
 
     /**
+     * Contains all start slider config arrays
+     * @var array 
+     */
+    protected $_arrSliderConfigs = array();
+
+    /**
      * Prevent constructing the object (Singleton)
      */
     protected function __construct()
@@ -54,10 +60,7 @@ class slideItHelper extends Backend
     /**
      * Prevent cloning of the object (Singleton)
      */
-    final private function __clone()
-    {
-        
-    }
+    final private function __clone(){}
 
     /**
      * Get instanz of the object (Singelton) 
@@ -74,7 +77,33 @@ class slideItHelper extends Backend
     }
 
     /**
+     * Set start slider config
+     * 
+     * @param array $arrConfig
+     */
+    public function setSliderConfig($arrConfig)
+    {
+        $this->_arrSliderConfigs[$arrConfig['si_containerId']] = $arrConfig;
+    }
+
+    /**
+     * Get start slider config
+     * 
+     * @param string $strId
+     * @return array/null
+     */
+    public function getSliderConfig($strId)
+    {
+        if (array_key_exists($strId, $this->_arrSliderConfigs))
+        {
+            return $this->_arrSliderConfigs[$strId];
+        }
+        return null;
+    }
+
+    /**
      * Check the required extensions and files
+     * 
      * @param string $strContent
      * @param string $strTemplate
      * @return string
