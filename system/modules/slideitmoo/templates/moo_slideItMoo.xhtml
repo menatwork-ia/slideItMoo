@@ -5,7 +5,7 @@ if(typeof slideItMooContainer != 'undefined' || slideItMooContainer == null)
     var slideItMooContainer = [];
 }  
 
-window.addEvent('domready', function(){       
+window.addEvent('load', function(){       
     var slide_<?php echo $this->containerId; ?> = new ExtendedSlideItMoo(<?php echo json_encode(array(
         'containerId' => $this->containerId,
         'containerChildsId' => $this->containerChildsId,
