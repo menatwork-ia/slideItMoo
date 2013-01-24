@@ -241,9 +241,10 @@ var ExtendedSlideItMoo = new Class({
     Object.each(this.options.containerAttr, function(e) {
       if($(e.elem))
       {
-        Object.each(e.styles, function(value, key) {
-          $(e.elem).setStyle(key, value);
-        });
+        $(e.elem).setStyles(e.styles);       
+        if($(e.elem).get('style') == '') {
+          $(e.elem).removeAttribute('style');
+        }
       }
     });
     
