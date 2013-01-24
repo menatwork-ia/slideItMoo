@@ -119,12 +119,12 @@ class runonceJob extends Backend
 
         while ($objResult->next())
         {
-            $arrMargin = deserialize($objResult->si_itemsMargin);
-            $arrNewMargin = array("bottom" => '', "left" => '', "right" => '', "top" => '', "unit" => "px");
+            $arrMargin    = deserialize($objResult->si_itemsMargin);
+            $arrNewMargin = array("bottom" => '', "left"   => '', "right"  => '', "top"    => '', "unit"   => "px");
 
             if (is_array($arrMargin))
             {
-                $arrNewMargin["left"] = $arrMargin[0];
+                $arrNewMargin["left"]  = $arrMargin[0];
                 $arrNewMargin["right"] = $arrMargin[1];
 
                 $this->arrValues[$objResult->id] = array("si_itemsMargin" => serialize($arrNewMargin));
@@ -156,5 +156,4 @@ class runonceJob extends Backend
 // Run once
 $objRunonceJob = new runonceJob();
 $objRunonceJob->run();
-
 ?>

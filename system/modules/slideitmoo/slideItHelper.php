@@ -36,260 +36,261 @@
 class slideItHelper extends Backend
 {
 
-	/**
-	 * Current object instance (Singleton)
-	 * @var slideItHelper
-	 */
-	protected static $_objInstance = NULL;
+    /**
+     * Current object instance (Singleton)
+     * @var slideItHelper
+     */
+    protected static $_objInstance = NULL;
 
-	/**
-	 * Prevent constructing the object (Singleton)
-	 */
-	protected function __construct()
-	{
-		if (strlen($GLOBALS['TL_CONFIG']['dbUser']) > 0)
-			parent::__construct();
-	}
+    /**
+     * Prevent constructing the object (Singleton)
+     */
+    protected function __construct()
+    {
+        if (strlen($GLOBALS['TL_CONFIG']['dbUser']) > 0)
+            parent::__construct();
+    }
 
-	/**
-	 * Prevent cloning of the object (Singleton)
-	 */
-	final private function __clone()
-	{
-		
-	}
+    /**
+     * Prevent cloning of the object (Singleton)
+     */
+    final private function __clone()
+    {
+        
+    }
 
-	/**
-	 * Get instanz of the object (Singelton) 
-	 *
-	 * @return slideItHelper 
-	 */
-	public static function getInstance()
-	{		
-		if (self::$_objInstance == NULL)
-		{
-			self::$_objInstance = new slideItHelper();
-		}
-		return self::$_objInstance;
-	}
+    /**
+     * Get instanz of the object (Singelton) 
+     *
+     * @return slideItHelper 
+     */
+    public static function getInstance()
+    {
+        if (self::$_objInstance == NULL)
+        {
+            self::$_objInstance = new slideItHelper();
+        }
+        return self::$_objInstance;
+    }
 
-	/**
-	 * Check the required extensions and files
-	 * @param string $strContent
-	 * @param string $strTemplate
-	 * @return string
-	 */
-	public function checkExtensions($strContent, $strTemplate)
-	{
-		if (!strlen($GLOBALS['TL_CONFIG']['dbUser']) > 0) return;
-		
-		if ($strTemplate == 'be_main')
-		{
-			if (!is_array($_SESSION["TL_INFO"]))
-			{
-				$_SESSION["TL_INFO"] = array();
-			}
+    /**
+     * Check the required extensions and files
+     * @param string $strContent
+     * @param string $strTemplate
+     * @return string
+     */
+    public function checkExtensions($strContent, $strTemplate)
+    {
+        if (!strlen($GLOBALS['TL_CONFIG']['dbUser']) > 0)
+            return;
 
-			// Required extensions
-			$arrRequiredExtensions = array(
-				'MultiColumnWizard' => 'multicolumnwizard'
-			);
+        if ($strTemplate == 'be_main')
+        {
+            if (!is_array($_SESSION["TL_INFO"]))
+            {
+                $_SESSION["TL_INFO"] = array();
+            }
 
-			// Required files
-			$arrRequiredFiles = array(
-				'slideItMooFramework' => 'plugins/slideitmoo/LICENSE.txt'
-			);
+            // Required extensions
+            $arrRequiredExtensions = array(
+                'MultiColumnWizard' => 'multicolumnwizard'
+            );
 
-			// Check for required extensions
-			foreach ($arrRequiredExtensions as $key => $val)
-			{
-				if (!in_array($val, $this->Config->getActiveModules()))
-				{
-					$_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array($val => 'Please install the required extension <strong>' . $key . '</strong>'));
-				}
-				else
-				{
-					if (is_array($_SESSION["TL_INFO"]) && key_exists($val, $_SESSION["TL_INFO"]))
-					{
-						unset($_SESSION["TL_INFO"][$val]);
-					}
-				}
-			}
+            // Required files
+            $arrRequiredFiles = array(
+                'slideItMooFramework' => 'plugins/slideitmoo/LICENSE.txt'
+            );
 
-			// Check for required files
-			foreach ($arrRequiredFiles as $key => $val)
-			{
-				if (!file_exists(TL_ROOT . '/' . $val))
-				{
-					$_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array($val => 'Please install the required file/extension <strong>' . $key . '</strong>'));
-				}
-				else
-				{
-					if (is_array($_SESSION["TL_INFO"]) && key_exists($val, $_SESSION["TL_INFO"]))
-					{
-						unset($_SESSION["TL_INFO"][$val]);
-					}
-				}
-			}
-		}
+            // Check for required extensions
+            foreach ($arrRequiredExtensions as $key => $val)
+            {
+                if (!in_array($val, $this->Config->getActiveModules()))
+                {
+                    $_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array($val => 'Please install the required extension <strong>' . $key . '</strong>'));
+                }
+                else
+                {
+                    if (is_array($_SESSION["TL_INFO"]) && key_exists($val, $_SESSION["TL_INFO"]))
+                    {
+                        unset($_SESSION["TL_INFO"][$val]);
+                    }
+                }
+            }
 
-		return $strContent;
-	}
+            // Check for required files
+            foreach ($arrRequiredFiles as $key => $val)
+            {
+                if (!file_exists(TL_ROOT . '/' . $val))
+                {
+                    $_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array($val => 'Please install the required file/extension <strong>' . $key . '</strong>'));
+                }
+                else
+                {
+                    if (is_array($_SESSION["TL_INFO"]) && key_exists($val, $_SESSION["TL_INFO"]))
+                    {
+                        unset($_SESSION["TL_INFO"][$val]);
+                    }
+                }
+            }
+        }
 
-	/**
-	 * Insert nessesary JS and CSS files
-	 * 
-	 * @param type $cssTemplate
-	 * @param type $templateDefault 
-	 */
-	public function insertJsCss($cssTemplate = FALSE, $templateDefault = FALSE)
-	{
-		$GLOBALS['TL_JAVASCRIPT']['slideItMoo']			 = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
-		$GLOBALS['TL_JAVASCRIPT']['extendedSlideItMoo']	 = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/slideitmoo.js';
+        return $strContent;
+    }
 
-		if ($templateDefault)
-		{
-			$GLOBALS['TL_CSS'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/css/' . $cssTemplate . '.css';
-		}
-	}
+    /**
+     * Insert nessesary JS and CSS files
+     * 
+     * @param type $cssTemplate
+     * @param type $templateDefault 
+     */
+    public function insertJsCss($cssTemplate = FALSE, $templateDefault = FALSE)
+    {
+        $GLOBALS['TL_JAVASCRIPT']['slideItMoo']         = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
+        $GLOBALS['TL_JAVASCRIPT']['extendedSlideItMoo'] = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/slideitmoo.js';
 
-	/**
-	 * Read all available css-files and return them as an array
-	 * 
-	 * @param DC_Table $dc
-	 * @return array 
-	 */
-	public function loadCssFiles(DC_Table $dc)
-	{
-		$arrFiles	 = scan(TL_ROOT . '/plugins/slideitmoo/css/');
-		$arrCss		 = array();
-		foreach ($arrFiles as $k => $file)
-		{
-			if (strtolower(substr($file, -3) == "css"))
-			{
-				$tmp = substr($file, 0, strlen($file) - 4);
-				if ($dc->activeRecord->si_verticalSlide)
-				{
-					if (stristr($tmp, 'horizontal'))
-						continue;
-				}
-				else
-				{
-					if (stristr($tmp, 'vertical'))
-						continue;
-				}
-				$arrCss[$tmp] = $tmp;
-			}
-		}
-		return $arrCss;
-	}
+        if ($templateDefault)
+        {
+            $GLOBALS['TL_CSS'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/css/' . $cssTemplate . '.css';
+        }
+    }
 
-	// Copy callbacks ----------------------------------------------------------
+    /**
+     * Read all available css-files and return them as an array
+     * 
+     * @param DC_Table $dc
+     * @return array 
+     */
+    public function loadCssFiles(DC_Table $dc)
+    {
+        $arrFiles = scan(TL_ROOT . '/plugins/slideitmoo/css/');
+        $arrCss   = array();
+        foreach ($arrFiles as $k => $file)
+        {
+            if (strtolower(substr($file, -3) == "css"))
+            {
+                $tmp = substr($file, 0, strlen($file) - 4);
+                if ($dc->activeRecord->si_verticalSlide)
+                {
+                    if (stristr($tmp, 'horizontal'))
+                        continue;
+                }
+                else
+                {
+                    if (stristr($tmp, 'vertical'))
+                        continue;
+                }
+                $arrCss[$tmp] = $tmp;
+            }
+        }
+        return $arrCss;
+    }
 
-	/**
-	 * Function for global tl_page oncopy callback
-	 * $GLOBALS['TL_DCA']['tl_page']['config']['oncopy_callback']
-	 * 
-	 * @param integer $intId
-	 * @param DataContainer $dc 
-	 */
-	public function onPageCopyCallback($intId, DataContainer $dc)
-	{
-		if (!$this->Input->get('childs'))
-		{
-			$objArticle = $this->Database
-					->prepare("SELECT id FROM tl_article WHERE pid = ?")
-					->execute($intId);
+    // Copy callbacks ----------------------------------------------------------
 
-			if ($objArticle->numRows > 0)
-			{
-				while ($objArticle->next())
-				{
-					$this->updateContentElem($objArticle->id);
-				}
-			}
-		}
-		else if ($this->Input->get('childs') == 1)
-		{
-			$arrPages = $this->getChildRecords($intId, 'tl_page');
+    /**
+     * Function for global tl_page oncopy callback
+     * $GLOBALS['TL_DCA']['tl_page']['config']['oncopy_callback']
+     * 
+     * @param integer $intId
+     * @param DataContainer $dc 
+     */
+    public function onPageCopyCallback($intId, DataContainer $dc)
+    {
+        if (!$this->Input->get('childs'))
+        {
+            $objArticle = $this->Database
+                    ->prepare("SELECT id FROM tl_article WHERE pid = ?")
+                    ->execute($intId);
 
-			foreach ($arrPages as $intId)
-			{
-				$objArticle = $this->Database
-						->prepare("SELECT id FROM tl_article WHERE pid=?")
-						->execute($intId);
+            if ($objArticle->numRows > 0)
+            {
+                while ($objArticle->next())
+                {
+                    $this->updateContentElem($objArticle->id);
+                }
+            }
+        }
+        else if ($this->Input->get('childs') == 1)
+        {
+            $arrPages = $this->getChildRecords($intId, 'tl_page');
 
-				if ($objArticle->numRows > 0)
-				{
-					while ($objArticle->next())
-					{
-						$this->updateContentElem($objArticle->id);
-					}
-				}
-			}
-		}
-	}
+            foreach ($arrPages as $intId)
+            {
+                $objArticle = $this->Database
+                        ->prepare("SELECT id FROM tl_article WHERE pid=?")
+                        ->execute($intId);
 
-	/**
-	 * Function for global tl_article oncopy callback
-	 * $GLOBALS['TL_DCA']['tl_article']['config']['oncopy_callback']
-	 * 
-	 * @param integer $intId
-	 * @param DataContainer $dc 
-	 */
-	public function onArticleCopyCallback($intId, DataContainer $dc)
-	{
-		$this->updateContentElem($intId);
-	}
+                if ($objArticle->numRows > 0)
+                {
+                    while ($objArticle->next())
+                    {
+                        $this->updateContentElem($objArticle->id);
+                    }
+                }
+            }
+        }
+    }
 
-	/**
-	 * Repair copied module specific content elements
-	 * 
-	 * @param integer $intId 
-	 */
-	protected function updateContentElem($intId)
-	{
-		// Check if is slideItStart element
-		$objStartSlideContent = $this->Database
-				->prepare("SELECT * FROM tl_content WHERE pid = ? AND type = 'slideItStart'")
-				->limit(1)
-				->execute($intId);
+    /**
+     * Function for global tl_article oncopy callback
+     * $GLOBALS['TL_DCA']['tl_article']['config']['oncopy_callback']
+     * 
+     * @param integer $intId
+     * @param DataContainer $dc 
+     */
+    public function onArticleCopyCallback($intId, DataContainer $dc)
+    {
+        $this->updateContentElem($intId);
+    }
 
-		if ($objStartSlideContent->numRows == 0)
-		{
-			return;
-		}
+    /**
+     * Repair copied module specific content elements
+     * 
+     * @param integer $intId 
+     */
+    protected function updateContentElem($intId)
+    {
+        // Check if is slideItStart element
+        $objStartSlideContent = $this->Database
+                ->prepare("SELECT * FROM tl_content WHERE pid = ? AND type = 'slideItStart'")
+                ->limit(1)
+                ->execute($intId);
 
-		$arrSets = array();
+        if ($objStartSlideContent->numRows == 0)
+        {
+            return;
+        }
 
-		// Get highest id and set new container Id 
-		$objSlider = $this->Database->prepare('SELECT *, CAST(SUBSTRING_INDEX(si_containerId, "_", -1) AS UNSIGNED ) as counter FROM tl_content WHERE type = "slideItStart" ORDER BY counter desc LIMIT 0,1')
-				->execute()
-				->fetchAssoc();
+        $arrSets = array();
 
-		$sliderId		 = explode("_", $objSlider['si_containerId']);
-		$strNewSliderId	 = "slider_" . ($sliderId[1] + 1);
+        // Get highest id and set new container Id 
+        $objSlider = $this->Database->prepare('SELECT *, CAST(SUBSTRING_INDEX(si_containerId, "_", -1) AS UNSIGNED ) as counter FROM tl_content WHERE type = "slideItStart" ORDER BY counter desc LIMIT 0,1')
+                ->execute()
+                ->fetchAssoc();
 
-		// Get appendant slideItEnd element
-		$objEndSlideContent = $this->Database
-				->prepare("SELECT * FROM tl_content WHERE pid = ? AND type = 'slideItEnd' AND si_containerId = ?")
-				->execute($objStartSlideContent->pid, $objStartSlideContent->si_containerId);
+        $sliderId       = explode("_", $objSlider['si_containerId']);
+        $strNewSliderId = "slider_" . ($sliderId[1] + 1);
 
-		// Set slideItStart update array
-		$arrSets[$objStartSlideContent->id] = array('si_containerId' => $strNewSliderId, 'si_children' => $objEndSlideContent->id);
+        // Get appendant slideItEnd element
+        $objEndSlideContent = $this->Database
+                ->prepare("SELECT * FROM tl_content WHERE pid = ? AND type = 'slideItEnd' AND si_containerId = ?")
+                ->execute($objStartSlideContent->pid, $objStartSlideContent->si_containerId);
 
-		// Set slideItEnd update array
-		$arrSets[$objEndSlideContent->id] = array('si_containerId' => $strNewSliderId, 'si_children' => $objStartSlideContent->id);
+        // Set slideItStart update array
+        $arrSets[$objStartSlideContent->id] = array('si_containerId' => $strNewSliderId, 'si_children'    => $objEndSlideContent->id);
 
-		if (count($arrSets) > 0)
-		{
-			foreach ($arrSets As $intId => $arrSet)
-				$this->Database
-						->prepare("UPDATE tl_content %s WHERE id = ?")
-						->set($arrSet)
-						->execute($intId);
-		}
-	}
+        // Set slideItEnd update array
+        $arrSets[$objEndSlideContent->id] = array('si_containerId' => $strNewSliderId, 'si_children'    => $objStartSlideContent->id);
+
+        if (count($arrSets) > 0)
+        {
+            foreach ($arrSets As $intId => $arrSet)
+                $this->Database
+                        ->prepare("UPDATE tl_content %s WHERE id = ?")
+                        ->set($arrSet)
+                        ->execute($intId);
+        }
+    }
 
 }
 

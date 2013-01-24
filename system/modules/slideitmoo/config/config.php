@@ -26,20 +26,18 @@
  * @license    GNU/LGPL
  * @filesource
  */
- 
 $GLOBALS['TL_HOOKS']['parseBackendTemplate'][] = array('slideItHelper', 'checkExtensions');
 
 /**
  * Content elements
  */
 $GLOBALS['TL_CTE']['slideIt'] = array(
-    'slideItStart'  => 'slideItStart',
-    'slideItEnd'    => 'slideItEnd'
+    'slideItStart' => 'slideItStart',
+    'slideItEnd'   => 'slideItEnd'
 );
 
 /**
  * Front end modules
  */
 $GLOBALS['FE_MOD']['miscellaneous']['slideItMoo'] = 'slideItModule';
- 
 ?>

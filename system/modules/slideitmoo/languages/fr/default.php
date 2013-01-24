@@ -27,12 +27,10 @@
  * @filesource
  */
 
-
 /**
  * Miscellaneous
  */
-$GLOBALS['TL_LANG']['CTE']['slideIt'] = 'SlideItMoo';
-$GLOBALS['TL_LANG']['CTE']['slideItStart'] = array('SlideItMoo début','Différentes configurations sont appliquées à l\'élément de début du diaporama.');
-$GLOBALS['TL_LANG']['CTE']['slideItEnd'] = array('SlideItMoo fin','Aucune modification du diaporama ne peut être effectuée ici. <br />!!! Si vous supprimez cet élément, l\'ensemble du diaporama sera supprimé !!!');
-
+$GLOBALS['TL_LANG']['CTE']['slideIt']      = 'SlideItMoo';
+$GLOBALS['TL_LANG']['CTE']['slideItStart'] = array('SlideItMoo début', 'Différentes configurations sont appliquées à l\'élément de début du diaporama.');
+$GLOBALS['TL_LANG']['CTE']['slideItEnd'] = array('SlideItMoo fin', 'Aucune modification du diaporama ne peut être effectuée ici. <br />!!! Si vous supprimez cet élément, l\'ensemble du diaporama sera supprimé !!!');
 ?>

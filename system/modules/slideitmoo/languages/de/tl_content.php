@@ -56,10 +56,10 @@ $GLOBALS['TL_LANG']['tl_content']['si_skipNavSize'] = array('Navigationstyles en
 /**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_content']['siGenerel_legend']	 = 'Allgemeine Einstellungen';
+$GLOBALS['TL_LANG']['tl_content']['siGenerel_legend']    = 'Allgemeine Einstellungen';
 $GLOBALS['TL_LANG']['tl_content']['siDimensions_legend'] = 'Abmessungen';
-$GLOBALS['TL_LANG']['tl_content']['siEffect_legend']	 = 'Effekte';
-$GLOBALS['TL_LANG']['tl_content']['siAuto_legend']		 = 'Elementbewegungen';
-$GLOBALS['TL_LANG']['tl_content']['siControls_legend']	 = 'Navigation';
-$GLOBALS['TL_LANG']['tl_content']['siTemplate_legend']	 = 'Templates';
+$GLOBALS['TL_LANG']['tl_content']['siEffect_legend']     = 'Effekte';
+$GLOBALS['TL_LANG']['tl_content']['siAuto_legend']       = 'Elementbewegungen';
+$GLOBALS['TL_LANG']['tl_content']['siControls_legend']   = 'Navigation';
+$GLOBALS['TL_LANG']['tl_content']['siTemplate_legend']   = 'Templates';
 ?>

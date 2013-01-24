@@ -52,12 +52,10 @@ $GLOBALS['TL_LANG']['tl_content']['si_cssTemplate'] = array('Template CSS', 'Le 
 /**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_content']['siGenerel_legend'] = 'Paramètres généraux';
+$GLOBALS['TL_LANG']['tl_content']['siGenerel_legend']    = 'Paramètres généraux';
 $GLOBALS['TL_LANG']['tl_content']['siDimensions_legend'] = 'Dimensions';
-$GLOBALS['TL_LANG']['tl_content']['siEffect_legend'] = 'Effets';
-$GLOBALS['TL_LANG']['tl_content']['siAuto_legend'] = 'Déplacement des éléments';
-$GLOBALS['TL_LANG']['tl_content']['siControls_legend'] = 'Navigation';
-$GLOBALS['TL_LANG']['tl_content']['siTemplate_legend'] = 'Templates';
-
-
+$GLOBALS['TL_LANG']['tl_content']['siEffect_legend']     = 'Effets';
+$GLOBALS['TL_LANG']['tl_content']['siAuto_legend']       = 'Déplacement des éléments';
+$GLOBALS['TL_LANG']['tl_content']['siControls_legend']   = 'Navigation';
+$GLOBALS['TL_LANG']['tl_content']['siTemplate_legend']   = 'Templates';
 ?>

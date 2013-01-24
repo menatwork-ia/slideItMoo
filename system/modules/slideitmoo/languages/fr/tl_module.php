@@ -54,13 +54,11 @@ $GLOBALS['TL_LANG']['tl_module']['si_cssTemplate'] = array('Template CSS', 'Le d
 /**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_module']['siInclude_legend'] = 'Éléments intégrés';
-$GLOBALS['TL_LANG']['tl_module']['siGenerel_legend'] = 'Paramètres généraux';
+$GLOBALS['TL_LANG']['tl_module']['siInclude_legend']    = 'Éléments intégrés';
+$GLOBALS['TL_LANG']['tl_module']['siGenerel_legend']    = 'Paramètres généraux';
 $GLOBALS['TL_LANG']['tl_module']['siDimensions_legend'] = 'Dimensions';
-$GLOBALS['TL_LANG']['tl_module']['siEffect_legend'] = 'Effets';
-$GLOBALS['TL_LANG']['tl_module']['siAuto_legend'] = 'Déplacement des éléments';
-$GLOBALS['TL_LANG']['tl_module']['siControls_legend'] = 'Navigation';
-$GLOBALS['TL_LANG']['tl_module']['siTemplate_legend'] = 'Templates';
-
-
+$GLOBALS['TL_LANG']['tl_module']['siEffect_legend']     = 'Effets';
+$GLOBALS['TL_LANG']['tl_module']['siAuto_legend']       = 'Déplacement des éléments';
+$GLOBALS['TL_LANG']['tl_module']['siControls_legend']   = 'Navigation';
+$GLOBALS['TL_LANG']['tl_module']['siTemplate_legend']   = 'Templates';
 ?>

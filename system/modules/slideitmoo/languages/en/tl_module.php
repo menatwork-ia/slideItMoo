@@ -57,13 +57,11 @@ $GLOBALS['TL_LANG']['tl_module']['si_showBullets'] = array('Activate bullets', '
 /**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_module']['siInclude_legend'] = 'Include elements';
-$GLOBALS['TL_LANG']['tl_module']['siGenerel_legend'] = 'General settings';
+$GLOBALS['TL_LANG']['tl_module']['siInclude_legend']    = 'Include elements';
+$GLOBALS['TL_LANG']['tl_module']['siGenerel_legend']    = 'General settings';
 $GLOBALS['TL_LANG']['tl_module']['siDimensions_legend'] = 'Dimensions';
-$GLOBALS['TL_LANG']['tl_module']['siEffect_legend'] = 'Effects';
-$GLOBALS['TL_LANG']['tl_module']['siAuto_legend'] = 'Element moves';
-$GLOBALS['TL_LANG']['tl_module']['siControls_legend'] = 'Navigation';
-$GLOBALS['TL_LANG']['tl_module']['siTemplate_legend'] = 'Templates';
-
-
+$GLOBALS['TL_LANG']['tl_module']['siEffect_legend']     = 'Effects';
+$GLOBALS['TL_LANG']['tl_module']['siAuto_legend']       = 'Element moves';
+$GLOBALS['TL_LANG']['tl_module']['siControls_legend']   = 'Navigation';
+$GLOBALS['TL_LANG']['tl_module']['siTemplate_legend']   = 'Templates';
 ?>

@@ -47,7 +47,7 @@ class slideItModule extends Module
      * @var type 
      */
     protected $_arrConf = array();
-    
+
     /**
      * Initialize the object
      * 
@@ -56,10 +56,10 @@ class slideItModule extends Module
      */
     public function __construct(Database_Result $objElement, $strColumn = 'main')
     {
-        $arrConf = $objElement->fetchAllAssoc();
+        $arrConf        = $objElement->fetchAllAssoc();
         $this->_arrConf = $arrConf[0];
         parent::__construct($objElement, $strColumn);
-    }  
+    }
 
     /**
      * Display a wildcard in the back end
@@ -69,7 +69,7 @@ class slideItModule extends Module
     {
         if (TL_MODE == 'BE')
         {
-            $objTemplate = new BackendTemplate('be_wildcard');
+            $objTemplate           = new BackendTemplate('be_wildcard');
             $objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['MOD']['slideitmoo'][0] . ' ###';
 
             return $objTemplate->parse();
@@ -93,9 +93,9 @@ class slideItModule extends Module
         }
 
         $this->Template->si_contentElements = $strContentElements;
-        $this->Template->si_containerId = $this->_arrConf['si_containerId'];
-        $objSlider = new slideItMoo($this->_arrConf);
-        $this->Template->script = $objSlider->parse();
+        $this->Template->si_containerId     = $this->_arrConf['si_containerId'];
+        $objSlider                          = new slideItMoo($this->_arrConf);
+        $this->Template->script             = $objSlider->parse();
     }
 
 }

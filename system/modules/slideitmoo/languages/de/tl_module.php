@@ -58,11 +58,11 @@ $GLOBALS['TL_LANG']['tl_module']['si_skipNavSize'] = array('Navigationstyles ent
 /**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_module']['siInclude_legend']	 = 'Eingebundene Elemente';
-$GLOBALS['TL_LANG']['tl_module']['siGenerel_legend']	 = 'Allgemeine Einstellungen';
-$GLOBALS['TL_LANG']['tl_module']['siDimensions_legend']	 = 'Abmessungen';
-$GLOBALS['TL_LANG']['tl_module']['siEffect_legend']		 = 'Effekte';
-$GLOBALS['TL_LANG']['tl_module']['siAuto_legend']		 = 'Elementbewegungen';
-$GLOBALS['TL_LANG']['tl_module']['siControls_legend']	 = 'Navigation';
-$GLOBALS['TL_LANG']['tl_module']['siTemplate_legend']	 = 'Templates';
+$GLOBALS['TL_LANG']['tl_module']['siInclude_legend']    = 'Eingebundene Elemente';
+$GLOBALS['TL_LANG']['tl_module']['siGenerel_legend']    = 'Allgemeine Einstellungen';
+$GLOBALS['TL_LANG']['tl_module']['siDimensions_legend'] = 'Abmessungen';
+$GLOBALS['TL_LANG']['tl_module']['siEffect_legend']     = 'Effekte';
+$GLOBALS['TL_LANG']['tl_module']['siAuto_legend']       = 'Elementbewegungen';
+$GLOBALS['TL_LANG']['tl_module']['siControls_legend']   = 'Navigation';
+$GLOBALS['TL_LANG']['tl_module']['siTemplate_legend']   = 'Templates';
 ?>

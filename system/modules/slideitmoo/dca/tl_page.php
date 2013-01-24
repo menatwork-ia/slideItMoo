@@ -1,5 +1,4 @@
-<?php if (!defined('TL_ROOT'))
-     die('You cannot access this file directly!');
+<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
 /**
  * Contao Open Source CMS
@@ -27,7 +26,5 @@
  * @license    GNU/LGPL
  * @filesource
  */
-
-$GLOBALS['TL_DCA']['tl_page']['config']['oncopy_callback'][] = array('slideItHelper','onPageCopyCallback');
-
+$GLOBALS['TL_DCA']['tl_page']['config']['oncopy_callback'][] = array('slideItHelper', 'onPageCopyCallback');
 ?>

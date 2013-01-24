@@ -50,7 +50,7 @@ class slideItEnd extends ContentElement
     {
         if (TL_MODE == 'BE')
         {
-            $objTemplate = new BackendTemplate('be_wildcard');
+            $objTemplate           = new BackendTemplate('be_wildcard');
             $objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['CTE']['slideItEnd'][0] . ' ###';
 
             return $objTemplate->parse();

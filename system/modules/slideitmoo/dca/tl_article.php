@@ -26,7 +26,5 @@
  * @license    GNU/LGPL
  * @filesource
  */
-
-$GLOBALS['TL_DCA']['tl_article']['config']['oncopy_callback'][] = array('slideItHelper','onArticleCopyCallback');
-
+$GLOBALS['TL_DCA']['tl_article']['config']['oncopy_callback'][] = array('slideItHelper', 'onArticleCopyCallback');
 ?>

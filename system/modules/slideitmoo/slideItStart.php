@@ -56,7 +56,7 @@ class slideItStart extends ContentElement
      */
     public function __construct(Database_Result $objElement)
     {
-        $arrConf = $objElement->fetchAllAssoc();
+        $arrConf        = $objElement->fetchAllAssoc();
         $this->_arrConf = $arrConf[0];
         parent::__construct($objElement);
     }
@@ -70,7 +70,7 @@ class slideItStart extends ContentElement
     {
         if (TL_MODE == 'BE')
         {
-            $objTemplate = new BackendTemplate('be_wildcard');
+            $objTemplate           = new BackendTemplate('be_wildcard');
             $objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['CTE']['slideItStart'][0] . ' ###';
 
             return $objTemplate->parse();
@@ -84,7 +84,7 @@ class slideItStart extends ContentElement
      */
     protected function compile()
     {
-        $objSlider = new slideItMoo($this->_arrConf);
+        $objSlider              = new slideItMoo($this->_arrConf);
         $this->Template->script = $objSlider->parse();
     }
 

@@ -27,12 +27,10 @@
  * @filesource
  */
 
-
 /**
  * Miscellaneous
  */
-$GLOBALS['TL_LANG']['CTE']['slideIt'] = 'slideItMoo';
-$GLOBALS['TL_LANG']['CTE']['slideItStart'] = array('slideItMoo Start','Über das Startelement der Slideshow werden unterschiedliche Konfigurationen vorgenommen.');
-$GLOBALS['TL_LANG']['CTE']['slideItEnd'] = array('slideItMoo Ende','Hier können Sie keine Änderungen an der Slideshow vornehmen. <br />!!! Wenn Sie dieses Element löschen, wird die gesamte Slideshow gelöscht !!!');
-
+$GLOBALS['TL_LANG']['CTE']['slideIt']      = 'slideItMoo';
+$GLOBALS['TL_LANG']['CTE']['slideItStart'] = array('slideItMoo Start', 'Über das Startelement der Slideshow werden unterschiedliche Konfigurationen vorgenommen.');
+$GLOBALS['TL_LANG']['CTE']['slideItEnd'] = array('slideItMoo Ende', 'Hier können Sie keine Änderungen an der Slideshow vornehmen. <br />!!! Wenn Sie dieses Element löschen, wird die gesamte Slideshow gelöscht !!!');
 ?>
