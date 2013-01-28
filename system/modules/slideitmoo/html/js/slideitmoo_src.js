@@ -106,7 +106,7 @@ var ExtendedSlideItMoo = new Class({
       // Add swip event
       if($$('body')[0].hasClass('mobile'))
       {
-        this.addSwipEvent();
+        this.addSwipeEvent();
       }
 
       this.setAllContainerStyles().addResizeEvent();
@@ -120,13 +120,11 @@ var ExtendedSlideItMoo = new Class({
   
   // HELPER --------------------------------------------------------------------
   
-  addSwipEvent: function()
+  addSwipeEvent: function()
   {
-    var self = this;
+    var self = this;    
     
-    $(this.options.containerId).addEvent('swipe', function(event){
-      event.stop();
-      
+    $(this.options.containerId).addEvent('swipe', function(event){     
       if(event.direction == 'left')
       { 
         self.options.slider.slide(1);
@@ -136,6 +134,8 @@ var ExtendedSlideItMoo = new Class({
         self.options.slider.slide(-1);
       }
     });
+    
+    $(this.options.containerId).store('swipe:cancelVertical', true);
   },
   
   /**
