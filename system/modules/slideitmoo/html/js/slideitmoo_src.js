@@ -2,7 +2,7 @@
  * Class ExtendedSlideItMoo
  *
  * Provide methods to handle slideItMoo slider
- * @copyright  MEN AT WORK 2012
+ * @copyright  MEN AT WORK 2013
  * @package    Frontend
  */
 var ExtendedSlideItMoo = new Class({
