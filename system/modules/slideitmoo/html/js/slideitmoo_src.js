@@ -102,6 +102,12 @@ var ExtendedSlideItMoo = new Class({
       
       // Set responsive styles
       if(this.options.sliderAttr.isResponsive) this.setPcentStyles();
+      
+      // Add swip event
+      if($$('body')[0].hasClass('mobile'))
+      {
+        this.addSwipEvent();
+      }
 
       this.setAllContainerStyles().addResizeEvent();
     }
@@ -113,6 +119,24 @@ var ExtendedSlideItMoo = new Class({
   },
   
   // HELPER --------------------------------------------------------------------
+  
+  addSwipEvent: function()
+  {
+    var self = this;
+    
+    $(this.options.containerId).addEvent('swipe', function(event){
+      event.stop();
+      
+      if(event.direction == 'left')
+      { 
+        self.options.slider.slide(1);
+      }
+      else if(event.direction == 'right')
+      {
+        self.options.slider.slide(-1);
+      }
+    });
+  },
   
   /**
    * Define the dimension of one slider item

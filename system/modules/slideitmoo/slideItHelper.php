@@ -176,6 +176,7 @@ class slideItHelper extends Backend
     {
         $GLOBALS['TL_JAVASCRIPT']['slideItMoo']         = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
         $GLOBALS['TL_JAVASCRIPT']['extendedSlideItMoo'] = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/slideitmoo.js';
+        $GLOBALS['TL_JAVASCRIPT']['powertools']         = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/powertools-1.2.0.js';
 
         if ($templateDefault)
         {
