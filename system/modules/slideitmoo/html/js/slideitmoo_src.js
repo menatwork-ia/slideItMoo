@@ -57,7 +57,7 @@ var ExtendedSlideItMoo = new Class({
    * Initialize the object
    */
   initialize: function(options)
-  {    
+  {
     this.setOptions(options);
     if($(this.options.containerId))
     {
@@ -245,14 +245,14 @@ var ExtendedSlideItMoo = new Class({
     if(this.options.sliderAttr.slideVertical) {
       this.options.containerAttr.thumbsContainer.styles.height = (this.options.responsive.thumbsContainer.pcent.height).round(2) + '%';
       Object.each(this.options.childAttr, function(value, key){
-        self.options.childAttr['height'] = (this.options.responsive.child.pcent.height).round(2) + '%';
+        self.options.childAttr['height'] = (this.options.responsive.child.pcent.height).round(10) + '%';
       }.bind(self));
     }
     else
     {
       this.options.containerAttr.thumbsContainer.styles.width = (this.options.responsive.thumbsContainer.pcent.width).round(2) + '%';
       Object.each(this.options.childAttr, function(value, key){
-        self.options.childAttr['width'] = (this.options.responsive.child.pcent.width).round(2) + '%';
+        self.options.childAttr['width'] = (this.options.responsive.child.pcent.width).round(10) + '%';
       }.bind(self));
     }
   },
