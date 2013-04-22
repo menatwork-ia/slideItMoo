@@ -50,7 +50,8 @@ var ExtendedSlideItMoo = new Class({
             width: 0,
             height: 0
         },
-        responsive: {}
+        responsive: {},
+        resizeTimer: null
     },
 
     /**
@@ -85,7 +86,11 @@ var ExtendedSlideItMoo = new Class({
         var self = this;
         if (this.options.enabled) {
             // Create real slider
-            this.options.slider = new SlideItMoo(this.options.sliderAttr);
+            if (this.options.slider === null) {
+                this.options.slider = new SlideItMoo(this.options.sliderAttr);
+            } else {
+                this.options.slider.initialize();
+            }
 
             // Set or remove styles
             if (!this.options.sliderAttr.skipInlineStyles && !this.options.sliderAttr.isResponsive) {
@@ -121,22 +126,38 @@ var ExtendedSlideItMoo = new Class({
         this.options.slider.addEvent(type, fn, internal);
     },
 
+    /**
+     * Bridge to SlideItMooFramework
+     * 
+     * @param {string} type 
+     * @param {function} fn 
+     * @param {object} internal 
+     */
+    removeEvent: function (type, fn) {
+        this.options.slider.removeEvent(type, fn);
+    },
+
     // HELPER --------------------------------------------------------------------
     /**
      * Add swipe event
      */
     addSwipeEvent: function () {
-        var self = this;
+        var self = this,
+            func = function (event) {
+                if (event.direction === 'left') {
+                    self.options.slider.slide(1);
+                } else if (event.direction === 'right') {
+                    self.options.slider.slide(-1);
+                }
+            };
 
-        $(this.options.containerId).addEvent('swipe', function (event) {
-            if (event.direction === 'left') {
-                self.options.slider.slide(1);
-            } else if (event.direction === 'right') {
-                self.options.slider.slide(-1);
-            }
-        });
+        if (this.options.elemCount > this.options.sliderAttr.itemsVisible) {
+            $(this.options.containerId).addEvent('swipe', func);
 
-        $(this.options.containerId).store('swipe:cancelVertical', true);
+            $(this.options.containerId).store('swipe:cancelVertical', true);
+        } else {
+            $(this.options.containerId).removeEvents('swipe');
+        }
     },
 
     /**
@@ -148,7 +169,6 @@ var ExtendedSlideItMoo = new Class({
         if (this.options.sliderAttr.isResponsive) {
             var elementScrolledPxWidth = $(this.options.sliderAttr.elementScrolled).getWidth();
             var elementScrolledPxHeight = $(this.options.sliderAttr.elementScrolled).getHeight();
-
             this.options.responsive.thumbsContainer = {
                 pcent: {
                     width: ((this.options.elemCount * 100) / this.options.sliderAttr.itemsVisible),
@@ -208,9 +228,12 @@ var ExtendedSlideItMoo = new Class({
      * @returns {object}
      */
     setControlsClass: function () {
-        if (this.options.elemCount <= this.options.itemsVisible && this.options.sliderAttr.showControls) {
-            $(this.options.overallContainer).getElement(this.options.sliderAttr.navs.fwd).addClass('hidden');
-            $(this.options.overallContainer).getElement(this.options.sliderAttr.navs.bk).addClass('hidden');
+        if (this.options.elemCount <= this.options.sliderAttr.itemsVisible && this.options.sliderAttr.showControls) {
+            $(this.options.sliderAttr.overallContainer).getElement(this.options.sliderAttr.navs.fwd).addClass('hidden');
+            $(this.options.sliderAttr.overallContainer).getElement(this.options.sliderAttr.navs.bk).addClass('hidden');
+        } else {
+            $(this.options.sliderAttr.overallContainer).getElement(this.options.sliderAttr.navs.fwd).removeClass('hidden');
+            $(this.options.sliderAttr.overallContainer).getElement(this.options.sliderAttr.navs.bk).removeClass('hidden');
         }
 
         return this;
@@ -282,7 +305,7 @@ var ExtendedSlideItMoo = new Class({
      * @returns {object}
      */
     setContainerStyles: function (container, objStyles) {
-        if ($(container) && !!Object.getLength(objStyles)) {
+        if ($(container) && !! Object.getLength(objStyles)) {
             Object.each(objStyles, function (value, key) {
                 $(container).setStyle(key, value);
             });
@@ -291,24 +314,21 @@ var ExtendedSlideItMoo = new Class({
         return this;
     },
 
-    /*
+    /**
      * Add on resize event
      */
     addResizeEvent: function () {
-        var timer;
         window.addEvent('resize', function () {
-
             // Stop autoslide if enabled
             if (this.options.slider.options.autoSlide) {
                 this.options.slider.stopAutoSlide();
             }
 
-            clearTimeout(timer);
+            clearTimeout(this.options.resizeTimer);
 
             // Set timer function
-            timer = (function () {
-
-                // Update slider element dimension
+            this.options.resizeTimer = (function () {
+                // Update slider element dimension            
                 this.setItemDimension();
                 this.options.slider.elementWidth = this.options.sliderAttr.itemWidth;
                 this.options.slider.elementHeight = this.options.sliderAttr.itemHeight;
@@ -317,8 +337,28 @@ var ExtendedSlideItMoo = new Class({
                 if (this.options.slider.options.autoSlide) {
                     this.options.slider.startAutoSlide();
                 }
-
             }.bind(this)).delay(50);
         }.bind(this));
+    },
+
+    /**
+     * Rebuild framework slider
+     */
+    rebuildFramework: function () {
+        // Stop autoslide if enabled
+        if (this.options.slider.options.autoSlide) {
+            this.options.slider.stopAutoSlide();
+        }
+
+        this.options.elemCount = $$(this.options.containerChildsId).length;
+        //
+        this.setItemDimension().setNavSize().setControlsClass();
+
+        this.run();
+
+        // Start autoslide if enabled
+        if (this.options.slider.options.autoSlide) {
+            this.options.slider.startAutoSlide();
+        }
     }
 });
