@@ -154,6 +154,7 @@ var ExtendedSlideItMoo = new Class({
         if (this.options.elemCount > this.options.sliderAttr.itemsVisible) {
             $(this.options.containerId).addEvent('swipe', func);
 
+            $(this.options.containerId).store('swipe:distance', 20);
             $(this.options.containerId).store('swipe:cancelVertical', true);
         } else {
             $(this.options.containerId).removeEvents('swipe');
