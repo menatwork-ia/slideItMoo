@@ -162,11 +162,18 @@ class slideItMoo
             $this->_arrSlider['duration'] = intval($this->duration);
         }
 
-        if ($this->startIndex)
+        // Look for startIndex set by post or get
+        $intPostIndex = Input::getInstance()->post('startIndex');
+        $intGetIndex = Input::getInstance()->get('startIndex');
+        if($intPostIndex || $intGetIndex)
+        {
+            $this->_arrSlider['startIndex'] = (($intPostIndex) ? $intPostIndex : $intGetIndex);
+        }
+        else if ($this->startIndex)
         {
             $this->_arrSlider['startIndex'] = $this->startIndex;
         }
-
+        
         if ($this->autoSlideDefault && $this->autoSlide)
         {
             $this->_arrSlider['autoSlide'] = intval($this->autoSlide);
