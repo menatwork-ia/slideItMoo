@@ -1,0 +1,98 @@
+@charset "UTF-8";
+/**
+*
+* Vertical Slider
+*
+* @copyright	Copyright 2010-2011 | MEN AT WORK
+* @link 		http://www.men-at-work.de
+* @license		LGPL
+*/
+
+@media screen, projection
+{
+
+  .slider {  
+  	display:block; 
+  	position:relative; 
+  	padding:30px 0;
+	margin:0 auto;
+  }
+  
+ /*---------------------------------------------------------------------------*/ 
+ /* Style forward/backward button if navigation is active */
+ /* Navigation gestalten wenn Sie im Backend aktiviert ist */
+ 
+  .js-slider .slider .fwd,
+  .js-slider .slider .bk { 
+  	display:block; 
+  	position:absolute; 
+  	cursor:pointer; 
+  	width:25px; 
+  	height:25px; 
+  	left:50%; 
+	margin-left:-13px;
+	text-indent:-99999px;
+	z-index:111;
+	background-repeat:no-repeat;
+	background-position:center center;
+  }
+  
+  .js-slider .slider .fwd { 
+  	top:0; 
+  	background-image:url(../images/forward_vertical.png);
+  }
+  
+  .js-slider .slider .bk { 
+  	bottom:0; 
+  	background-image:url(../images/back_vertical.png);
+  }
+  
+  .slider .fwd, 
+  .slider .bk {
+	display:none;
+  }
+
+ /*---------------------------------------------------------------------------*/ 
+  
+  .slider_inner { 
+  	position:relative; 
+  	overflow:hidden; 
+  	margin:0 auto;
+  	padding:0;
+  }
+  
+  .slider_items { 
+  	display:block; 
+  	position:relative; 
+  	overflow:hidden;
+  }
+  
+  .slider_items .block { 
+  	position:relative; 
+  	display:block;
+	margin:0 auto;
+  }
+  
+  /*--------------------------------------------------------------------------*/
+  
+  .slider .bulletlist {
+      display:block;
+      text-align:center;
+  }
+  
+  .slider .bulletlist .bullet {
+      width:10px;
+      height:10px;
+      display:inline-block;
+      border:1px solid #000;
+      -moz-border-radius:10px;
+      -webkit-border-radius:10px;
+      border-radius:10px;
+      behavior:url("plugins/css3pie/PIE.htc");
+  }
+  
+  .slider .bulletlist .bullet.active {
+      background-color:#000;
+  }
+
+}
