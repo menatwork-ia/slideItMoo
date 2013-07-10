@@ -39,7 +39,7 @@ class slideItEnd extends ContentElement
      * @param object
      * @return string
      */
-    public function __construct(Database_Result $objElement)
+    public function __construct($objElement)
     {
         $this->_objHelper   = slideItHelper::getInstance();
         $this->_strSliderId = $objElement->si_containerId;
