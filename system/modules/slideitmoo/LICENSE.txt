@@ -1,15 +1,15 @@
 /**
  * Package    	slideItMoo Extension
  * Copyright  	MEN AT WORK 2012
- * Author		Andreas Isaak <cms@men-at-work.de>, David Maack <cms@men-at-work.de>, Stefan Heimes <cms@men-at-work.de>
- * Link			http://www.men-at-work.de/
+ * Author       Andreas Isaak <cms@men-at-work.de>, David Maack <cms@men-at-work.de>, Patrick Kahl <cms@men-at-work.de>, Stefan Heimes <cms@men-at-work.de>
+ * Link         http://www.men-at-work.de/
  * License    	GNU/LGPL
  */
- 
+
 /**
  * Package    	FE-Widget
  * Copyright  	Cliff Parnitzky 2012
- * Author		Cliff Parnitzky <mail@cliff-parnitzky.de>
- * Link			http://www.cliff-parnitzky.de/
+ * Author       Cliff Parnitzky <mail@cliff-parnitzky.de>
+ * Link         http://www.cliff-parnitzky.de/
  * License    	GNU/LGPL
  */
