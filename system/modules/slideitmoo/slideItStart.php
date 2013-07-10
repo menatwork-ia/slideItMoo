@@ -57,7 +57,11 @@ class slideItStart extends ContentElement
         if (TL_MODE == 'BE')
         {
             $objTemplate           = new BackendTemplate('be_wildcard');
-            $objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['CTE']['slideItStart'][0] . ' ###';
+
+            if (version_compare(VERSION, 3, '<'))
+            {
+                $objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['CTE']['slideItStart'][0] . ' ###';
+            }
 
             return $objTemplate->parse();
         }
