@@ -132,7 +132,7 @@ class slideItHelper extends Backend
      */
     public function insertJsCss($cssTemplate = FALSE, $templateDefault = FALSE)
     {
-        $strPath = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/source/';
+        $strPath = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/';
 
         $GLOBALS['TL_JAVASCRIPT']['slideItMoo']         = $strPath . 'slideitmooFramework.js';
         $GLOBALS['TL_JAVASCRIPT']['extendedSlideItMoo'] = $strPath . 'slideitmoo.js';
