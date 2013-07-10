@@ -136,7 +136,17 @@ class slideItHelper extends Backend
 
         $GLOBALS['TL_JAVASCRIPT']['slideItMoo']         = $strPath . 'slideitmooFramework.js';
         $GLOBALS['TL_JAVASCRIPT']['extendedSlideItMoo'] = $strPath . 'slideitmoo.js';
-        $GLOBALS['TL_JAVASCRIPT']['powertools']         = $strPath . 'powertools.js';
+
+        // Set config script on the bottom of the page
+        if (version_compare(VERSION, 3, '>='))
+        {
+            $GLOBALS['TL_JAVASCRIPT']['swipe'] = TL_ASSETS_URL . 'assets/swipe/' . SWIPE . '/js/swipe.min.js';
+        }
+        else
+        {
+            $GLOBALS['TL_JAVASCRIPT']['powertools'] = $strPath . 'powertools.js';
+        }
+
 
         if ($templateDefault)
         {

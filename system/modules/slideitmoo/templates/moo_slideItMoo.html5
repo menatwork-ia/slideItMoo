@@ -7,6 +7,7 @@ if(typeof slideItMooContainer != 'undefined' || slideItMooContainer == null)
 
 window.addEvent('load', function(){
     var slide_<?php echo $this->containerId; ?> = new ExtendedSlideItMoo(<?php echo json_encode(array(
+        'contao3' => $this->contao3,
         'containerId' => $this->containerId,
         'containerChildsId' => $this->containerChildsId,
         'sliderAttr' => $this->arrSlider,

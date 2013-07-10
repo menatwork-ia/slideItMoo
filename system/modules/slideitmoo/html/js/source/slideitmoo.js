@@ -108,7 +108,7 @@ var ExtendedSlideItMoo = new Class({
             }
 
             // Add swip event
-            if ($$('body')[0].hasClass('mobile')) {
+            if (this.isTouch()) {
                 this.addSwipeEvent();
             }
 
@@ -143,8 +143,16 @@ var ExtendedSlideItMoo = new Class({
      * Add swipe event
      */
     addSwipeEvent: function () {
-        var self = this,
-            func = function (event) {
+        var self = this;
+
+        if(this.options.contao3) {
+            // Set new contao 3 swipe methode
+            $(this.options.containerId).addEvent('swipe', function(e) {
+                (e.direction == 'left') ? self.options.slider.slide(1) : self.options.slider.slide(-1);
+            });
+        } else {
+            // Set swipe with powertools for older versions than contao 3
+            var func = function (event) {
                 if (event.direction === 'left') {
                     self.options.slider.slide(1);
                 } else if (event.direction === 'right') {
@@ -152,14 +160,22 @@ var ExtendedSlideItMoo = new Class({
                 }
             };
 
-        if (this.options.elemCount > this.options.sliderAttr.itemsVisible) {
-            $(this.options.containerId).addEvent('swipe', func);
+            if (this.options.elemCount > this.options.sliderAttr.itemsVisible) {
+                $(this.options.containerId).addEvent('swipe', func);
 
-            $(this.options.containerId).store('swipe:distance', 20);
-            $(this.options.containerId).store('swipe:cancelVertical', true);
-        } else {
-            $(this.options.containerId).removeEvents('swipe');
+                $(this.options.containerId).store('swipe:distance', 20);
+                $(this.options.containerId).store('swipe:cancelVertical', true);
+            } else {
+                $(this.options.containerId).removeEvents('swipe');
+            }
         }
+    },
+
+    /**
+     * Return if operation system is touch
+     */
+    isTouch: function () {
+        return 'ontouchstart' in window;
     },
 
     /**

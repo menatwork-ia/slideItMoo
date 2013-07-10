@@ -228,6 +228,7 @@ class slideItMoo
 
         // Create Template
         $objTemplate                    = new FrontendTemplate($this->_strTemplate);
+        $objTemplate->contao3           = ((version_compare(VERSION, 3, '>=')) ? true : false);
         $objTemplate->containerId       = $this->containerId;
         $objTemplate->itemsSelector     = $this->itemsSelector;
         $objTemplate->itemsVisible      = $this->itemsVisible;
