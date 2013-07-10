@@ -1,9 +1,9 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
  *
- * @copyright  MEN AT WORK 2013 
+ * @copyright  MEN AT WORK 2013
  * @package    slideitmoo
  * @license    GNU/LGPL
  * @filesource
@@ -11,7 +11,7 @@
 
 /**
  * Class SlideItMoo
- * 
+ *
  * @copyright  Cliff Parnitzky 2012
  */
 class slideItMoo
@@ -52,7 +52,7 @@ class slideItMoo
 
     /**
      * Set a parameter
-     * 
+     *
      * @param string
      * @param mixed
      * @throws Exception
@@ -86,7 +86,7 @@ class slideItMoo
 
     /**
      * Return a parameter
-     * 
+     *
      * @return string
      * @throws Exception
      */
@@ -97,7 +97,7 @@ class slideItMoo
 
     /**
      * Take an associative array and add it to the object's attributes
-     * 
+     *
      * @param array
      */
     public function addAttributes($mixedAttributes)
@@ -117,7 +117,7 @@ class slideItMoo
 
     /**
      * Create slider and return it as string
-     * 
+     *
      * @return string
      */
     public function parse()
@@ -147,7 +147,7 @@ class slideItMoo
             'skipInlineStyles' => $this->skipInlineStyles,
             'skipNavSize'      => $this->skipNavSize,
             'isResponsive'     => $this->responsive
-                ));
+        ));
 
         if ($this->showControls)
         {
@@ -164,8 +164,8 @@ class slideItMoo
 
         // Look for startIndex set by post or get
         $intPostIndex = Input::getInstance()->post('startIndex');
-        $intGetIndex = Input::getInstance()->get('startIndex');
-        if($intPostIndex || $intGetIndex)
+        $intGetIndex  = Input::getInstance()->get('startIndex');
+        if ($intPostIndex || $intGetIndex)
         {
             $this->_arrSlider['startIndex'] = (($intPostIndex) ? $intPostIndex : $intGetIndex);
         }
@@ -173,7 +173,7 @@ class slideItMoo
         {
             $this->_arrSlider['startIndex'] = $this->startIndex;
         }
-        
+
         if ($this->autoSlideDefault && $this->autoSlide)
         {
             $this->_arrSlider['autoSlide'] = intval($this->autoSlide);

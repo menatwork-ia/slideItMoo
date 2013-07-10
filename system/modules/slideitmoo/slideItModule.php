@@ -1,9 +1,9 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
  *
- * @copyright  MEN AT WORK 2013 
+ * @copyright  MEN AT WORK 2013
  * @package    slideitmoo
  * @license    GNU/LGPL
  * @filesource
@@ -23,15 +23,15 @@ class slideItModule extends Module
 
     /**
      * Configuration array
-     * @var type 
+     * @var type
      */
     protected $_arrConf = array();
 
     /**
      * Initialize the object
-     * 
+     *
      * @param Database_Result $objElement
-     * @param string $strColumn 
+     * @param string $strColumn
      */
     public function __construct($objElement, $strColumn = 'main')
     {

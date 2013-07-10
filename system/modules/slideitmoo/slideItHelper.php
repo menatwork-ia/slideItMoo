@@ -1,16 +1,16 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
  *
- * @copyright  MEN AT WORK 2013 
+ * @copyright  MEN AT WORK 2013
  * @package    slideitmoo
  * @license    GNU/LGPL
  * @filesource
  */
 
 /**
- * Class slideItStart 
+ * Class slideItStart
  */
 class slideItHelper extends Backend
 {
@@ -23,7 +23,7 @@ class slideItHelper extends Backend
 
     /**
      * Contains all start slider config arrays
-     * @var array 
+     * @var array
      */
     protected $_arrSliderConfigs = array();
 
@@ -42,9 +42,9 @@ class slideItHelper extends Backend
     final private function __clone(){}
 
     /**
-     * Get instanz of the object (Singelton) 
+     * Get instanz of the object (Singelton)
      *
-     * @return slideItHelper 
+     * @return slideItHelper
      */
     public static function getInstance()
     {
@@ -57,7 +57,7 @@ class slideItHelper extends Backend
 
     /**
      * Set start slider config
-     * 
+     *
      * @param array $arrConfig
      */
     public function setSliderConfig($arrConfig)
@@ -67,7 +67,7 @@ class slideItHelper extends Backend
 
     /**
      * Get start slider config
-     * 
+     *
      * @param string $strId
      * @return array/null
      */
@@ -82,7 +82,7 @@ class slideItHelper extends Backend
 
     /**
      * Check the required extensions and files
-     * 
+     *
      * @param string $strContent
      * @param string $strTemplate
      * @return string
@@ -126,9 +126,9 @@ class slideItHelper extends Backend
 
     /**
      * Insert nessesary JS and CSS files
-     * 
+     *
      * @param type $cssTemplate
-     * @param type $templateDefault 
+     * @param type $templateDefault
      */
     public function insertJsCss($cssTemplate = FALSE, $templateDefault = FALSE)
     {
@@ -146,9 +146,9 @@ class slideItHelper extends Backend
 
     /**
      * Read all available css-files and return them as an array
-     * 
+     *
      * @param DC_Table $dc
-     * @return array 
+     * @return array
      */
     public function loadCssFiles(DC_Table $dc)
     {
@@ -180,9 +180,9 @@ class slideItHelper extends Backend
     /**
      * Function for global tl_page oncopy callback
      * $GLOBALS['TL_DCA']['tl_page']['config']['oncopy_callback']
-     * 
+     *
      * @param integer $intId
-     * @param DataContainer $dc 
+     * @param DataContainer $dc
      */
     public function onPageCopyCallback($intId, DataContainer $dc)
     {
@@ -224,9 +224,9 @@ class slideItHelper extends Backend
     /**
      * Function for global tl_article oncopy callback
      * $GLOBALS['TL_DCA']['tl_article']['config']['oncopy_callback']
-     * 
+     *
      * @param integer $intId
-     * @param DataContainer $dc 
+     * @param DataContainer $dc
      */
     public function onArticleCopyCallback($intId, DataContainer $dc)
     {
@@ -235,8 +235,8 @@ class slideItHelper extends Backend
 
     /**
      * Repair copied module specific content elements
-     * 
-     * @param integer $intId 
+     *
+     * @param integer $intId
      */
     protected function updateContentElem($intId)
     {
@@ -253,7 +253,7 @@ class slideItHelper extends Backend
 
         $arrSets = array();
 
-        // Get highest id and set new container Id 
+        // Get highest id and set new container Id
         $objSlider = $this->Database->prepare('SELECT *, CAST(SUBSTRING_INDEX(si_containerId, "_", -1) AS UNSIGNED ) as counter FROM tl_content WHERE type = "slideItStart" ORDER BY counter desc LIMIT 0,1')
                 ->execute()
                 ->fetchAssoc();

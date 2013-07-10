@@ -1,26 +1,22 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
  *
- * @copyright  MEN AT WORK 2013 
+ * @copyright  MEN AT WORK 2013
  * @package    slideitmoo
  * @license    GNU/LGPL
  * @filesource
  */
 
 /**
- * Table tl_content 
- */
-
-/**
- * Palettes 
+ * Palettes
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['slideItStart'] = '{type_legend},type,headline;{siGenerel_legend},si_itemsVisible,si_elementsSlide,si_startIndex,si_itemsSelector,si_responsive;{siDimensions_legend},' . ((!tl_content_si::isResponsive()) ? 'si_itemsDimension,' : '') . 'si_itemsMargin;{siEffect_legend},si_duration,si_autoEffectTransition;{siAuto_legend:hide},si_verticalSlide,si_autoSlideDefault;{siControls_legend:hide},si_showControls,si_mouseWheelNav,si_showBullets;{siTemplate_legend:hide},si_templateDefault;{expert_legend:hide},si_skipInlineStyles,si_skipNavSize,cssID,space';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['slideItEnd']   = '{type_legend},type;';
 
 /**
- * Selector 
+ * Selector
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'si_autoSlideDefault';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'si_templateDefault';
@@ -34,7 +30,7 @@ $GLOBALS['TL_DCA']['tl_content']['subpalettes']['si_templateDefault']      = 'si
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['si_autoEffectTransition'] = 'si_effectTransition,si_effectEase';
 
 /**
- * Callbacks 
+ * Callbacks
  */
 $GLOBALS['TL_DCA']['tl_content']['config']['onsubmit_callback'][] = array('tl_content_si', 'siWrite');
 $GLOBALS['TL_DCA']['tl_content']['config']['ondelete_callback'][] = array('tl_content_si', 'siDelete');
@@ -42,172 +38,263 @@ $GLOBALS['TL_DCA']['tl_content']['config']['ondelete_callback'][] = array('tl_co
 /**
  * Fields
  */
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsVisible'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_itemsVisible'],
-    'inputType' => 'text',
-    'exclude'   => true,
-    'eval'      => array('mandatory' => true, 'maxlength' => '4', 'rgxp'      => 'digit', 'tl_class'  => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsVisible'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_itemsVisible'],
+    'inputType'             => 'text',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'mandatory'         => true,
+        'maxlength'         => '4',
+        'rgxp'              => 'digit',
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_elementsSlide'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_elementsSlide'],
-    'inputType' => 'text',
-    'exclude'   => true,
-    'eval'      => array('mandatory' => true, 'maxlength' => '4', 'rgxp'      => 'digit', 'tl_class'  => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_elementsSlide'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_elementsSlide'],
+    'inputType'             => 'text',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'mandatory'         => true,
+        'maxlength'         => '4',
+        'rgxp'              => 'digit',
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_startIndex'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_startIndex'],
-    'inputType' => 'text',
-    'exclude'   => true,
-    'eval'      => array('tl_class' => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_startIndex'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_startIndex'],
+    'inputType'             => 'text',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsSelector'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_itemsSelector'],
-    'inputType' => 'text',
-    'exclude'   => true,
-    'eval'      => array('maxlength' => '200', 'rgxp'      => 'extnd', 'tl_class'  => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsSelector'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_itemsSelector'],
+    'inputType'             => 'text',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'maxlength'         => '200',
+        'rgxp'              => 'extnd',
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_responsive'] = array(
-    'label'         => &$GLOBALS['TL_LANG']['tl_content']['si_responsive'],
-    'inputType'     => 'checkbox',
-    'exclude'       => true,
-    'save_callback' => array(array('tl_content_si', 'siResponsiveSaveCallback')),
-    'eval' => array('submitOnChange' => true, 'tl_class'       => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_responsive'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_responsive'],
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'save_callback' => array
+    (
+        array('tl_content_si', 'siResponsiveSaveCallback')
+    ),
+    'eval' => array
+    (
+        'submitOnChange'    => true,
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsDimension'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_itemsDimension'],
-    'inputType' => 'text',
-    'exclude'   => true,
-    'eval'      => array('mandatory' => true, 'multiple'  => true, 'size'      => 2, 'rgxp'      => 'digit', 'nospace'   => true, 'tl_class'  => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsDimension'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_itemsDimension'],
+    'inputType'             => 'text',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'mandatory'         => true,
+        'multiple'          => true,
+        'size'              => 2,
+        'rgxp'              => 'digit',
+        'nospace'           => true,
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsMargin'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_itemsMargin'],
-    'inputType' => 'trbl',
-    'options'   => array('px'),
-    'exclude' => true,
-    'eval'    => array('rgxp'     => 'digit', 'tl_class' => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_itemsMargin'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_itemsMargin'],
+    'inputType'             => 'trbl',
+    'options'               => array('px'),
+    'exclude'               => true,
+    'eval' => array
+    (
+        'rgxp'              => 'digit',
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_duration'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_duration'],
-    'inputType' => 'text',
-    'exclude'   => true,
-    'eval'      => array('mandatory' => true, 'maxlength' => '6', 'rgxp'      => 'digit', 'tl_class'  => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_duration'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_duration'],
+    'inputType'             => 'text',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'mandatory'         => true,
+        'maxlength'         => '6',
+        'rgxp'              => 'digit',
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoEffectTransition'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_autoEffectTransition'],
-    'inputType' => 'checkbox',
-    'exclude'   => true,
-    'eval'      => array('submitOnChange' => true, 'tl_class'       => 'w50 m12')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoEffectTransition'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_autoEffectTransition'],
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'submitOnChange'    => true,
+        'tl_class'          => 'w50 m12'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_effectTransition'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_effectTransition'],
-    'inputType' => 'select',
-    'exclude'   => true,
-    'options'   => array('Quad', 'Cubic', 'Quart', 'Quint', 'Sine', 'Expo', 'Circ', 'Bounce', 'Back', 'Elastic'),
-    'eval' => array('tl_class' => 'clr w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_effectTransition'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_effectTransition'],
+    'inputType'             => 'select',
+    'exclude'               => true,
+    'options'               => array('Quad', 'Cubic', 'Quart', 'Quint', 'Sine', 'Expo', 'Circ', 'Bounce', 'Back', 'Elastic'),
+    'eval' => array
+    (
+        'tl_class'          => 'clr w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_effectEase'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_effectEase'],
-    'inputType' => 'select',
-    'exclude'   => true,
-    'options'   => array('In', 'Out', 'InOut'),
-    'eval' => array('tl_class' => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_effectEase'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_effectEase'],
+    'inputType'             => 'select',
+    'exclude'               => true,
+    'options'               => array('In', 'Out', 'InOut'),
+    'eval'                  => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_verticalSlide'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_verticalSlide'],
-    'inputType' => 'checkbox',
-    'exclude'   => true,
-    'eval'      => array('submitOnChange' => true, 'tl_class'       => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_verticalSlide'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_verticalSlide'],
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'submitOnChange'    => true,
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlideDefault'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_autoSlideDefault'],
-    'inputType' => 'checkbox',
-    'exclude'   => true,
-    'eval'      => array('submitOnChange' => true, 'tl_class'       => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlideDefault'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_autoSlideDefault'],
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'submitOnChange'    => true,
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlide'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_autoSlide'],
-    'inputType' => 'text',
-    'exclude'   => true,
-    'eval'      => array('maxlength' => '10', 'rgxp'      => 'digit', 'tl_class'  => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_autoSlide'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_autoSlide'],
+    'inputType'             => 'text',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'maxlength'         => '10',
+        'rgxp'              => 'digit',
+        'tl_class'          => 'w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_elementDirection'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_elementDirection'],
-    'inputType' => 'checkbox',
-    'exclude'   => true,
-    'eval'      => array('tl_class' => 'w50 m12')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_elementDirection'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_elementDirection'],
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'eval'                  => array('tl_class' => 'w50 m12')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_showControls'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_showControls'],
-    'default'   => 0,
-    'inputType' => 'checkbox',
-    'exclude'   => true,
-    'eval'      => array('tl_class' => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_showControls'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_showControls'],
+    'default'               => 0,
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'eval'                  => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_mouseWheelNav'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_mouseWheelNav'],
-    'default'   => 0,
-    'inputType' => 'checkbox',
-    'exclude'   => true,
-    'eval'      => array('tl_class' => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_mouseWheelNav'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_mouseWheelNav'],
+    'default'               => 0,
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'eval'                  => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_showBullets'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_showBullets'],
-    'inputType' => 'checkbox',
-    'exclude'   => true,
-    'eval'      => array('tl_class' => 'm12 w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_showBullets'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_showBullets'],
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'eval'                  => array('tl_class' => 'm12 w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_templateDefault'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_templateDefault'],
-    'inputType' => 'checkbox',
-    'exclude'   => true,
-    'eval'      => array('submitOnChange' => true, 'tl_class'       => 'm12 w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_templateDefault'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_templateDefault'],
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'eval' => array
+    (
+        'submitOnChange'    => true,
+        'tl_class'          => 'm12 w50'
+    )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_cssTemplate'] = array(
-    'label'            => &$GLOBALS['TL_LANG']['tl_content']['si_cssTemplate'],
-    'default'          => 'slideitmoo_horizontal',
-    'exclude'          => true,
-    'inputType'        => 'select',
-    'options_callback' => array('tl_content_si', 'loadCssFiles'),
-    'eval' => array('tl_class' => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_cssTemplate'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_cssTemplate'],
+    'default'               => 'slideitmoo_horizontal',
+    'exclude'               => true,
+    'inputType'             => 'select',
+    'options_callback'      => array('tl_content_si', 'loadCssFiles'),
+    'eval'                  => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_skipInlineStyles'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_skipInlineStyles'],
-    'inputType' => 'checkbox',
-    'exclude'   => true,
-    'eval'      => array('tl_class' => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_skipInlineStyles'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_skipInlineStyles'],
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'eval'                  => array('tl_class' => 'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['si_skipNavSize'] = array(
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['si_skipNavSize'],
-    'inputType' => 'checkbox',
-    'exclude'   => true,
-    'eval'      => array('tl_class' => 'w50')
+$GLOBALS['TL_DCA']['tl_content']['fields']['si_skipNavSize'] = array
+(
+    'label'                 => &$GLOBALS['TL_LANG']['tl_content']['si_skipNavSize'],
+    'inputType'             => 'checkbox',
+    'exclude'               => true,
+    'eval'                  => array('tl_class' => 'w50')
 );
 
 /**
  * Class tl_content_si
  *
- * @copyright  MEN AT WORK 2012 
+ * @copyright  MEN AT WORK 2012
  * @package    slideitmoo
  */
 class tl_content_si extends Backend
@@ -215,7 +302,7 @@ class tl_content_si extends Backend
 
     /**
      * Check if current content element is responsive
-     * 
+     *
      * @return boolean
      */
     public static function isResponsive()
@@ -239,8 +326,8 @@ class tl_content_si extends Backend
 
     /**
      * Write or update the content elements
-     * 
-     * @param DC_Table $dc 
+     *
+     * @param DC_Table $dc
      */
     public function siWrite(DC_Table $dc)
     {
@@ -291,13 +378,13 @@ class tl_content_si extends Backend
 
     /**
      * Delete slider element and his childs
-     * 
-     * @param DC_Table $dc 
+     *
+     * @param DC_Table $dc
      */
     public function siDelete(DC_Table $dc)
     {
         /**
-         * Get content element to delete 
+         * Get content element to delete
          */
         $objDelRec = $this->Database->prepare("SELECT * FROM tl_content WHERE id = ?")
                 ->execute($dc->id)
@@ -323,9 +410,9 @@ class tl_content_si extends Backend
 
     /**
      * Read all available css-files and return them as an array
-     * 
+     *
      * @param DC_Table $dc
-     * @return array 
+     * @return array
      */
     public function loadCssFiles(DC_Table $dc)
     {

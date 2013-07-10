@@ -1,9 +1,9 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
  *
- * @copyright  MEN AT WORK 2013 
+ * @copyright  MEN AT WORK 2013
  * @package    slideitmoo
  * @license    GNU/LGPL
  * @filesource
@@ -23,7 +23,7 @@ class slideItStart extends ContentElement
 
     /**
      * Configuration array
-     * @var type 
+     * @var type
      */
     protected $_arrConf = array();
 
@@ -35,7 +35,7 @@ class slideItStart extends ContentElement
 
     /**
      * Initialize the object
-     * 
+     *
      * @param object
      * @return string
      */
@@ -49,7 +49,7 @@ class slideItStart extends ContentElement
 
     /**
      * Display a wildcard in the back end
-     * 
+     *
      * @return string
      */
     public function generate()

@@ -1,9 +1,9 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
  *
- * @copyright  MEN AT WORK 2013 
+ * @copyright  MEN AT WORK 2013
  * @package    slideitmoo
  * @license    GNU/LGPL
  * @filesource
@@ -14,5 +14,5 @@
  */
 $GLOBALS['TL_LANG']['CTE']['slideIt']      = 'slideItMoo';
 $GLOBALS['TL_LANG']['CTE']['slideItStart'] = array('slideItMoo Start', 'Über das Startelement der Slideshow werden unterschiedliche Konfigurationen vorgenommen.');
-$GLOBALS['TL_LANG']['CTE']['slideItEnd'] = array('slideItMoo Ende', 'Hier können Sie keine Änderungen an der Slideshow vornehmen. <br />!!! Wenn Sie dieses Element löschen, wird die gesamte Slideshow gelöscht !!!');
+$GLOBALS['TL_LANG']['CTE']['slideItEnd']   = array('slideItMoo Ende', 'Hier können Sie keine Änderungen an der Slideshow vornehmen. <br />!!! Wenn Sie dieses Element löschen, wird die gesamte Slideshow gelöscht !!!');
 ?>

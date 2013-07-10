@@ -1,21 +1,21 @@
 <script type="text/javascript">
-   
+
 if(typeof slideItMooContainer != 'undefined' || slideItMooContainer == null)
 {
     var slideItMooContainer = [];
-}  
+}
 
-window.addEvent('load', function(){       
+window.addEvent('load', function(){
     var slide_<?php echo $this->containerId; ?> = new ExtendedSlideItMoo(<?php echo json_encode(array(
         'containerId' => $this->containerId,
         'containerChildsId' => $this->containerChildsId,
         'sliderAttr' => $this->arrSlider,
         'childAttr' => $this->arrChilds,
     )); ?>);
-                        
-   slide_<?php echo $this->containerId; ?>.run();  
+
+   slide_<?php echo $this->containerId; ?>.run();
    slideItMooContainer.push(slide_<?php echo $this->containerId; ?>);
-            
+
    if ($$('<?php echo $this->containerChildsId; ?>').length < 2){
        $$('#<?php echo $this->containerId; ?> .<?php echo $this->containerId; ?>_fwd, #<?php echo $this->containerId; ?> .<?php echo $this->containerId; ?>_bk').addClass('hidenav');
    }

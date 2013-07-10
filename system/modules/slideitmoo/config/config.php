@@ -1,14 +1,13 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
  *
- * @copyright  MEN AT WORK 2013 
+ * @copyright  MEN AT WORK 2013
  * @package    slideitmoo
  * @license    GNU/LGPL
  * @filesource
  */
-
 $GLOBALS['TL_HOOKS']['parseBackendTemplate'][] = array('slideItHelper', 'checkExtensions');
 
 /**
@@ -25,5 +24,5 @@ $GLOBALS['TL_CTE']['slideIt'] = array(
 $GLOBALS['FE_MOD']['miscellaneous']['slideItMoo'] = 'slideItModule';
 
 $GLOBALS['TL_WRAPPERS']['start'][] = 'slideItStart';
-$GLOBALS['TL_WRAPPERS']['stop'][] = 'slideItEnd';
+$GLOBALS['TL_WRAPPERS']['stop'][]  = 'slideItEnd';
 ?>
