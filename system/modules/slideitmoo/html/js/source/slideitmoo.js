@@ -84,7 +84,6 @@ var ExtendedSlideItMoo = new Class({
      * Create real slider and set additional attributes
      */
     run: function () {
-        console.log(this.options);
         var self = this;
         if (this.options.enabled) {
             // Create real slider
