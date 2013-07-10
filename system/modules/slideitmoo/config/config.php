@@ -23,4 +23,7 @@ $GLOBALS['TL_CTE']['slideIt'] = array(
  * Front end modules
  */
 $GLOBALS['FE_MOD']['miscellaneous']['slideItMoo'] = 'slideItModule';
+
+$GLOBALS['TL_WRAPPERS']['start'][] = 'slideItStart';
+$GLOBALS['TL_WRAPPERS']['stop'][] = 'slideItEnd';
 ?>
