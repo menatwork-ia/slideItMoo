@@ -3,7 +3,8 @@
  *
  * Provide methods to handle slideItMoo slider
  * @copyright  MEN AT WORK 2013
- * @package    Frontend
+ * @package    slideitmoo
+ * @license    GNU/LGPL
  */
 var ExtendedSlideItMoo = new Class({
 
@@ -56,7 +57,7 @@ var ExtendedSlideItMoo = new Class({
 
     /**
      * Initialize the object
-     * 
+     *
      * @param {object} options
      */
     initialize: function (options) {
@@ -83,6 +84,7 @@ var ExtendedSlideItMoo = new Class({
      * Create real slider and set additional attributes
      */
     run: function () {
+        console.log(this.options);
         var self = this;
         if (this.options.enabled) {
             // Create real slider
@@ -117,10 +119,10 @@ var ExtendedSlideItMoo = new Class({
 
     /**
      * Bridge to SlideItMooFramework
-     * 
-     * @param {string} type 
-     * @param {function} fn 
-     * @param {object} internal 
+     *
+     * @param {string} type
+     * @param {function} fn
+     * @param {object} internal
      */
     addEvent: function (type, fn, internal) {
         this.options.slider.addEvent(type, fn, internal);
@@ -128,10 +130,10 @@ var ExtendedSlideItMoo = new Class({
 
     /**
      * Bridge to SlideItMooFramework
-     * 
-     * @param {string} type 
-     * @param {function} fn 
-     * @param {object} internal 
+     *
+     * @param {string} type
+     * @param {function} fn
+     * @param {object} internal
      */
     removeEvent: function (type, fn) {
         this.options.slider.removeEvent(type, fn);
@@ -163,7 +165,7 @@ var ExtendedSlideItMoo = new Class({
 
     /**
      * Define the dimension of one slider item
-     * 
+     *
      * @returns {object}
      */
     setItemDimension: function () {
@@ -206,7 +208,7 @@ var ExtendedSlideItMoo = new Class({
 
     /**
      * Define the navigation size
-     * 
+     *
      * @returns {object}
      */
     setNavSize: function () {
@@ -225,7 +227,7 @@ var ExtendedSlideItMoo = new Class({
 
     /**
      * Set the controls class
-     * 
+     *
      * @returns {object}
      */
     setControlsClass: function () {
@@ -242,7 +244,7 @@ var ExtendedSlideItMoo = new Class({
 
     /**
      * Define the styles for all container objects in pixel
-     * 
+     *
      * @returns {object}
      */
     setPixelStyles: function () {
@@ -279,7 +281,7 @@ var ExtendedSlideItMoo = new Class({
 
     /**
      * Set all styles
-     * 
+     *
      * @returns {object}
      */
     setAllContainerStyles: function () {
@@ -300,7 +302,7 @@ var ExtendedSlideItMoo = new Class({
 
     /**
      * Set the given styles for the given element
-     * 
+     *
      * @param {string} container
      * @param {object} objStyles
      * @returns {object}
@@ -329,7 +331,7 @@ var ExtendedSlideItMoo = new Class({
 
             // Set timer function
             this.options.resizeTimer = (function () {
-                // Update slider element dimension            
+                // Update slider element dimension
                 this.setItemDimension();
                 this.options.slider.elementWidth = this.options.sliderAttr.itemWidth;
                 this.options.slider.elementHeight = this.options.sliderAttr.itemHeight;
