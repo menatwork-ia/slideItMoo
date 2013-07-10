@@ -33,7 +33,7 @@ class slideItModule extends Module
      * @param Database_Result $objElement
      * @param string $strColumn 
      */
-    public function __construct(Database_Result $objElement, $strColumn = 'main')
+    public function __construct($objElement, $strColumn = 'main')
     {
         $arrConf        = $objElement->fetchAllAssoc();
         $this->_arrConf = $arrConf[0];
