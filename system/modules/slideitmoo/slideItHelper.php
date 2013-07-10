@@ -132,13 +132,15 @@ class slideItHelper extends Backend
      */
     public function insertJsCss($cssTemplate = FALSE, $templateDefault = FALSE)
     {
-        $GLOBALS['TL_JAVASCRIPT']['slideItMoo']         = TL_PLUGINS_URL . 'plugins/slideitmoo/js/1.3.0/slideitmoo.js';
-        $GLOBALS['TL_JAVASCRIPT']['extendedSlideItMoo'] = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/slideitmoo.js';
-        $GLOBALS['TL_JAVASCRIPT']['powertools']         = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/powertools-1.2.0.js';
+        $strPath = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/js/source/';
+
+        $GLOBALS['TL_JAVASCRIPT']['slideItMoo']         = $strPath . 'slideitmooFramework.js';
+        $GLOBALS['TL_JAVASCRIPT']['extendedSlideItMoo'] = $strPath . 'slideitmoo.js';
+        $GLOBALS['TL_JAVASCRIPT']['powertools']         = $strPath . 'powertools-1.2.0.js';
 
         if ($templateDefault)
         {
-            $GLOBALS['TL_CSS'][] = TL_PLUGINS_URL . 'plugins/slideitmoo/css/' . $cssTemplate . '.css';
+            $GLOBALS['TL_CSS'][] = TL_SCRIPT_URL . 'system/modules/slideitmoo/html/css/' . $cssTemplate . '.css';
         }
     }
 
@@ -150,7 +152,7 @@ class slideItHelper extends Backend
      */
     public function loadCssFiles(DC_Table $dc)
     {
-        $arrFiles = scan(TL_ROOT . '/plugins/slideitmoo/css/');
+        $arrFiles = scan(TL_ROOT . '/system/modules/slideitmoo/html/css/');
         $arrCss   = array();
         foreach ($arrFiles as $k => $file)
         {
