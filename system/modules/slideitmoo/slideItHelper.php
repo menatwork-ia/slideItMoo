@@ -136,7 +136,7 @@ class slideItHelper extends Backend
 
         $GLOBALS['TL_JAVASCRIPT']['slideItMoo']         = $strPath . 'slideitmooFramework.js';
         $GLOBALS['TL_JAVASCRIPT']['extendedSlideItMoo'] = $strPath . 'slideitmoo.js';
-        $GLOBALS['TL_JAVASCRIPT']['powertools']         = $strPath . 'powertools-1.2.0.js';
+        $GLOBALS['TL_JAVASCRIPT']['powertools']         = $strPath . 'powertools.js';
 
         if ($templateDefault)
         {
