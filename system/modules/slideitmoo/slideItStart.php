@@ -39,11 +39,11 @@ class slideItStart extends ContentElement
      * @param object
      * @return string
      */
-    public function __construct(Database_Result $objElement)
+    public function __construct($objElement)
     {
         $this->_objHelper = slideItHelper::getInstance();
-        $arrConf          = $objElement->fetchAllAssoc();
-        $this->_arrConf   = $arrConf[0];
+        $arrConf          = $objElement->row();
+        $this->_arrConf   = $arrConf;
         parent::__construct($objElement);
     }
 
