@@ -35,8 +35,8 @@ class slideItModule extends Module
      */
     public function __construct($objElement, $strColumn = 'main')
     {
-        $arrConf        = $objElement->fetchAllAssoc();
-        $this->_arrConf = $arrConf[0];
+        $arrConf        = $objElement->row();
+        $this->_arrConf = $arrConf;
         parent::__construct($objElement, $strColumn);
     }
 
