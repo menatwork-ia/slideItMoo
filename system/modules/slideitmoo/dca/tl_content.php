@@ -314,7 +314,7 @@ class tl_content_si extends Backend
         }
 
         if(Input::getInstance()->get('do') != 'article' ||
-           Input::getInstance()->get('table') != 'content' ||
+           Input::getInstance()->get('table') != 'tl_content' ||
            !Input::getInstance()->get('id'))
         {
             return false;
