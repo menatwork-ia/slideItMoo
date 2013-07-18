@@ -10,6 +10,11 @@
  */
 
 /**
+ * Info
+ */
+$GLOBALS['TL_LANG']['MSC']['si_update'] = 'Bitte updaten Sie Ihre Datenbank <a href="%s">hier</a>';
+
+/**
  * Miscellaneous
  */
 $GLOBALS['TL_LANG']['CTE']['slideIt']      = 'slideItMoo';

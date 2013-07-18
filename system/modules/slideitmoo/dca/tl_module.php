@@ -9,6 +9,9 @@
  * @filesource
  */
 
+if(tl_module_si::isActive())
+{
+
 /**
  * Palettes
  */
@@ -307,6 +310,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['si_skipNavSize'] = array
     'eval'                          => array('tl_class' => 'm12 w50')
 );
 
+}
+
 /**
  * Class tl_module_si
  *
@@ -324,6 +329,25 @@ class tl_module_si extends Backend
         parent::__construct();
         $this->import('BackendUser', 'User');
         $this->import('String');
+    }
+
+    public static function isActive()
+    {
+        if(!Database::getInstance()->fieldExists('si_responsive', 'tl_module')) {
+            $strUrl = Environment::getInstance()->base . 'contao/main.php?do=repository_manager&update=database';
+            $_SESSION['TL_INFO']['slideItMoo'] = sprintf($GLOBALS['TL_LANG']['MSC']['si_update'], $strUrl);
+            return false;
+        }
+
+        if(Input::getInstance()->get('do') != 'themes' ||
+           Input::getInstance()->get('table') != 'tl_module' ||
+           !Input::getInstance()->get('id'))
+        {
+            return false;
+        }
+
+
+        return true;
     }
 
     /**

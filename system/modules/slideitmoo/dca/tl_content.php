@@ -9,6 +9,9 @@
  * @filesource
  */
 
+if(tl_content_si::isActive())
+{
+
 /**
  * Palettes
  */
@@ -291,6 +294,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_skipNavSize'] = array
     'eval'                  => array('tl_class' => 'w50')
 );
 
+}
+
 /**
  * Class tl_content_si
  *
@@ -299,6 +304,25 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['si_skipNavSize'] = array
  */
 class tl_content_si extends Backend
 {
+
+    public static function isActive()
+    {
+        if(!Database::getInstance()->fieldExists('si_responsive', 'tl_content')) {
+            $strUrl = Environment::getInstance()->base . 'contao/main.php?do=repository_manager&update=database';
+            $_SESSION['TL_INFO']['slideItMoo'] = sprintf($GLOBALS['TL_LANG']['MSC']['si_update'], $strUrl);
+            return false;
+        }
+
+        if(Input::getInstance()->get('do') != 'article' ||
+           Input::getInstance()->get('table') != 'content' ||
+           !Input::getInstance()->get('id'))
+        {
+            return false;
+        }
+
+
+        return true;
+    }
 
     /**
      * Check if current content element is responsive
