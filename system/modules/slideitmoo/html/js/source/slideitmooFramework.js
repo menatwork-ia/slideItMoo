@@ -398,7 +398,7 @@
         clicked: function(el)
         {
             // already scrolling, get out.
-            if(this.isScrolling || this.targetSlide)
+            if(this.started || this.targetSlide)
                 return;
 
             clearInterval(this.autoSlide);
